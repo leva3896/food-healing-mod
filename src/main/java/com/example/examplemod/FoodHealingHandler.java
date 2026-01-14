@@ -19,8 +19,8 @@ public class FoodHealingHandler {
     // 体力回復倍率（満腹度1につき体力2回復）
     private static final float HEAL_MULTIPLIER = 2.0f;
 
-    // ボーナス効果の閾値（満腹度30以上で発動）
-    private static final int BONUS_THRESHOLD = 30;
+    // ボーナス効果の閾値（満腹度19以上で発動）
+    private static final int BONUS_THRESHOLD = 19;
 
     // ボーナス効果の持続時間（20分 = 24000 tick）
     private static final int BONUS_DURATION = 20 * 60 * 20; // 24000 ticks
