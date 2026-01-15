@@ -67,6 +67,9 @@ public class FoodHealingMod {
     public FoodHealingMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        // コンフィグを登録
+        FoodHealingConfig.register();
+
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
@@ -88,15 +91,16 @@ public class FoodHealingMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // 最大体力の上限を100,000に拡張
+        // 最大体力の上限をコンフィグ値に拡張（デフォルト: 100万, 最大: 1兆）
         event.enqueueWork(() -> {
             try {
+                double maxHealthCap = FoodHealingConfig.COMMON.maxHealthCap.get();
                 RangedAttribute maxHealth = (RangedAttribute) Attributes.MAX_HEALTH;
                 // リフレクションでmaxValueフィールドにアクセス
                 java.lang.reflect.Field maxValueField = RangedAttribute.class.getDeclaredField("maxValue");
                 maxValueField.setAccessible(true);
-                maxValueField.setDouble(maxHealth, 100000.0);
-                LOGGER.info("[FoodHealing] Max health cap extended to 100,000!");
+                maxValueField.setDouble(maxHealth, maxHealthCap);
+                LOGGER.info("[FoodHealing] Max health cap extended to " + String.format("%,.0f", maxHealthCap) + "!");
             } catch (Exception e) {
                 LOGGER.error("[FoodHealing] Failed to extend max health cap: " + e.getMessage());
             }

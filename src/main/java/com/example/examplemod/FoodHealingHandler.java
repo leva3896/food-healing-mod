@@ -16,15 +16,6 @@ import org.slf4j.Logger;
 public class FoodHealingHandler {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // 体力回復倍率（満腹度1につき体力2回復）
-    private static final float HEAL_MULTIPLIER = 2.0f;
-
-    // ボーナス効果の閾値（満腹度19以上で発動）
-    private static final int BONUS_THRESHOLD = 19;
-
-    // ボーナス効果の持続時間（20分 = 24000 tick）
-    private static final int BONUS_DURATION = 20 * 60 * 20; // 24000 ticks
-
     @SubscribeEvent
     public static void onItemUseFinish(LivingEntityUseItemEvent.Finish event) {
         // プレイヤーかどうかチェック
@@ -45,8 +36,14 @@ public class FoodHealingHandler {
 
         int nutrition = foodProperties.getNutrition();
 
-        // 体力回復量を計算（満腹度 × 2）
-        float healAmount = nutrition * HEAL_MULTIPLIER;
+        // コンフィグから値を取得
+        double healMultiplier = FoodHealingConfig.COMMON.healMultiplier.get();
+        int bonusThreshold = FoodHealingConfig.COMMON.bonusThreshold.get();
+        int bonusDurationSeconds = FoodHealingConfig.COMMON.bonusDurationSeconds.get();
+        int bonusDurationTicks = bonusDurationSeconds * 20;
+
+        // 体力回復量を計算
+        float healAmount = (float) (nutrition * healMultiplier);
 
         // 体力を回復（最大体力を超えない）
         player.heal(healAmount);
@@ -54,12 +51,12 @@ public class FoodHealingHandler {
         LOGGER.info("[FoodHealing] Player {} ate food with nutrition {}. Healed {} HP.",
                 player.getName().getString(), nutrition, healAmount);
 
-        // 満腹度30以上の場合、ボーナス効果を付与
-        if (nutrition >= BONUS_THRESHOLD) {
+        // ボーナス効果の閾値以上の場合、ボーナス効果を付与
+        if (nutrition >= bonusThreshold) {
             // 耐性レベル4（内部的には0-indexed なのでレベル3を指定）
             player.addEffect(new MobEffectInstance(
                     MobEffects.DAMAGE_RESISTANCE,
-                    BONUS_DURATION,
+                    bonusDurationTicks,
                     3, // Level 4 (0-indexed)
                     false, // ambient
                     true, // visible particles
@@ -69,13 +66,14 @@ public class FoodHealingHandler {
             // 火炎耐性
             player.addEffect(new MobEffectInstance(
                     MobEffects.FIRE_RESISTANCE,
-                    BONUS_DURATION,
+                    bonusDurationTicks,
                     0, // Level 1
                     false,
                     true,
                     true));
 
-            LOGGER.info("[FoodHealing] Bonus effects applied! Resistance IV and Fire Resistance for 20 minutes.");
+            LOGGER.info("[FoodHealing] Bonus effects applied! Resistance IV and Fire Resistance for {} seconds.",
+                    bonusDurationSeconds);
         }
     }
 }

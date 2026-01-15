@@ -18,9 +18,6 @@ import java.util.UUID;
 public class HungerChangeHandler {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // 体力回復倍率（満腹度1増加につき体力2回復）
-    private static final float HEAL_MULTIPLIER = 2.0f;
-
     // プレイヤーごとの前回の満腹度を記録
     private static final Map<UUID, Integer> previousFoodLevels = new HashMap<>();
 
@@ -54,7 +51,8 @@ public class HungerChangeHandler {
         // 満腹度が増加した場合
         if (currentFoodLevel > previousFoodLevel) {
             int foodIncrease = currentFoodLevel - previousFoodLevel;
-            float healAmount = foodIncrease * HEAL_MULTIPLIER;
+            double healMultiplier = FoodHealingConfig.COMMON.healMultiplier.get();
+            float healAmount = (float) (foodIncrease * healMultiplier);
 
             // 体力を回復
             player.heal(healAmount);

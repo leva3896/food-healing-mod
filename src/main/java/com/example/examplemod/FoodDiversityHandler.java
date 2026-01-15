@@ -36,12 +36,6 @@ public class FoodDiversityHandler {
     // AttributeModifier用のUUID
     private static final UUID HEALTH_BONUS_UUID = UUID.fromString("a5f8c2d1-3e7b-4a2c-9f1d-6e8b4c2a1d3f");
 
-    // 必要な食べ物の種類数
-    private static final int FOODS_REQUIRED = 5;
-
-    // 体力増加量
-    private static final int HEALTH_INCREASE = 2;
-
     /**
      * Capabilityを登録
      */
@@ -129,12 +123,15 @@ public class FoodDiversityHandler {
 
             if (isNew) {
                 int currentCount = data.getUniqueFoodCount();
-                LOGGER.info("[FoodHealing] New food type eaten: {}. Unique foods: {}/{}",
-                        foodIdString, currentCount, FOODS_REQUIRED);
+                int foodsRequired = FoodHealingConfig.COMMON.foodsRequiredForBonus.get();
+                int healthIncrease = FoodHealingConfig.COMMON.healthIncreasePerBonus.get();
 
-                // 5種類達成したら最大体力を増加
-                if (currentCount >= FOODS_REQUIRED) {
-                    data.addMaxHealthBonus(HEALTH_INCREASE);
+                LOGGER.info("[FoodHealing] New food type eaten: {}. Unique foods: {}/{}",
+                        foodIdString, currentCount, foodsRequired);
+
+                // 必要種類数達成したら最大体力を増加
+                if (currentCount >= foodsRequired) {
+                    data.addMaxHealthBonus(healthIncrease);
                     data.resetFoodCount();
 
                     // 最大体力を増加

@@ -52,8 +52,9 @@ public class HealthDisplayOverlay {
         float currentHealth = player.getHealth();
         float maxHealth = player.getMaxHealth();
 
-        // 表示テキスト
-        String healthText = String.format("HP: %.1f / %.1f", currentHealth, maxHealth);
+        // 表示テキスト（大きな数値を読みやすくフォーマット）
+        String healthText = String.format("HP: %s / %s",
+                formatHealth(currentHealth), formatHealth(maxHealth));
 
         // ハートが表示されていた位置を計算
         // バニラのハート位置: 画面下部中央から少し左上
@@ -70,5 +71,24 @@ public class HealthDisplayOverlay {
 
         // テキスト描画（白色、影付き）
         guiGraphics.drawString(font, healthText, x, y, 0xFFFFFF);
+    }
+
+    /**
+     * 体力値を読みやすい形式にフォーマット
+     * 1000未満: 小数点1桁表示
+     * 1000以上: K（千）, M（百万）, B（十億）, T（兆）で短縮表示
+     */
+    private static String formatHealth(float health) {
+        if (health < 1000) {
+            return String.format("%.1f", health);
+        } else if (health < 1_000_000) {
+            return String.format("%.2fK", health / 1000);
+        } else if (health < 1_000_000_000) {
+            return String.format("%.2fM", health / 1_000_000);
+        } else if (health < 1_000_000_000_000L) {
+            return String.format("%.2fB", health / 1_000_000_000);
+        } else {
+            return String.format("%.2fT", health / 1_000_000_000_000L);
+        }
     }
 }
