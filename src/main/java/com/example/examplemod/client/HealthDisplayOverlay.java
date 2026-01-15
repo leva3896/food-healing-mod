@@ -22,6 +22,14 @@ public class HealthDisplayOverlay {
     public static void onRenderGuiOverlayPre(RenderGuiOverlayEvent.Pre event) {
         // バニラのハート表示をキャンセルし、代わりに数値を描画
         if (event.getOverlay() == VanillaGuiOverlay.PLAYER_HEALTH.type()) {
+            Minecraft mc = Minecraft.getInstance();
+            Player player = mc.player;
+
+            // クリエイティブモードの場合は何もしない（バニラのまま）
+            if (player != null && player.isCreative()) {
+                return;
+            }
+
             // ハート表示をキャンセル
             event.setCanceled(true);
 

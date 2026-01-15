@@ -3,6 +3,8 @@ package com.example.examplemod;
 import com.example.examplemod.client.HealthDisplayOverlay;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -86,6 +88,19 @@ public class FoodHealingMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        // 最大体力の上限を100,000に拡張
+        event.enqueueWork(() -> {
+            try {
+                RangedAttribute maxHealth = (RangedAttribute) Attributes.MAX_HEALTH;
+                // リフレクションでmaxValueフィールドにアクセス
+                java.lang.reflect.Field maxValueField = RangedAttribute.class.getDeclaredField("maxValue");
+                maxValueField.setAccessible(true);
+                maxValueField.setDouble(maxHealth, 100000.0);
+                LOGGER.info("[FoodHealing] Max health cap extended to 100,000!");
+            } catch (Exception e) {
+                LOGGER.error("[FoodHealing] Failed to extend max health cap: " + e.getMessage());
+            }
+        });
         LOGGER.info("[FoodHealing] Common setup complete!");
     }
 
