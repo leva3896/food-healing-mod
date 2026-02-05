@@ -1,0 +1,17 @@
+Food Healing MOD - Changelog
+=============================
+
+v1.5.3 (2026-02-06)
+-------------------
+- Fixed: FoodHealingHandler now properly applies HP recovery and bonus effects
+- Changed: Enabled FoodHealingHandler, disabled HungerChangeHandler to avoid duplication
+
+v1.5.2 (Previous)
+-----------------
+- Initial features:
+  - Food-based healing (nutrition x2 HP)
+  - Bonus effects (Resistance IV + Fire Resistance) for high nutrition food
+  - Always eat regardless of hunger level
+  - Food diversity bonus (5 unique foods = +2 max HP)
+  - Numerical HP display overlay
+  - Configurable settings via foodhealing-common.toml
