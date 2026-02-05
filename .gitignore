@@ -1,0 +1,28 @@
+# Ignore output and build directories
+/build/
+/out/
+/run/
+/run-data/
+
+# Ignore Gradle caches and daemons
+.gradle/
+gradle-app.setting
+
+# Ignore IDE directories and files
+/.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+bin/
+
+# Eclipse
+*.launch
+
+# macOS
+.DS_Store
+
+# Ignore generated resources
+/src/generated/
