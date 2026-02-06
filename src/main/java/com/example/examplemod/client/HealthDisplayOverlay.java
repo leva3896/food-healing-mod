@@ -65,6 +65,12 @@ public class HealthDisplayOverlay {
         int x = screenWidth / 2 - 91; // ホットバーの左端
         int y = screenHeight - 39; // ホットバーの上
 
+        // 防具を装備している場合、防御力バーと重ならないように上にずらす
+        int armorValue = player.getArmorValue();
+        if (armorValue > 0) {
+            y -= 10; // 防御力バーの分だけ上にずらす
+        }
+
         // 背景を描画（読みやすくするため）
         int textWidth = font.width(healthText);
         guiGraphics.fill(x - 2, y - 2, x + textWidth + 2, y + 10, 0x80000000);

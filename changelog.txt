@@ -1,6 +1,10 @@
 Food Healing MOD - Changelog
 =============================
 
+v1.5.4 (2026-02-06)
+-------------------
+- Fixed: HP display now shifts up when armor is equipped to avoid overlapping with armor bar
+
 v1.5.3 (2026-02-06)
 -------------------
 - Fixed: FoodHealingHandler now properly applies HP recovery and bonus effects
