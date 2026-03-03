@@ -56,20 +56,32 @@ public class FoodDiversityHandler {
     }
 
     /**
-     * 死亡時にデータを保持（リスポーン後も維持）
+     * 死亡時・ディメンション変更時にデータを保持
+     * (エンドポータル・ネザーポータル通過時もプレイヤーエンティティが再作成されるため)
      */
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            event.getOriginal().reviveCaps();
-            event.getOriginal().getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(oldData -> {
-                event.getEntity().getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(newData -> {
-                    newData.copyFrom(oldData);
-                    // 最大体力ボーナスを再適用
-                    applyHealthBonus(event.getEntity(), newData.getMaxHealthBonus());
-                });
+        Player oldPlayer = event.getOriginal();
+        Player newPlayer = event.getEntity();
+
+        // ディメンション変更時は現在HPも保持する（死亡時はデフォルトHPで復活）
+        float previousHealth = oldPlayer.getHealth();
+
+        oldPlayer.reviveCaps();
+        oldPlayer.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(oldData -> {
+            newPlayer.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(newData -> {
+                newData.copyFrom(oldData);
+                // 最大体力ボーナスを再適用
+                applyHealthBonus(newPlayer, newData.getMaxHealthBonus());
             });
-            event.getOriginal().invalidateCaps();
+        });
+        oldPlayer.invalidateCaps();
+
+        // ディメンション変更時は元のHPを復元、死亡時は最大HPで復活
+        if (event.isWasDeath()) {
+            newPlayer.setHealth(newPlayer.getMaxHealth());
+        } else {
+            newPlayer.setHealth(previousHealth);
         }
     }
 
