@@ -51,6 +51,9 @@ public class FoodHealingHandler {
         LOGGER.info("[FoodHealing] Player {} ate food with nutrition {}. Healed {} HP.",
                 player.getName().getString(), nutrition, healAmount);
 
+        // HungerChangeHandlerでの重複回復を防ぐため、食事した時間を記録
+        HungerChangeHandler.lastAteTimes.put(player.getUUID(), player.level().getGameTime());
+
         // ボーナス効果の閾値以上の場合、ボーナス効果を付与
         if (nutrition >= bonusThreshold) {
             // 耐性レベル4（内部的には0-indexed なのでレベル3を指定）

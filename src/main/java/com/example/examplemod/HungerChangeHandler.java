@@ -21,6 +21,9 @@ public class HungerChangeHandler {
     // プレイヤーごとの前回の満腹度を記録
     private static final Map<UUID, Integer> previousFoodLevels = new HashMap<>();
 
+    // プレイヤーが通常のアイテムで食事をした時点のゲーム内時間（Tick）を記録
+    public static final Map<UUID, Long> lastAteTimes = new HashMap<>();
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         // サーバーサイドのみ、かつティックの開始時のみ処理
@@ -50,15 +53,26 @@ public class HungerChangeHandler {
 
         // 満腹度が増加した場合
         if (currentFoodLevel > previousFoodLevel) {
-            int foodIncrease = currentFoodLevel - previousFoodLevel;
-            double healMultiplier = FoodHealingConfig.COMMON.healMultiplier.get();
-            float healAmount = (float) (foodIncrease * healMultiplier);
+            Long lastAteTime = lastAteTimes.get(playerId);
+            long currentTime = player.level().getGameTime();
 
-            // 体力を回復
-            player.heal(healAmount);
+            // 過去2Tick以内に通常の食事イベント(FoodHealingHandler)で処理されていた場合
+            // 重複回復を防ぐために無視する
+            if (lastAteTime != null && (currentTime - lastAteTime) <= 2) {
+                LOGGER.debug("[FoodHealing] Ignoring food level increase for {} (handled by normal eating).", player.getName().getString());
+                // フラグを消費
+                lastAteTimes.remove(playerId);
+            } else {
+                int foodIncrease = currentFoodLevel - previousFoodLevel;
+                double healMultiplier = FoodHealingConfig.COMMON.healMultiplier.get();
+                float healAmount = (float) (foodIncrease * healMultiplier);
 
-            LOGGER.info("[FoodHealing] Player {} hunger increased by {}. Healed {} HP (non-food source).",
-                    player.getName().getString(), foodIncrease, healAmount);
+                // 体力を回復
+                player.heal(healAmount);
+
+                LOGGER.info("[FoodHealing] Player {} hunger increased by {}. Healed {} HP (non-food source).",
+                        player.getName().getString(), foodIncrease, healAmount);
+            }
         }
 
         // 現在の満腹度を記録
@@ -70,5 +84,6 @@ public class HungerChangeHandler {
      */
     public static void clearPlayerData(UUID playerId) {
         previousFoodLevels.remove(playerId);
+        lastAteTimes.remove(playerId);
     }
 }

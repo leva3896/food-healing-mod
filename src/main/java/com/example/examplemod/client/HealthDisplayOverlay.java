@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import com.example.examplemod.FoodHealingConfig;
 
 /**
  * 体力をハートではなく数値で表示するオーバーレイ
@@ -70,6 +71,10 @@ public class HealthDisplayOverlay {
         if (armorValue > 0) {
             y -= 10; // 防御力バーの分だけ上にずらす
         }
+
+        // コンフィグからオフセット設定を読み込んで適用
+        x += FoodHealingConfig.COMMON.overlayOffsetX.get();
+        y += FoodHealingConfig.COMMON.overlayOffsetY.get();
 
         // 背景を描画（読みやすくするため）
         int textWidth = font.width(healthText);

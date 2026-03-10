@@ -79,8 +79,8 @@ public class FoodHealingMod {
         // 共通イベントハンドラーを登録
         // FoodHealingHandler: 食事時にHP回復＋ボーナス効果を付与
         MinecraftForge.EVENT_BUS.register(FoodHealingHandler.class);
-        // HungerChangeHandler は FoodHealingHandler と重複するため無効化
-        // MinecraftForge.EVENT_BUS.register(HungerChangeHandler.class);
+        // HungerChangeHandler: 満腹度の直接増加（Mekanismやコマンド等）時にHP回復
+        MinecraftForge.EVENT_BUS.register(HungerChangeHandler.class);
         MinecraftForge.EVENT_BUS.register(AlwaysEatHandler.class);
         MinecraftForge.EVENT_BUS.register(FoodDiversityHandler.class);
 
