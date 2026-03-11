@@ -20,6 +20,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.effect.MobEffect;
 import org.slf4j.Logger;
 
 /**
@@ -31,10 +32,15 @@ public class FoodHealingMod {
     public static final String MODID = "foodhealing";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // アイテム登録用
+    // アイテム・エフェクト登録用
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,
+            MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
             .create(Registries.CREATIVE_MODE_TAB, MODID);
+
+    // 根性エフェクト
+    public static final RegistryObject<MobEffect> GUTS_EFFECT = EFFECTS.register("guts", GutsEffect::new);
 
     // テスト用超強力食料（満腹度50回復）
     public static final RegistryObject<Item> SUPER_FOOD = ITEMS.register("super_food",
@@ -74,6 +80,7 @@ public class FoodHealingMod {
         modEventBus.addListener(this::clientSetup);
 
         ITEMS.register(modEventBus);
+        EFFECTS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         // 共通イベントハンドラーを登録
@@ -83,6 +90,9 @@ public class FoodHealingMod {
         MinecraftForge.EVENT_BUS.register(HungerChangeHandler.class);
         MinecraftForge.EVENT_BUS.register(AlwaysEatHandler.class);
         MinecraftForge.EVENT_BUS.register(FoodDiversityHandler.class);
+
+        // DamageEventHandler: 根性エフェクトによるダメージ軽減・即死回避処理
+        MinecraftForge.EVENT_BUS.register(DamageEventHandler.class);
 
         // クライアントサイドのみ：体力数値表示オーバーレイを登録
         if (FMLEnvironment.dist == Dist.CLIENT) {
