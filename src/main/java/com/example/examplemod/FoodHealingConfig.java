@@ -37,6 +37,12 @@ public class FoodHealingConfig {
                 // ボーナス効果の持続時間（秒）
                 public final ForgeConfigSpec.IntValue bonusDurationSeconds;
 
+                // 根性効果の閾値（満腹度）
+                public final ForgeConfigSpec.IntValue gutsThreshold;
+
+                // 根性効果の持続時間（秒）
+                public final ForgeConfigSpec.IntValue gutsDurationSeconds;
+
                 // 食べ物多様性：何種類で体力アップ
                 public final ForgeConfigSpec.IntValue foodsRequiredForBonus;
 
@@ -86,6 +92,22 @@ public class FoodHealingConfig {
                                         .comment("JP: ボーナス効果の持続時間（秒単位）")
                                         .comment("Default: 1200 (20 min) | Range: 10 ~ 86400 (24 hours)")
                                         .defineInRange("bonusDurationSeconds", 1200, 10, 86400);
+
+                        gutsThreshold = builder
+                                        .comment("")
+                                        .comment("[Guts Effect Threshold / 根性効果の閾値]")
+                                        .comment("EN: Minimum nutrition to trigger Guts effect")
+                                        .comment("JP: 根性（即死回避）効果が発動する最小満腹度回復量")
+                                        .comment("Default: 19 | Range: 1 ~ 100")
+                                        .defineInRange("gutsThreshold", 19, 1, 100);
+
+                        gutsDurationSeconds = builder
+                                        .comment("")
+                                        .comment("[Guts Duration / 根性効果の持続時間]")
+                                        .comment("EN: Duration of Guts effect in seconds")
+                                        .comment("JP: 根性（即死回避）効果の持続時間（秒単位）")
+                                        .comment("Default: 5 | Range: 1 ~ 86400 (24 hours)")
+                                        .defineInRange("gutsDurationSeconds", 5, 1, 86400);
 
                         builder.pop();
 

@@ -3,6 +3,7 @@ package com.example.examplemod;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
@@ -59,7 +60,8 @@ public class HungerChangeHandler {
             // 過去2Tick以内に通常の食事イベント(FoodHealingHandler)で処理されていた場合
             // 重複回復を防ぐために無視する
             if (lastAteTime != null && (currentTime - lastAteTime) <= 2) {
-                LOGGER.debug("[FoodHealing] Ignoring food level increase for {} (handled by normal eating).", player.getName().getString());
+                LOGGER.debug("[FoodHealing] Ignoring food level increase for {} (handled by normal eating).",
+                        player.getName().getString());
                 // フラグを消費
                 lastAteTimes.remove(playerId);
             } else {
@@ -72,6 +74,24 @@ public class HungerChangeHandler {
 
                 LOGGER.info("[FoodHealing] Player {} hunger increased by {}. Healed {} HP (non-food source).",
                         player.getName().getString(), foodIncrease, healAmount);
+
+                // 根性効果の付与判定
+                int gutsThreshold = FoodHealingConfig.COMMON.gutsThreshold.get();
+                if (foodIncrease >= gutsThreshold) {
+                    int gutsDurationSeconds = FoodHealingConfig.COMMON.gutsDurationSeconds.get();
+                    int gutsDurationTicks = gutsDurationSeconds * 20;
+
+                    player.addEffect(new MobEffectInstance(
+                            FoodHealingMod.GUTS_EFFECT.get(),
+                            gutsDurationTicks,
+                            0, // Level 1
+                            false,
+                            true,
+                            true));
+
+                    LOGGER.info("[FoodHealing] Guts effect applied (from non-food source) for {} seconds.",
+                            gutsDurationSeconds);
+                }
             }
         }
 

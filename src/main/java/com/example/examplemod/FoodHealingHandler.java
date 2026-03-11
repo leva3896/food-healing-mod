@@ -42,6 +42,10 @@ public class FoodHealingHandler {
         int bonusDurationSeconds = FoodHealingConfig.COMMON.bonusDurationSeconds.get();
         int bonusDurationTicks = bonusDurationSeconds * 20;
 
+        int gutsThreshold = FoodHealingConfig.COMMON.gutsThreshold.get();
+        int gutsDurationSeconds = FoodHealingConfig.COMMON.gutsDurationSeconds.get();
+        int gutsDurationTicks = gutsDurationSeconds * 20;
+
         // 体力回復量を計算
         float healAmount = (float) (nutrition * healMultiplier);
 
@@ -77,6 +81,21 @@ public class FoodHealingHandler {
 
             LOGGER.info("[FoodHealing] Bonus effects applied! Resistance IV and Fire Resistance for {} seconds.",
                     bonusDurationSeconds);
+        }
+
+        // 根性効果の付与
+        if (nutrition >= gutsThreshold) {
+            player.addEffect(new MobEffectInstance(
+                    FoodHealingMod.GUTS_EFFECT.get(),
+                    gutsDurationTicks,
+                    0, // Level 1
+                    false, // ambient
+                    true, // visible particles
+                    true // show icon
+            ));
+
+            LOGGER.info("[FoodHealing] Guts effect applied! for {} seconds.",
+                    gutsDurationSeconds);
         }
     }
 }
