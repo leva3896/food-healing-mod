@@ -3,6 +3,7 @@ package com.example.examplemod;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -15,7 +16,7 @@ public class DamageEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity entity = event.getEntity();
-        
+
         // 根性エフェクトが付与されているかチェック
         if (entity.hasEffect(FoodHealingMod.GUTS_EFFECT.get())) {
             float health = entity.getHealth();
@@ -47,9 +48,34 @@ public class DamageEventHandler {
         if (entity.hasEffect(FoodHealingMod.GUTS_EFFECT.get())) {
             // 死亡をキャンセル
             event.setCanceled(true);
-            
+
             // HPを1.0に設定
             entity.setHealth(1.0F);
+        }
+    }
+
+    /**
+     * エンティティの毎ティック更新処理。
+     * DamageEventを通さずに直接 `entity.setHealth(0.0F)` などの処理（MekanismDelightの反物質シチュー等）が
+     * 行われた場合、即座にHPを1に強制蘇生し、内部の死亡タイマー（デス・ティック）をリセットする。
+     */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+
+        // 根性エフェクトが付与されており、かつHPが0以下になっている場合
+        if (entity.hasEffect(FoodHealingMod.GUTS_EFFECT.get()) && entity.getHealth() <= 0.0F) {
+            // HPを強制的に1に復元
+            entity.setHealth(1.0F);
+
+            // すでに死亡判定に入っていた場合、その判定状態を解除する
+            if (entity.deathTime > 0) {
+                entity.deathTime = 0;
+            }
+            if (entity.isDeadOrDying()) {
+                // 生存フラグを無理やりオンにはできないが、HPがあれば死体消滅プロセスは通常止まるか、
+                // あるいはsetHealthした時点でisDeadOrDyingはfalseになる事が多い
+            }
         }
     }
 }
