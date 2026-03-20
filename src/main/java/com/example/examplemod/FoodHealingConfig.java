@@ -43,6 +43,12 @@ public class FoodHealingConfig {
                 // 根性効果の持続時間（秒）
                 public final ForgeConfigSpec.IntValue gutsDurationSeconds;
 
+                // 火事場力の体力の閾値（割合）
+                public final ForgeConfigSpec.DoubleValue heroicsThreshold;
+
+                // 火事場力のダメージ倍率
+                public final ForgeConfigSpec.DoubleValue heroicsMultiplier;
+
                 // 食べ物多様性：何種類で体力アップ
                 public final ForgeConfigSpec.IntValue foodsRequiredForBonus;
 
@@ -108,6 +114,22 @@ public class FoodHealingConfig {
                                         .comment("JP: 根性（即死回避）効果の持続時間（秒単位）")
                                         .comment("Default: 5 | Range: 1 ~ 86400 (24 hours)")
                                         .defineInRange("gutsDurationSeconds", 5, 1, 86400);
+
+                        heroicsThreshold = builder
+                                        .comment("")
+                                        .comment("[Heroics Threshold / 火事場力発動時の体力閾値]")
+                                        .comment("EN: The health percentage threshold to activate the Heroics damage buff.")
+                                        .comment("JP: 与ダメージが増加する火事場力が発動する体力の閾値(割合)。")
+                                        .comment("Default: 0.4 (40%) | Range: 0.0 ~ 1.0")
+                                        .defineInRange("heroicsThreshold", 0.4, 0.0, 1.0);
+
+                        heroicsMultiplier = builder
+                                        .comment("")
+                                        .comment("[Heroics Multiplier / 火事場力のダメージ倍率]")
+                                        .comment("EN: The damage multiplier applied when health is below heroicsThreshold.")
+                                        .comment("JP: 体力が閾値を下回っている時に与えるダメージの倍率。")
+                                        .comment("Default: 2.0 (Double Damage) | Range: 1.0 ~ 100.0")
+                                        .defineInRange("heroicsMultiplier", 2.0, 1.0, 100.0);
 
                         builder.pop();
 

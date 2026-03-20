@@ -1,7 +1,11 @@
 package com.example.examplemod;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.TickEvent;
@@ -9,6 +13,27 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class DamageEventHandler {
+
+    /**
+     * エンティティがダメージを受ける計算の初期段階（防御・耐性などの前）。
+     * ここで攻撃者がプレイヤーであり、かつプレイヤーのHPが設定値（火事場力）以下である場合、ダメージを倍増させる。
+     * TACZの銃弾もこのイベントを通過するため銃撃にも適用される。
+     */
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void onLivingHurt(LivingHurtEvent event) {
+        // ダメージ元がプレイヤーであるか（直接の近接攻撃や、飛び道具の撃ち手など）
+        if (event.getSource().getEntity() instanceof Player player) {
+            float threshold = FoodHealingConfig.COMMON.heroicsThreshold.get().floatValue();
+            
+            // プレイヤーの現在のHPが最大HPの指定割合(デフォルト40%)未満か判定
+            if (player.getHealth() < player.getMaxHealth() * threshold) {
+                float multiplier = FoodHealingConfig.COMMON.heroicsMultiplier.get().floatValue();
+                
+                // ダメージを倍増させる
+                event.setAmount(event.getAmount() * multiplier);
+            }
+        }
+    }
 
     /**
      * ダメージを受ける直前の処理。
