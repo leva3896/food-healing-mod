@@ -4,6 +4,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -55,9 +56,8 @@ public class DamageEventHandler {
     }
 
     /**
-     * エンティティの毎ティック更新処理。
-     * DamageEventを通さずに直接 `entity.setHealth(0.0F)` などの処理（MekanismDelightの反物質シチュー等）が
-     * 行われた場合、即座にHPを1に強制蘇生し、内部の死亡タイマー（デス・ティック）をリセットする。
+     * エンティティの毎ティック更新処理（開始直後）。
+     * 一般的なMOBやプレイヤーへの強制的なHP0化をキャッチして復活させる。
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
@@ -74,6 +74,35 @@ public class DamageEventHandler {
                 // すでに死亡判定に入っていた場合、その判定状態を解除する
                 if (entity.deathTime > 0) {
                     entity.deathTime = 0;
+                }
+            }
+        }
+    }
+
+    /**
+     * プレイヤーのティック更新完了時（終了直前）。
+     * MekanismDelightの反物質シチュー(Antimatter Stew)など、プレイヤーのHPを強制的に0にする処理が
+     * ティックの中盤(completeUsingItem等)で行われた場合、次のティックのonLivingTick実行前に
+     * サーバーからクライアントへHP0が送信されてしまい、死亡画面が開いてしまう問題への対策。
+     * ここでティックの終わりにHP1へ上書きし、死亡状態がサーバーから漏れるのを防ぐ。
+     */
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        // ティックの最後(END)かつ、サーバー側でのみ実行する
+        if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide()) {
+            net.minecraft.world.entity.player.Player player = event.player;
+
+            // 根性エフェクトが付与されているか
+            if (player.hasEffect(FoodHealingMod.GUTS_EFFECT.get())) {
+
+                // HPが0以下になっている場合、強制蘇生
+                if (player.getHealth() <= 0.0F) {
+                    // クライアントへ送信されるパケットに乗る前にHPを1に復元
+                    player.setHealth(1.0F);
+
+                    if (player.deathTime > 0) {
+                        player.deathTime = 0;
+                    }
                 }
             }
         }
