@@ -1,11 +1,9 @@
 package com.example.examplemod;
 
-import com.example.examplemod.compat.TrialMonolithCompat;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -68,9 +66,6 @@ public class DamageEventHandler {
         // 根性エフェクトが付与されているか
         if (entity.hasEffect(FoodHealingMod.GUTS_EFFECT.get())) {
 
-            // TheTrialMonolithの即死（SoulDamage）無効化のため「魂の保護」を強制付与し続ける
-            TrialMonolithCompat.setSoulProtected(entity, true);
-
             // HPが0以下になっている場合、強制蘇生
             if (entity.getHealth() <= 0.0F) {
                 // HPを強制的に1に復元
@@ -81,29 +76,6 @@ public class DamageEventHandler {
                     entity.deathTime = 0;
                 }
             }
-        }
-    }
-
-    /**
-     * 根性エフェクトが切れた時（強制解除含む）
-     * TheTrialMonolithの無敵化状態を元に戻す処理
-     */
-    @SubscribeEvent
-    public static void onMobEffectRemove(MobEffectEvent.Remove event) {
-        if (event.getEffect() == FoodHealingMod.GUTS_EFFECT.get()) {
-            TrialMonolithCompat.setSoulProtected(event.getEntity(), false);
-        }
-    }
-
-    /**
-     * 根性エフェクトが時間経過で自然に切れた時
-     * TheTrialMonolithの無敵化状態を元に戻す処理
-     */
-    @SubscribeEvent
-    public static void onMobEffectExpired(MobEffectEvent.Expired event) {
-        if (event.getEffectInstance() != null
-                && event.getEffectInstance().getEffect() == FoodHealingMod.GUTS_EFFECT.get()) {
-            TrialMonolithCompat.setSoulProtected(event.getEntity(), false);
         }
     }
 }
