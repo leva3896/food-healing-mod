@@ -49,6 +49,9 @@ public class FoodHealingConfig {
                 // 火事場力のダメージ倍率
                 public final ForgeConfigSpec.DoubleValue heroicsMultiplier;
 
+                // 食義レベルアップに必要な食事回数
+                public final ForgeConfigSpec.IntValue shokugiLevelUpRequirement;
+
                 // 食べ物多様性：何種類で体力アップ
                 public final ForgeConfigSpec.IntValue foodsRequiredForBonus;
 
@@ -58,6 +61,14 @@ public class FoodHealingConfig {
                 // HUD overlay offsets
                 public final ForgeConfigSpec.IntValue overlayOffsetY;
                 public final ForgeConfigSpec.IntValue overlayOffsetX;
+
+                // HUD offsets for Heroics
+                public final ForgeConfigSpec.IntValue heroicsTextOffsetY;
+                public final ForgeConfigSpec.IntValue heroicsTextOffsetX;
+
+                // HUD offsets for Shokugi
+                public final ForgeConfigSpec.IntValue shokugiTextOffsetY;
+                public final ForgeConfigSpec.IntValue shokugiTextOffsetX;
 
                 public CommonConfig(ForgeConfigSpec.Builder builder) {
                         builder.comment("========================================")
@@ -131,6 +142,14 @@ public class FoodHealingConfig {
                                         .comment("Default: 2.0 (Double Damage) | Range: 1.0 ~ 100.0")
                                         .defineInRange("heroicsMultiplier", 2.0, 1.0, 100.0);
 
+                        shokugiLevelUpRequirement = builder
+                                        .comment("")
+                                        .comment("[Shokugi Level Up Requirement / 食義レベルアップに必要な食事回数]")
+                                        .comment("EN: Amount of food items you need to eat to gain 1 Shokugi Level")
+                                        .comment("JP: 食義レベルが1上がるのに必要な食事回数(デフォルト1000回)")
+                                        .comment("Default: 1000 | Range: 1 ~ 1,000,000")
+                                        .defineInRange("shokugiLevelUpRequirement", 1000, 1, 1_000_000);
+
                         builder.pop();
 
                         builder.comment("")
@@ -178,6 +197,30 @@ public class FoodHealingConfig {
                                         .comment("JP: HPバーの横の表示位置を調整します。マイナスで左方向へ移動します。")
                                         .comment("Default: 0 | Range: -1000 ~ 1000")
                                         .defineInRange("overlayOffsetX", 0, -1000, 1000);
+
+                        heroicsTextOffsetY = builder
+                                        .comment("")
+                                        .comment("[Heroics UI Offset Y / 火事場UIのY軸(縦)補正]")
+                                        .comment("Default: 30 | Range: -1000 ~ 1000")
+                                        .defineInRange("heroicsTextOffsetY", 30, -1000, 1000);
+
+                        heroicsTextOffsetX = builder
+                                        .comment("")
+                                        .comment("[Heroics UI Offset X / 火事場UIのX軸(横)補正]")
+                                        .comment("Default: 10 | Range: -1000 ~ 1000")
+                                        .defineInRange("heroicsTextOffsetX", 10, -1000, 1000);
+
+                        shokugiTextOffsetY = builder
+                                        .comment("")
+                                        .comment("[Shokugi UI Offset Y / 食義UIのY軸(縦)補正]")
+                                        .comment("Default: 42 | Range: -1000 ~ 1000")
+                                        .defineInRange("shokugiTextOffsetY", 42, -1000, 1000);
+
+                        shokugiTextOffsetX = builder
+                                        .comment("")
+                                        .comment("[Shokugi UI Offset X / 食義UIのX軸(横)補正]")
+                                        .comment("Default: 10 | Range: -1000 ~ 1000")
+                                        .defineInRange("shokugiTextOffsetX", 10, -1000, 1000);
 
                         builder.pop();
                 }

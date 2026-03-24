@@ -11,8 +11,14 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import com.example.examplemod.capability.ShokugiProvider;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.tags.DamageTypeTags;
 
 public class DamageEventHandler {
+
+    // 追撃による無限ループを防ぐためのフラグ
+    private static final ThreadLocal<Boolean> IS_PURSUIT = ThreadLocal.withInitial(() -> false);
 
     /**
      * エンティティがダメージを受ける計算の初期段階（防御・耐性などの前）。
@@ -23,15 +29,28 @@ public class DamageEventHandler {
     public static void onLivingHurt(LivingHurtEvent event) {
         // ダメージ元がプレイヤーであるか（直接の近接攻撃や、飛び道具の撃ち手など）
         if (event.getSource().getEntity() instanceof Player player) {
-            float threshold = FoodHealingConfig.COMMON.heroicsThreshold.get().floatValue();
-            
-            // プレイヤーの現在のHPが最大HPの指定割合(デフォルト40%)未満か判定
-            if (player.getHealth() < player.getMaxHealth() * threshold) {
-                float multiplier = FoodHealingConfig.COMMON.heroicsMultiplier.get().floatValue();
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                int level = cap.getLevel();
                 
-                // ダメージを倍増させる
-                event.setAmount(event.getAmount() * multiplier);
-            }
+                // 1. 食義レベルによる基礎ステータスダメージの上昇処理
+                if (level > 0) {
+                    float shokugiMultiplier = 1.0F + (level * 0.1F);
+                    event.setAmount(event.getAmount() * shokugiMultiplier);
+                }
+
+                // 2. 火事場力によるダメージ倍増処理 (Lv10解放)
+                if (level >= 10) {
+                    float threshold = FoodHealingConfig.COMMON.heroicsThreshold.get().floatValue();
+                    
+                    // プレイヤーの現在のHPが最大HPの指定割合(閾値)以下か判定（v2.0.0で緩和: < から <= に変更）
+                    if (player.getHealth() <= player.getMaxHealth() * threshold) {
+                        float multiplier = FoodHealingConfig.COMMON.heroicsMultiplier.get().floatValue();
+                        
+                        // ダメージを倍増させる
+                        event.setAmount(event.getAmount() * multiplier);
+                    }
+                }
+            });
         }
     }
 
@@ -42,6 +61,55 @@ public class DamageEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity entity = event.getEntity();
+
+        // 食義によるダメージ軽減処理（プレイヤーのみ）
+        if (entity instanceof Player player) {
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                int level = cap.getLevel();
+                
+                // Lv 4: 落下ダメージ無効
+                if (level >= 4 && event.getSource().is(DamageTypes.FALL)) {
+                    event.setCanceled(true);
+                    return;
+                }
+                
+                // Lv 6: 爆発ダメージ90%カット
+                if (level >= 6 && event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
+                    event.setAmount(event.getAmount() * 0.1F);
+                }
+
+                if (level > 0) {
+                    // 最大99%カット（耐力エンチャント等とは別枠で計算される）
+                    float reductionFactor = Math.min(0.99F, level * 0.01F);
+                    float newAmount = event.getAmount() * (1.0F - reductionFactor);
+                    event.setAmount(newAmount);
+                }
+            });
+        }
+
+        // 追撃スキル（Lv14-16）の処理（攻撃側がプレイヤーの場合）
+        if (!IS_PURSUIT.get() && event.getSource().getEntity() instanceof Player player) {
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                int level = cap.getLevel();
+                if (level >= 14) {
+                    int hits = level >= 16 ? 3 : (level >= 15 ? 2 : 1);
+                    float pursuitDamage = event.getAmount();
+
+                    IS_PURSUIT.set(true);
+                    try {
+                        for (int i = 0; i < hits; i++) {
+                            if (entity.isAlive()) {
+                                // 無敵時間を無視して追撃を叩き込む
+                                entity.invulnerableTime = 0;
+                                entity.hurt(event.getSource(), pursuitDamage);
+                            }
+                        }
+                    } finally {
+                        IS_PURSUIT.set(false);
+                    }
+                }
+            });
+        }
 
         // 根性エフェクトが付与されているかチェック
         if (entity.hasEffect(FoodHealingMod.GUTS_EFFECT.get())) {
