@@ -7,14 +7,37 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
+import com.example.examplemod.capability.ShokugiProvider;
+import com.example.examplemod.network.PacketHandler;
+import com.example.examplemod.network.ShokugiSyncPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.PacketDistributor;
 
 /**
  * 食事イベントを監視し、満腹度回復に応じて体力を回復させるハンドラー
  */
 public class FoodHealingHandler {
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    @SubscribeEvent
+    public static void onItemUseStart(LivingEntityUseItemEvent.Start event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        
+        ItemStack itemStack = event.getItem();
+        if (itemStack.getItem().getFoodProperties(itemStack, player) != null) {
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                int level = cap.getLevel();
+                if (level >= 9) {
+                    event.setDuration(1); // 食べる速度 1ティック（瞬時）
+                } else if (level >= 3) {
+                    event.setDuration(event.getDuration() / 2); // 食べる速度 2倍
+                }
+            });
+        }
+    }
 
     @SubscribeEvent
     public static void onItemUseFinish(LivingEntityUseItemEvent.Finish event) {
@@ -96,6 +119,74 @@ public class FoodHealingHandler {
 
             LOGGER.info("[FoodHealing] Guts effect applied! for {} seconds.",
                     gutsDurationSeconds);
+        }
+
+        // 食義（Shokugi）データの更新（サーバー側のみ）
+        if (!player.level().isClientSide()) {
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                int required = FoodHealingConfig.COMMON.shokugiLevelUpRequirement.get();
+                cap.addEatCount(1);
+                
+                // オーバーフローを考慮しつつレベルアップ判定
+                while (cap.getEatCount() >= required && cap.getLevel() < 1000) {
+                    cap.addLevel(1);
+                    cap.setEatCount(cap.getEatCount() - required);
+                }
+                
+                // カンスト処理
+                if (cap.getLevel() >= 1000) {
+                    cap.setLevel(1000);
+                    cap.setEatCount(0);
+                }
+
+                // 同期パケット送信
+                PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
+                        new ShokugiSyncPacket(cap.getLevel(), cap.getEatCount()));
+            });
+        }
+
+        // 満足感スキルの処理（Lv11-13）アイテム消費を確率で無効化
+        player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+            int level = cap.getLevel();
+            float saveChance = 0.0f;
+            if (level >= 13) saveChance = 0.75f;
+            else if (level >= 12) saveChance = 0.50f;
+            else if (level >= 11) saveChance = 0.25f;
+
+            if (saveChance > 0 && player.getRandom().nextFloat() < saveChance) {
+                // 返却用アイテム
+                ItemStack refund = itemStack.copyWithCount(1);
+                ItemStack result = event.getResultStack();
+                
+                if (result.isEmpty()) {
+                    event.setResultStack(refund); // 最後の1個だった場合そのまま返却
+                } else if (ItemStack.isSameItemSameTags(result, itemStack)) {
+                    result.grow(1); // スタックサイズが減っただけの場合は+1して戻す
+                } else {
+                    event.setResultStack(refund); // シチューの器など別のアイテムに変わってしまった場合は強制的に元のシチューを返す
+                }
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        
+        ItemStack crafted = event.getCrafting();
+        if (crafted.isEmpty()) return;
+        
+        // 食べ物か判定
+        if (crafted.getItem().getFoodProperties(crafted, player) != null) {
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                // Lv 8: 食べ物クラフト2倍
+                if (cap.getLevel() >= 8) {
+                    ItemStack bonus = crafted.copy();
+                    if (!player.getInventory().add(bonus)) {
+                        player.drop(bonus, false);
+                    }
+                }
+            });
         }
     }
 }

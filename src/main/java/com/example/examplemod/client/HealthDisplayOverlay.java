@@ -11,6 +11,7 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import com.example.examplemod.FoodHealingConfig;
+import com.example.examplemod.capability.ShokugiProvider;
 
 /**
  * 体力をハートではなく数値で表示するオーバーレイ
@@ -36,6 +37,9 @@ public class HealthDisplayOverlay {
 
             // 代わりに数値を描画
             renderHealthText(event.getGuiGraphics());
+            
+            // 追加UIを描画
+            renderHeroicsAndShokugiText(event.getGuiGraphics());
         }
     }
 
@@ -82,6 +86,38 @@ public class HealthDisplayOverlay {
 
         // テキスト描画（白色、影付き）
         guiGraphics.drawString(font, healthText, x, y, 0xFFFFFF);
+    }
+
+    private static void renderHeroicsAndShokugiText(GuiGraphics guiGraphics) {
+        Minecraft mc = Minecraft.getInstance();
+        Player player = mc.player;
+        if (player == null) return;
+
+        Font font = mc.font;
+        float threshold = FoodHealingConfig.COMMON.heroicsThreshold.get().floatValue();
+        
+        // Render Heroics if active
+        if (player.getHealth() <= player.getMaxHealth() * threshold) {
+            String heroicsText = "火事場発動中";
+            int hX = FoodHealingConfig.COMMON.heroicsTextOffsetX.get();
+            int hY = FoodHealingConfig.COMMON.heroicsTextOffsetY.get();
+            
+            guiGraphics.drawString(font, heroicsText, hX, hY, 0xFF5555, true); // Red color with shadow
+        }
+
+        // Render Shokugi
+        player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+            int level = cap.getLevel();
+            int count = cap.getEatCount();
+            int req = FoodHealingConfig.COMMON.shokugiLevelUpRequirement.get();
+            
+            String shokugiText = String.format("食義Lv: %d (カウント: %d/%d)", level, count, req);
+            
+            int sX = FoodHealingConfig.COMMON.shokugiTextOffsetX.get();
+            int sY = FoodHealingConfig.COMMON.shokugiTextOffsetY.get();
+            
+            guiGraphics.drawString(font, shokugiText, sX, sY, 0x55FF55, true); // Green color with shadow
+        });
     }
 
     /**

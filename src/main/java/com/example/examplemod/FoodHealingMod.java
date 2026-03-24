@@ -22,6 +22,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.world.effect.MobEffect;
 import org.slf4j.Logger;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import com.example.examplemod.capability.IShokugiData;
+import com.example.examplemod.network.PacketHandler;
 
 /**
  * 満腹度回復連動ヒーリングMOD
@@ -78,6 +81,7 @@ public class FoodHealingMod {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::registerCaps);
 
         ITEMS.register(modEventBus);
         EFFECTS.register(modEventBus);
@@ -93,6 +97,9 @@ public class FoodHealingMod {
 
         // DamageEventHandler: 根性エフェクトによるダメージ軽減・即死回避処理
         MinecraftForge.EVENT_BUS.register(DamageEventHandler.class);
+        
+        // ShokugiTickHandler: 食義による常時付与エフェクト等のティック処理
+        MinecraftForge.EVENT_BUS.register(ShokugiTickHandler.class);
 
         // クライアントサイドのみ：体力数値表示オーバーレイを登録
         if (FMLEnvironment.dist == Dist.CLIENT) {
@@ -100,6 +107,10 @@ public class FoodHealingMod {
         }
 
         LOGGER.info("[FoodHealing] MOD initialized!");
+    }
+
+    private void registerCaps(RegisterCapabilitiesEvent event) {
+        event.register(IShokugiData.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

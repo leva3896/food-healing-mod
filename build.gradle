@@ -3,6 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -37,11 +38,12 @@ minecraft {
 
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
+            arg "-mixin.config=foodhealing.mixins.json"
         }
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            args '--nogui', '-mixin.config=foodhealing.mixins.json'
         }
 
         gameTestServer {
@@ -61,8 +63,15 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
 }
 
+mixin {
+    add sourceSets.main, "foodhealing.refmap.json"
+    config "foodhealing.mixins.json"
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly fileTree(dir: 'libs', include: ['*.jar']) // TaCZ API
 }
 
 tasks.named('processResources', ProcessResources).configure {
