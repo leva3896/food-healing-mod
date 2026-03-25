@@ -23,22 +23,40 @@ public abstract class TaCZGunScriptMixin {
 
     /**
      * 食義レベル11〜20: 弾薬節約スキル
-     * レベル11で10%、レベル20で100%の確率で弾薬を維持
+     * 発砲時の弾薬消費（ReduceMagazine, EmptyChamber, InventoryConsume）を確率で無効化
      */
-    @Inject(method = "consumeAmmoFromPlayer", at = @At("HEAD"), cancellable = true, remap = false)
-    private void foodhealing$onConsumeAmmo(int neededAmount, CallbackInfoReturnable<Integer> cir) {
+    private boolean foodhealing$shouldConserveAmmo() {
         if (shooter instanceof Player player && !player.level().isClientSide) {
-            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
-                int level = cap.getLevel();
-                if (level >= 11) {
-                    float conserveChance = Math.min((level - 10) * 0.1f, 1.0f);
-                    if (player.getRandom().nextFloat() < conserveChance) {
-                        // 弾薬を消費せずに、要求された量を消費したと判定させる
-                        cir.setReturnValue(neededAmount);
-                    }
-                }
-            });
+            int level = player.getCapability(ShokugiProvider.SHOKUGI_CAPA).map(cap -> cap.getLevel()).orElse(0);
+            if (level >= 11) {
+                float conserveChance = Math.min((level - 10) * 0.1f, 1.0f);
+                return player.getRandom().nextFloat() < conserveChance;
+            }
         }
+        return false;
+    }
+
+    @org.spongepowered.asm.mixin.injection.Redirect(method = "reduceAmmoOnce", at = @At(value = "INVOKE", target = "Lcom/tacz/guns/api/item/gun/AbstractGunItem;reduceCurrentAmmoCount(Lnet/minecraft/world/item/ItemStack;)V"), remap = false)
+    private void foodhealing$conserveMagazineAmmo(AbstractGunItem instance, ItemStack stack) {
+        if (!foodhealing$shouldConserveAmmo()) {
+            instance.reduceCurrentAmmoCount(stack);
+        }
+    }
+
+    @org.spongepowered.asm.mixin.injection.Redirect(method = "reduceAmmoOnce", at = @At(value = "INVOKE", target = "Lcom/tacz/guns/api/item/gun/AbstractGunItem;setBulletInBarrel(Lnet/minecraft/world/item/ItemStack;Z)V"), remap = false)
+    private void foodhealing$conserveChamberAmmo(AbstractGunItem instance, ItemStack stack, boolean inBarrel) {
+        if (!inBarrel && foodhealing$shouldConserveAmmo()) {
+            return; // 弾丸を薬室(Barrel)に残したままにする
+        }
+        instance.setBulletInBarrel(stack, inBarrel);
+    }
+
+    @org.spongepowered.asm.mixin.injection.Redirect(method = "reduceAmmoOnce", at = @At(value = "INVOKE", target = "Lcom/tacz/guns/item/ModernKineticGunScriptAPI;consumeAmmoFromPlayer(I)I"), remap = false)
+    private int foodhealing$conserveInventoryAmmo(ModernKineticGunScriptAPI instance, int amount) {
+        if (foodhealing$shouldConserveAmmo()) {
+            return amount; // 消費したと偽装
+        }
+        return instance.consumeAmmoFromPlayer(amount); // オリジナルの処理をコール
     }
 
     /**
