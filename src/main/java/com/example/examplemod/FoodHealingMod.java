@@ -114,8 +114,9 @@ public class FoodHealingMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // 最大体力の上限をコンフィグ値に拡張（デフォルト: 100万, 最大: 1兆）
+        // 最大体力の上限をコンフィグ値に拡張（デフォルト: 100万, 最大: 1兆）とパケット登録
         event.enqueueWork(() -> {
+            PacketHandler.register();
             try {
                 double maxHealthCap = FoodHealingConfig.COMMON.maxHealthCap.get();
                 RangedAttribute maxHealth = (RangedAttribute) Attributes.MAX_HEALTH;
