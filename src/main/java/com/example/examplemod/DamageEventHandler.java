@@ -37,7 +37,16 @@ public class DamageEventHandler {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
                 
-                // 1. 食義レベルによる基礎ステータスダメージの上昇処理
+                // 1. TaCZ銃専用のボーナス (レベル×1%)
+                if (level > 0) {
+                    var directEntity = event.getSource().getDirectEntity();
+                    if (directEntity != null && directEntity.getClass().getName().contains("tacz.guns.entity")) {
+                        float gunMultiplier = 1.0F + (level * 0.01F);
+                        event.setAmount(event.getAmount() * gunMultiplier);
+                    }
+                }
+
+                // 2. 食義レベルによる基礎ステータスダメージの上昇処理
                 if (level > 0) {
                     float shokugiMultiplier = 1.0F + (level * 0.1F);
                     event.setAmount(event.getAmount() * shokugiMultiplier);
