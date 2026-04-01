@@ -27,6 +27,11 @@ public class DamageEventHandler {
      */
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onLivingHurt(LivingHurtEvent event) {
+        // 追撃によるダメージの場合は再計算（倍率ドン）を行わない
+        if (IS_PURSUIT.get()) {
+            return;
+        }
+
         // ダメージ元がプレイヤーであるか（直接の近接攻撃や、飛び道具の撃ち手など）
         if (event.getSource().getEntity() instanceof Player player) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
