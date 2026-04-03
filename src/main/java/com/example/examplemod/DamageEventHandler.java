@@ -37,12 +37,23 @@ public class DamageEventHandler {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
                 
-                // 1. TaCZ銃専用のボーナス (レベル×1%)
+                // 1. 特殊MOD専用のボーナス
                 if (level > 0) {
                     var directEntity = event.getSource().getDirectEntity();
-                    if (directEntity != null && directEntity.getClass().getName().contains("tacz.guns.entity")) {
-                        float gunMultiplier = 1.0F + (level * 0.01F);
-                        event.setAmount(event.getAmount() * gunMultiplier);
+                    if (directEntity != null) {
+                        String className = directEntity.getClass().getName();
+                        
+                        // TaCZ銃専用ボーナス (レベル×1%: Lv1000で最大11倍)
+                        if (className.contains("tacz.guns.entity")) {
+                            float gunMultiplier = 1.0F + (level * 0.01F);
+                            event.setAmount(event.getAmount() * gunMultiplier);
+                        }
+                        
+                        // SuperbWarfare専用ボーナス (レベル×100%: Lv1000で最大1001倍)
+                        if (className.contains("superbwarfare")) {
+                            float vehicleMultiplier = 1.0F + (level * 1.0F);
+                            event.setAmount(event.getAmount() * vehicleMultiplier);
+                        }
                     }
                 }
 
