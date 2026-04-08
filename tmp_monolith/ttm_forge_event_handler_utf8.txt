@@ -1,0 +1,199 @@
+﻿Compiled from "TTMForgeEventHandler.java"
+public class io.github.kosianodangoo.trialmonolith.common.handler.TTMForgeEventHandler {
+  public io.github.kosianodangoo.trialmonolith.common.handler.TTMForgeEventHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #46                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void onPlayerClone(net.minecraftforge.event.entity.player.PlayerEvent$Clone);
+    Code:
+       0: aload_0
+       1: invokevirtual #55                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getOriginal:()Lnet/minecraft/world/entity/player/Player;
+       4: invokestatic  #61                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isSoulProtected:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          18
+      10: aload_0
+      11: invokevirtual #64                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getEntity:()Lnet/minecraft/world/entity/player/Player;
+      14: iconst_1
+      15: invokestatic  #68                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.setSoulProtected:(Lnet/minecraft/world/entity/Entity;Z)V
+      18: aload_0
+      19: invokevirtual #55                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getOriginal:()Lnet/minecraft/world/entity/player/Player;
+      22: invokestatic  #71                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+      25: ifeq          36
+      28: aload_0
+      29: invokevirtual #64                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getEntity:()Lnet/minecraft/world/entity/player/Player;
+      32: iconst_1
+      33: invokestatic  #74                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.setOverClocked:(Lnet/minecraft/world/entity/Entity;Z)V
+      36: aload_0
+      37: invokevirtual #55                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getOriginal:()Lnet/minecraft/world/entity/player/Player;
+      40: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+      43: ifeq          54
+      46: aload_0
+      47: invokevirtual #64                 // Method net/minecraftforge/event/entity/player/PlayerEvent$Clone.getEntity:()Lnet/minecraft/world/entity/player/Player;
+      50: iconst_1
+      51: invokestatic  #80                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.setHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;Z)V
+      54: return
+
+  public static void onLivingDeath(net.minecraftforge.event.entity.living.LivingDeathEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method net/minecraftforge/event/entity/living/LivingDeathEvent.getEntity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: invokestatic  #61                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isSoulProtected:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #96                 // Method net/minecraftforge/event/entity/living/LivingDeathEvent.setCanceled:(Z)V
+      15: return
+
+  public static void bypassLivingDeathCancelling(net.minecraftforge.event.entity.living.LivingDeathEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method net/minecraftforge/event/entity/living/LivingDeathEvent.getEntity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: invokestatic  #105                // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.getSoulDamage:(Lnet/minecraft/world/entity/Entity;)F
+       7: fconst_1
+       8: fcmpl
+       9: iflt          17
+      12: aload_0
+      13: iconst_0
+      14: invokevirtual #96                 // Method net/minecraftforge/event/entity/living/LivingDeathEvent.setCanceled:(Z)V
+      17: return
+
+  public static void onLivingAttack(net.minecraftforge.event.entity.living.LivingAttackEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #110                // Method net/minecraftforge/event/entity/living/LivingAttackEvent.getEntity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #111                // Method net/minecraftforge/event/entity/living/LivingAttackEvent.setCanceled:(Z)V
+      15: return
+
+  public static void onLivingHurt(net.minecraftforge.event.entity.living.LivingHurtEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #117                // Method net/minecraftforge/event/entity/living/LivingHurtEvent.getEntity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #118                // Method net/minecraftforge/event/entity/living/LivingHurtEvent.setCanceled:(Z)V
+      15: return
+
+  public static void onLivingDamage(net.minecraftforge.event.entity.living.LivingDamageEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #124                // Method net/minecraftforge/event/entity/living/LivingDamageEvent.getEntity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #125                // Method net/minecraftforge/event/entity/living/LivingDamageEvent.setCanceled:(Z)V
+      15: return
+
+  public static void onPlayerInteractedToEntity(net.minecraftforge.event.entity.player.PlayerInteractEvent$EntityInteract);
+    Code:
+       0: aload_0
+       1: invokevirtual #132                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$EntityInteract.getTarget:()Lnet/minecraft/world/entity/Entity;
+       4: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #133                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$EntityInteract.setCanceled:(Z)V
+      15: return
+
+  public static void onAttackEntity(net.minecraftforge.event.entity.player.AttackEntityEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #139                // Method net/minecraftforge/event/entity/player/AttackEntityEvent.getEntity:()Lnet/minecraft/world/entity/player/Player;
+       4: invokestatic  #77                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.hasHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_1
+      12: invokevirtual #140                // Method net/minecraftforge/event/entity/player/AttackEntityEvent.setCanceled:(Z)V
+      15: return
+
+  public static void bypassInteractCancelling(net.minecraftforge.event.entity.player.PlayerInteractEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #147                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent.isCancelable:()Z
+       4: ifeq          91
+       7: aload_0
+       8: invokevirtual #148                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent.getEntity:()Lnet/minecraft/world/entity/player/Player;
+      11: invokestatic  #71                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+      14: ifeq          91
+      17: aload_0
+      18: instanceof    #20                 // class net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock
+      21: ifeq          53
+      24: aload_0
+      25: checkcast     #20                 // class net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock
+      28: astore_1
+      29: aload_1
+      30: invokevirtual #151                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock.isCanceled:()Z
+      33: ifeq          86
+      36: aload_1
+      37: getstatic     #155                // Field net/minecraftforge/eventbus/api/Event$Result.DEFAULT:Lnet/minecraftforge/eventbus/api/Event$Result;
+      40: invokevirtual #159                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock.setUseItem:(Lnet/minecraftforge/eventbus/api/Event$Result;)V
+      43: aload_1
+      44: getstatic     #155                // Field net/minecraftforge/eventbus/api/Event$Result.DEFAULT:Lnet/minecraftforge/eventbus/api/Event$Result;
+      47: invokevirtual #162                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock.setUseBlock:(Lnet/minecraftforge/eventbus/api/Event$Result;)V
+      50: goto          86
+      53: aload_0
+      54: instanceof    #28                 // class net/minecraftforge/event/entity/player/PlayerInteractEvent$LeftClickBlock
+      57: ifeq          86
+      60: aload_0
+      61: checkcast     #28                 // class net/minecraftforge/event/entity/player/PlayerInteractEvent$LeftClickBlock
+      64: astore_2
+      65: aload_2
+      66: invokevirtual #163                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$LeftClickBlock.isCanceled:()Z
+      69: ifeq          86
+      72: aload_2
+      73: getstatic     #155                // Field net/minecraftforge/eventbus/api/Event$Result.DEFAULT:Lnet/minecraftforge/eventbus/api/Event$Result;
+      76: invokevirtual #164                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$LeftClickBlock.setUseItem:(Lnet/minecraftforge/eventbus/api/Event$Result;)V
+      79: aload_2
+      80: getstatic     #155                // Field net/minecraftforge/eventbus/api/Event$Result.DEFAULT:Lnet/minecraftforge/eventbus/api/Event$Result;
+      83: invokevirtual #165                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent$LeftClickBlock.setUseBlock:(Lnet/minecraftforge/eventbus/api/Event$Result;)V
+      86: aload_0
+      87: iconst_0
+      88: invokevirtual #166                // Method net/minecraftforge/event/entity/player/PlayerInteractEvent.setCanceled:(Z)V
+      91: return
+
+  public static void bypassBreakCancelling(net.minecraftforge.event.level.BlockEvent$BreakEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #174                // Method net/minecraftforge/event/level/BlockEvent$BreakEvent.isCancelable:()Z
+       4: ifeq          22
+       7: aload_0
+       8: invokevirtual #177                // Method net/minecraftforge/event/level/BlockEvent$BreakEvent.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+      11: invokestatic  #71                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+      14: ifeq          22
+      17: aload_0
+      18: iconst_0
+      19: invokevirtual #178                // Method net/minecraftforge/event/level/BlockEvent$BreakEvent.setCanceled:(Z)V
+      22: return
+
+  public static void bypassBuildCancelling(net.minecraftforge.event.level.BlockEvent$EntityPlaceEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #182                // Method net/minecraftforge/event/level/BlockEvent$EntityPlaceEvent.isCancelable:()Z
+       4: ifeq          22
+       7: aload_0
+       8: invokevirtual #184                // Method net/minecraftforge/event/level/BlockEvent$EntityPlaceEvent.getEntity:()Lnet/minecraft/world/entity/Entity;
+      11: invokestatic  #71                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+      14: ifeq          22
+      17: aload_0
+      18: iconst_0
+      19: invokevirtual #185                // Method net/minecraftforge/event/level/BlockEvent$EntityPlaceEvent.setCanceled:(Z)V
+      22: return
+
+  public static void bypassAttackCancelling(net.minecraftforge.event.entity.player.AttackEntityEvent);
+    Code:
+       0: aload_0
+       1: invokevirtual #139                // Method net/minecraftforge/event/entity/player/AttackEntityEvent.getEntity:()Lnet/minecraft/world/entity/player/Player;
+       4: invokestatic  #71                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+       7: ifeq          15
+      10: aload_0
+      11: iconst_0
+      12: invokevirtual #140                // Method net/minecraftforge/event/entity/player/AttackEntityEvent.setCanceled:(Z)V
+      15: return
+}

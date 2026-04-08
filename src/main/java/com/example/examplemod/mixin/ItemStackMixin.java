@@ -26,12 +26,15 @@ public abstract class ItemStackMixin {
                 newAmount = 1;
             }
 
-            // Lv 17-19: Sharpness (Chance to ignore durability loss) 業物
+            // Lv 17-19: Unbreakable buff (Chance to ignore durability loss)
             if (newAmount > 0) {
                 float saveChance = 0.0f;
-                if (level >= 19) saveChance = 0.75f;
-                else if (level >= 18) saveChance = 0.50f;
-                else if (level >= 17) saveChance = 0.25f;
+                // Lv19: 1/30 chance to break -> 29/30 chance to save (~96.67%)
+                // Lv18: 1/20 chance to break -> 19/20 chance to save (95%)
+                // Lv17: 1/10 chance to break -> 9/10 chance to save (90%)
+                if (level >= 19) saveChance = 29.0f / 30.0f;
+                else if (level >= 18) saveChance = 19.0f / 20.0f;
+                else if (level >= 17) saveChance = 9.0f / 10.0f;
 
                 if (saveChance > 0 && player.getRandom().nextFloat() < saveChance) {
                     newAmount = 0;

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: the_trial_monolith
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: the-trial-monolith
+Implementation-Version: 1.2.8
+Implementation-Vendor: 
+Implementation-Timestamp: 2026-03-08T08:16:30+0000
+MixinConfigs: the_trial_monolith.mixins.json
+

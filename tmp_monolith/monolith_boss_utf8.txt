@@ -1,0 +1,513 @@
+﻿Compiled from "TrialMonolithEntity.java"
+public class io.github.kosianodangoo.trialmonolith.common.entity.trialmonolith.TrialMonolithEntity extends net.minecraft.world.entity.monster.Monster {
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Float> DATA_MONOLITH_HEALTH_ID;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> DATA_MONOLITH_ACTIVE_ID;
+
+  private static final java.lang.String MONOLITH_ACTIVE_TIME_TAG;
+
+  private float lastHealth;
+
+  private boolean initialized;
+
+  private boolean disableDamageCap;
+
+  private final net.minecraft.server.level.ServerBossEvent bossEvent;
+
+  public io.github.kosianodangoo.trialmonolith.common.entity.trialmonolith.TrialMonolithEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.Monster>, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #47                 // Method net/minecraft/world/entity/monster/Monster."<init>":(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+       6: aload_0
+       7: fconst_0
+       8: putfield      #49                 // Field lastHealth:F
+      11: aload_0
+      12: iconst_0
+      13: putfield      #51                 // Field initialized:Z
+      16: aload_0
+      17: iconst_0
+      18: putfield      #53                 // Field disableDamageCap:Z
+      21: aload_0
+      22: getfield      #57                 // Field f_20943_:Lnet/minecraft/world/entity/ai/attributes/AttributeMap;
+      25: getstatic     #63                 // Field net/minecraft/world/entity/ai/attributes/Attributes.f_22277_:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+      28: invokevirtual #69                 // Method net/minecraft/world/entity/ai/attributes/AttributeMap.m_22146_:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+      31: astore_3
+      32: aload_3
+      33: ifnull        52
+      36: aload_3
+      37: getstatic     #75                 // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.TRIAL_MONOLITH_ATTACK_RANGE:Lnet/minecraftforge/common/ForgeConfigSpec$DoubleValue;
+      40: invokevirtual #79                 // Method net/minecraftforge/common/ForgeConfigSpec$DoubleValue.get:()Ljava/lang/Object;
+      43: checkcast     #81                 // class java/lang/Double
+      46: invokevirtual #85                 // Method java/lang/Double.doubleValue:()D
+      49: invokevirtual #91                 // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.m_22100_:(D)V
+      52: aload_0
+      53: aload_0
+      54: invokevirtual #99                 // Method m_21223_:()F
+      57: putfield      #49                 // Field lastHealth:F
+      60: aload_0
+      61: new           #101                // class net/minecraft/server/level/ServerBossEvent
+      64: dup
+      65: aload_0
+      66: invokevirtual #105                // Method m_5446_:()Lnet/minecraft/network/chat/Component;
+      69: getstatic     #109                // Field net/minecraft/world/BossEvent$BossBarColor.PURPLE:Lnet/minecraft/world/BossEvent$BossBarColor;
+      72: getstatic     #113                // Field net/minecraft/world/BossEvent$BossBarOverlay.NOTCHED_20:Lnet/minecraft/world/BossEvent$BossBarOverlay;
+      75: invokespecial #116                // Method net/minecraft/server/level/ServerBossEvent."<init>":(Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/BossEvent$BossBarColor;Lnet/minecraft/world/BossEvent$BossBarOverlay;)V
+      78: putfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+      81: return
+
+  public void m_6457_(net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #132                // Method net/minecraft/world/entity/monster/Monster.m_6457_:(Lnet/minecraft/server/level/ServerPlayer;)V
+       5: aload_0
+       6: getfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+       9: aload_1
+      10: invokevirtual #135                // Method net/minecraft/server/level/ServerBossEvent.m_6543_:(Lnet/minecraft/server/level/ServerPlayer;)V
+      13: return
+
+  public void m_6452_(net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #140                // Method net/minecraft/world/entity/monster/Monster.m_6452_:(Lnet/minecraft/server/level/ServerPlayer;)V
+       5: aload_0
+       6: getfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+       9: aload_1
+      10: invokevirtual #143                // Method net/minecraft/server/level/ServerBossEvent.m_6539_:(Lnet/minecraft/server/level/ServerPlayer;)V
+      13: return
+
+  protected void m_8097_();
+    Code:
+       0: aload_0
+       1: invokespecial #147                // Method net/minecraft/world/entity/monster/Monster.m_8097_:()V
+       4: aload_0
+       5: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+       8: getstatic     #153                // Field DATA_MONOLITH_HEALTH_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      11: fconst_0
+      12: invokestatic  #159                // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+      15: invokevirtual #165                // Method net/minecraft/network/syncher/SynchedEntityData.m_135372_:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      18: aload_0
+      19: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+      22: getstatic     #167                // Field DATA_MONOLITH_ACTIVE_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      25: iconst_0
+      26: invokestatic  #172                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      29: invokevirtual #165                // Method net/minecraft/network/syncher/SynchedEntityData.m_135372_:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      32: return
+
+  protected void m_8099_();
+    Code:
+       0: aload_0
+       1: getfield      #177                // Field f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+       4: iconst_4
+       5: new           #179                // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootHugeBeamGoal
+       8: dup
+       9: aload_0
+      10: invokespecial #182                // Method io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootHugeBeamGoal."<init>":(Lio/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity;)V
+      13: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      16: aload_0
+      17: getfield      #177                // Field f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      20: iconst_3
+      21: new           #190                // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/SummonDamageCubeGoal
+      24: dup
+      25: aload_0
+      26: invokespecial #191                // Method io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/SummonDamageCubeGoal."<init>":(Lio/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity;)V
+      29: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      32: aload_0
+      33: getfield      #177                // Field f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      36: iconst_2
+      37: new           #193                // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootSmallBeamAroundTargetGoal
+      40: dup
+      41: aload_0
+      42: invokespecial #194                // Method io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootSmallBeamAroundTargetGoal."<init>":(Lio/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity;)V
+      45: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      48: aload_0
+      49: getfield      #177                // Field f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      52: iconst_1
+      53: new           #196                // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootRandomSmallBeamGoal
+      56: dup
+      57: aload_0
+      58: invokespecial #197                // Method io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootRandomSmallBeamGoal."<init>":(Lio/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity;)V
+      61: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      64: aload_0
+      65: getfield      #177                // Field f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      68: iconst_0
+      69: new           #199                // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootSmallBeamGoal
+      72: dup
+      73: aload_0
+      74: invokespecial #200                // Method io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/ai/ShootSmallBeamGoal."<init>":(Lio/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity;)V
+      77: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      80: aload_0
+      81: getfield      #203                // Field f_21346_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      84: iconst_1
+      85: new           #205                // class net/minecraft/world/entity/ai/goal/target/HurtByTargetGoal
+      88: dup
+      89: aload_0
+      90: iconst_1
+      91: anewarray     #207                // class java/lang/Class
+      94: dup
+      95: iconst_0
+      96: ldc           #2                  // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity
+      98: aastore
+      99: invokespecial #210                // Method net/minecraft/world/entity/ai/goal/target/HurtByTargetGoal."<init>":(Lnet/minecraft/world/entity/PathfinderMob;[Ljava/lang/Class;)V
+     102: iconst_1
+     103: anewarray     #207                // class java/lang/Class
+     106: dup
+     107: iconst_0
+     108: ldc           #2                  // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity
+     110: aastore
+     111: invokevirtual #214                // Method net/minecraft/world/entity/ai/goal/target/HurtByTargetGoal.m_26044_:([Ljava/lang/Class;)Lnet/minecraft/world/entity/ai/goal/target/HurtByTargetGoal;
+     114: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+     117: aload_0
+     118: getfield      #203                // Field f_21346_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+     121: iconst_2
+     122: new           #216                // class net/minecraft/world/entity/ai/goal/target/NearestAttackableTargetGoal
+     125: dup
+     126: aload_0
+     127: ldc           #218                // class net/minecraft/world/entity/player/Player
+     129: iconst_0
+     130: invokespecial #221                // Method net/minecraft/world/entity/ai/goal/target/NearestAttackableTargetGoal."<init>":(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;Z)V
+     133: invokevirtual #188                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_25352_:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+     136: return
+
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier createAttributes();
+    Code:
+       0: invokestatic  #227                // Method net/minecraft/world/entity/monster/Monster.m_33035_:()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+       3: getstatic     #230                // Field net/minecraft/world/entity/ai/attributes/Attributes.f_22276_:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+       6: ldc2_w        #231                // double 1000.0d
+       9: invokevirtual #236                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.m_22268_:(Lnet/minecraft/world/entity/ai/attributes/Attribute;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+      12: getstatic     #63                 // Field net/minecraft/world/entity/ai/attributes/Attributes.f_22277_:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+      15: ldc2_w        #237                // double 128.0d
+      18: invokevirtual #236                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.m_22268_:(Lnet/minecraft/world/entity/ai/attributes/Attribute;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+      21: invokevirtual #241                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.m_22265_:()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier;
+      24: areturn
+
+  public float m_21223_();
+    Code:
+       0: aload_0
+       1: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #153                // Field DATA_MONOLITH_HEALTH_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #245                // Method net/minecraft/network/syncher/SynchedEntityData.m_135370_:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #155                // class java/lang/Float
+      13: invokevirtual #248                // Method java/lang/Float.floatValue:()F
+      16: freturn
+
+  public boolean m_6084_();
+    Code:
+       0: aload_0
+       1: invokevirtual #99                 // Method m_21223_:()F
+       4: fconst_0
+       5: fcmpl
+       6: ifle          13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  public boolean m_21224_();
+    Code:
+       0: aload_0
+       1: invokevirtual #99                 // Method m_21223_:()F
+       4: fconst_0
+       5: fcmpg
+       6: ifgt          13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  public boolean m_21525_();
+    Code:
+       0: getstatic     #255                // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.trialMonolithBypassNoAI:Z
+       3: ifne          17
+       6: aload_0
+       7: invokespecial #257                // Method net/minecraft/world/entity/monster/Monster.m_21525_:()Z
+      10: ifeq          17
+      13: iconst_1
+      14: goto          18
+      17: iconst_0
+      18: ireturn
+
+  public void m_21557_(boolean);
+    Code:
+       0: aload_0
+       1: getstatic     #255                // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.trialMonolithBypassNoAI:Z
+       4: ifne          15
+       7: iload_1
+       8: ifeq          15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: invokespecial #261                // Method net/minecraft/world/entity/monster/Monster.m_21557_:(Z)V
+      19: return
+
+  public void m_8119_();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #51                 // Field initialized:Z
+       5: aload_0
+       6: aload_0
+       7: invokevirtual #99                 // Method m_21223_:()F
+      10: putfield      #49                 // Field lastHealth:F
+      13: aload_0
+      14: getfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+      17: aload_0
+      18: invokevirtual #99                 // Method m_21223_:()F
+      21: aload_0
+      22: invokevirtual #266                // Method m_21233_:()F
+      25: fdiv
+      26: invokevirtual #270                // Method net/minecraft/server/level/ServerBossEvent.m_142711_:(F)V
+      29: aload_0
+      30: invokevirtual #274                // Method m_5448_:()Lnet/minecraft/world/entity/LivingEntity;
+      33: ifnull        40
+      36: aload_0
+      37: invokevirtual #277                // Method incrementMonolithActiveTime:()V
+      40: aload_0
+      41: invokespecial #279                // Method net/minecraft/world/entity/monster/Monster.m_8119_:()V
+      44: return
+
+  public void m_21153_(float);
+    Code:
+       0: fload_1
+       1: invokestatic  #284                // Method java/lang/Float.isNaN:(F)Z
+       4: ifeq          9
+       7: fconst_0
+       8: fstore_1
+       9: aload_0
+      10: getfield      #53                 // Field disableDamageCap:Z
+      13: ifeq          20
+      16: fload_1
+      17: goto          32
+      20: aload_0
+      21: getfield      #49                 // Field lastHealth:F
+      24: getstatic     #287                // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.trialMonolithDamageCap:F
+      27: fsub
+      28: fload_1
+      29: invokestatic  #293                // Method java/lang/Math.max:(FF)F
+      32: fstore_1
+      33: aload_0
+      34: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+      37: getstatic     #153                // Field DATA_MONOLITH_HEALTH_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      40: fload_1
+      41: fconst_0
+      42: aload_0
+      43: invokevirtual #266                // Method m_21233_:()F
+      46: invokestatic  #299                // Method net/minecraft/util/Mth.m_14036_:(FFF)F
+      49: invokestatic  #159                // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+      52: invokevirtual #302                // Method net/minecraft/network/syncher/SynchedEntityData.m_135381_:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      55: return
+
+  protected void m_6668_(net.minecraft.world.damagesource.DamageSource);
+    Code:
+       0: aload_0
+       1: invokevirtual #307                // Method m_21224_:()Z
+       4: ifeq          12
+       7: aload_0
+       8: aload_1
+       9: invokespecial #309                // Method net/minecraft/world/entity/monster/Monster.m_6668_:(Lnet/minecraft/world/damagesource/DamageSource;)V
+      12: return
+
+  protected void m_7625_(net.minecraft.world.damagesource.DamageSource, boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #316                // Method m_6125_:()Z
+       4: ifeq          13
+       7: aload_0
+       8: aload_1
+       9: iload_2
+      10: invokespecial #318                // Method net/minecraft/world/entity/monster/Monster.m_7625_:(Lnet/minecraft/world/damagesource/DamageSource;Z)V
+      13: return
+
+  protected boolean m_6125_();
+    Code:
+       0: aload_0
+       1: invokevirtual #307                // Method m_21224_:()Z
+       4: ifeq          18
+       7: aload_0
+       8: invokespecial #320                // Method net/minecraft/world/entity/monster/Monster.m_6125_:()Z
+      11: ifeq          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  public void setMonolithActiveTime(int);
+    Code:
+       0: aload_0
+       1: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #167                // Field DATA_MONOLITH_ACTIVE_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #172                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: invokevirtual #302                // Method net/minecraft/network/syncher/SynchedEntityData.m_135381_:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public void incrementMonolithActiveTime();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #328                // Method getMonolithActiveTime:()I
+       5: iconst_1
+       6: iadd
+       7: invokevirtual #330                // Method setMonolithActiveTime:(I)V
+      10: return
+
+  public int getMonolithActiveTime();
+    Code:
+       0: aload_0
+       1: getfield      #151                // Field f_19804_:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #167                // Field DATA_MONOLITH_ACTIVE_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #245                // Method net/minecraft/network/syncher/SynchedEntityData.m_135370_:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #169                // class java/lang/Integer
+      13: invokevirtual #333                // Method java/lang/Integer.intValue:()I
+      16: ireturn
+
+  public boolean isMonolithActive();
+    Code:
+       0: aload_0
+       1: invokevirtual #328                // Method getMonolithActiveTime:()I
+       4: ifle          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public void m_7380_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #338                // Method net/minecraft/world/entity/monster/Monster.m_7380_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc           #35                 // String MonolithActiveTime
+       8: aload_0
+       9: invokevirtual #328                // Method getMonolithActiveTime:()I
+      12: invokevirtual #344                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      15: return
+
+  public void m_7378_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #349                // Method net/minecraft/world/entity/monster/Monster.m_7378_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #35                 // String MonolithActiveTime
+       9: invokevirtual #353                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      12: invokevirtual #330                // Method setMonolithActiveTime:(I)V
+      15: aload_0
+      16: invokevirtual #356                // Method m_8077_:()Z
+      19: ifeq          33
+      22: aload_0
+      23: getfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+      26: aload_0
+      27: invokevirtual #105                // Method m_5446_:()Lnet/minecraft/network/chat/Component;
+      30: invokevirtual #360                // Method net/minecraft/server/level/ServerBossEvent.m_6456_:(Lnet/minecraft/network/chat/Component;)V
+      33: return
+
+  public void m_6593_(net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #364                // Method net/minecraft/world/entity/monster/Monster.m_6593_:(Lnet/minecraft/network/chat/Component;)V
+       5: aload_0
+       6: getfield      #118                // Field bossEvent:Lnet/minecraft/server/level/ServerBossEvent;
+       9: aload_0
+      10: invokevirtual #105                // Method m_5446_:()Lnet/minecraft/network/chat/Component;
+      13: invokevirtual #360                // Method net/minecraft/server/level/ServerBossEvent.m_6456_:(Lnet/minecraft/network/chat/Component;)V
+      16: return
+
+  public void m_20258_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #51                 // Field initialized:Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putfield      #53                 // Field disableDamageCap:Z
+      16: aload_0
+      17: aload_1
+      18: invokespecial #368                // Method net/minecraft/world/entity/monster/Monster.m_20258_:(Lnet/minecraft/nbt/CompoundTag;)V
+      21: aload_0
+      22: iconst_1
+      23: putfield      #51                 // Field initialized:Z
+      26: aload_0
+      27: iconst_0
+      28: putfield      #53                 // Field disableDamageCap:Z
+      31: return
+
+  public float m_146908_();
+    Code:
+       0: fconst_0
+       1: freturn
+
+  public float m_146909_();
+    Code:
+       0: fconst_0
+       1: freturn
+
+  public boolean m_8023_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  protected net.minecraft.sounds.SoundEvent m_7975_(net.minecraft.world.damagesource.DamageSource);
+    Code:
+       0: getstatic     #379                // Field net/minecraft/sounds/SoundEvents.f_11669_:Lnet/minecraft/sounds/SoundEvent;
+       3: invokevirtual #385                // Method net/minecraft/sounds/SoundEvent.m_11660_:()Lnet/minecraft/resources/ResourceLocation;
+       6: ldc_w         #386                // float 16.0f
+       9: invokestatic  #390                // Method net/minecraft/sounds/SoundEvent.m_262856_:(Lnet/minecraft/resources/ResourceLocation;F)Lnet/minecraft/sounds/SoundEvent;
+      12: areturn
+
+  protected net.minecraft.sounds.SoundEvent m_5592_();
+    Code:
+       0: getstatic     #395                // Field net/minecraft/sounds/SoundEvents.f_12556_:Lnet/minecraft/sounds/SoundEvent;
+       3: areturn
+
+  public net.minecraft.world.phys.Vec3 m_20184_();
+    Code:
+       0: getstatic     #403                // Field net/minecraft/world/phys/Vec3.f_82478_:Lnet/minecraft/world/phys/Vec3;
+       3: areturn
+
+  public void m_6074_();
+    Code:
+       0: getstatic     #408                // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.TRIAL_MONOLITH_SHOULD_DIE_FROM_KILL:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+       3: invokevirtual #409                // Method net/minecraftforge/common/ForgeConfigSpec$BooleanValue.get:()Ljava/lang/Object;
+       6: checkcast     #411                // class java/lang/Boolean
+       9: invokevirtual #414                // Method java/lang/Boolean.booleanValue:()Z
+      12: ifeq          25
+      15: aload_0
+      16: fconst_0
+      17: putfield      #49                 // Field lastHealth:F
+      20: aload_0
+      21: iconst_1
+      22: putfield      #53                 // Field disableDamageCap:Z
+      25: aload_0
+      26: invokespecial #416                // Method net/minecraft/world/entity/monster/Monster.m_6074_:()V
+      29: return
+
+  public void m_6667_(net.minecraft.world.damagesource.DamageSource);
+    Code:
+       0: aload_0
+       1: invokevirtual #307                // Method m_21224_:()Z
+       4: ifeq          12
+       7: aload_0
+       8: aload_1
+       9: invokespecial #419                // Method net/minecraft/world/entity/monster/Monster.m_6667_:(Lnet/minecraft/world/damagesource/DamageSource;)V
+      12: return
+
+  static {};
+    Code:
+       0: ldc           #2                  // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity
+       2: getstatic     #427                // Field net/minecraft/network/syncher/EntityDataSerializers.f_135029_:Lnet/minecraft/network/syncher/EntityDataSerializer;
+       5: invokestatic  #431                // Method net/minecraft/network/syncher/SynchedEntityData.m_135353_:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+       8: putstatic     #153                // Field DATA_MONOLITH_HEALTH_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      11: ldc           #2                  // class io/github/kosianodangoo/trialmonolith/common/entity/trialmonolith/TrialMonolithEntity
+      13: getstatic     #434                // Field net/minecraft/network/syncher/EntityDataSerializers.f_135028_:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      16: invokestatic  #431                // Method net/minecraft/network/syncher/SynchedEntityData.m_135353_:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      19: putstatic     #167                // Field DATA_MONOLITH_ACTIVE_ID:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      22: return
+}

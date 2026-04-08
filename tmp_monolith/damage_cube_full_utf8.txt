@@ -1,0 +1,110 @@
+﻿Compiled from "DamageCubeEntity.java"
+public class io.github.kosianodangoo.trialmonolith.common.entity.DamageCubeEntity extends io.github.kosianodangoo.trialmonolith.common.entity.AbstractDelayedTraceableEntity {
+  public io.github.kosianodangoo.trialmonolith.common.entity.DamageCubeEntity(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #15                 // Method io/github/kosianodangoo/trialmonolith/common/entity/AbstractDelayedTraceableEntity."<init>":(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+       6: return
+
+  public net.minecraft.world.phys.Vec3 m_20184_();
+    Code:
+       0: getstatic     #31                 // Field net/minecraft/world/phys/Vec3.f_82478_:Lnet/minecraft/world/phys/Vec3;
+       3: areturn
+
+  public net.minecraft.world.phys.AABB m_6921_();
+    Code:
+       0: aload_0
+       1: invokespecial #35                 // Method io/github/kosianodangoo/trialmonolith/common/entity/AbstractDelayedTraceableEntity.m_6921_:()Lnet/minecraft/world/phys/AABB;
+       4: ldc2_w        #36                 // double 4.0d
+       7: invokevirtual #43                 // Method net/minecraft/world/phys/AABB.m_82400_:(D)Lnet/minecraft/world/phys/AABB;
+      10: areturn
+
+  public void m_8119_();
+    Code:
+       0: aload_0
+       1: invokespecial #47                 // Method io/github/kosianodangoo/trialmonolith/common/entity/AbstractDelayedTraceableEntity.m_8119_:()V
+       4: return
+
+  public void activate();
+    Code:
+       0: aload_0
+       1: invokevirtual #52                 // Method m_9236_:()Lnet/minecraft/world/level/Level;
+       4: astore_1
+       5: aload_1
+       6: invokevirtual #58                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       9: ifeq          13
+      12: return
+      13: aload_1
+      14: aconst_null
+      15: aload_0
+      16: invokevirtual #62                 // Method m_20183_:()Lnet/minecraft/core/BlockPos;
+      19: getstatic     #68                 // Field net/minecraft/sounds/SoundEvents.f_11738_:Lnet/minecraft/sounds/SoundEvent;
+      22: getstatic     #74                 // Field net/minecraft/sounds/SoundSource.HOSTILE:Lnet/minecraft/sounds/SoundSource;
+      25: fconst_1
+      26: fconst_1
+      27: invokevirtual #78                 // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+      30: aload_0
+      31: invokevirtual #52                 // Method m_9236_:()Lnet/minecraft/world/level/Level;
+      34: aload_0
+      35: fconst_0
+      36: invokevirtual #82                 // Method m_20318_:(F)Lnet/minecraft/world/phys/Vec3;
+      39: ldc2_w        #36                 // double 4.0d
+      42: ldc2_w        #36                 // double 4.0d
+      45: ldc2_w        #36                 // double 4.0d
+      48: invokestatic  #86                 // Method net/minecraft/world/phys/AABB.m_165882_:(Lnet/minecraft/world/phys/Vec3;DDD)Lnet/minecraft/world/phys/AABB;
+      51: aload_0
+      52: getfield      #90                 // Field DEFAULT_PREDICATE:Ljava/util/function/Predicate;
+      55: invokestatic  #96                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.getEntities:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/Collection;
+      58: aload_0
+      59: aload_1
+      60: invokedynamic #116,  0            // InvokeDynamic #0:accept:(Lio/github/kosianodangoo/trialmonolith/common/entity/DamageCubeEntity;Lnet/minecraft/world/level/Level;)Ljava/util/function/Consumer;
+      65: invokeinterface #122,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+      70: return
+
+  public int getDelay();
+    Code:
+       0: bipush        7
+       2: ireturn
+
+  public int getDuration();
+    Code:
+       0: iconst_5
+       1: ireturn
+
+  private void lambda$activate$0(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity);
+    Code:
+       0: ldc           #127                // float 3.0f
+       2: fstore_3
+       3: aload_2
+       4: getstatic     #133                // Field io/github/kosianodangoo/trialmonolith/TrialMonolithConfig.damageCubeSoulDamage:F
+       7: invokestatic  #137                // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.addSoulDamage:(Lnet/minecraft/world/entity/Entity;F)V
+      10: aload_2
+      11: instanceof    #139                // class net/minecraft/world/entity/LivingEntity
+      14: ifeq          36
+      17: aload_2
+      18: checkcast     #139                // class net/minecraft/world/entity/LivingEntity
+      21: astore        4
+      23: fload_3
+      24: aload         4
+      26: invokevirtual #143                // Method net/minecraft/world/entity/LivingEntity.m_21233_:()F
+      29: ldc           #144                // float 0.05f
+      31: fmul
+      32: invokestatic  #150                // Method java/lang/Math.max:(FF)F
+      35: fstore_3
+      36: aload_2
+      37: aload_1
+      38: aload_0
+      39: invokevirtual #154                // Method getOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      42: invokestatic  #160                // Method io/github/kosianodangoo/trialmonolith/common/init/TrialMonolithDamageTypes.cubeAttack:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+      45: fload_3
+      46: invokevirtual #166                // Method net/minecraft/world/entity/Entity.m_6469_:(Lnet/minecraft/world/damagesource/DamageSource;F)Z
+      49: pop
+      50: aload_2
+      51: dconst_0
+      52: dconst_0
+      53: dconst_0
+      54: invokevirtual #170                // Method net/minecraft/world/entity/Entity.m_20334_:(DDD)V
+      57: return
+}

@@ -98,9 +98,14 @@ public class DamageEventHandler {
                     return;
                 }
                 
-                // Lv 6: 爆発ダメージ90%カット
+                // Lv 6: 爆破耐性の心得 90%カット
                 if (level >= 6 && event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
                     event.setAmount(event.getAmount() * 0.1F);
+                }
+
+                // Lv 5: 炎の加護 (燃焼中なら全ダメージ30%OFF)
+                if (level >= 5 && player.isOnFire()) {
+                    event.setAmount(event.getAmount() * 0.70F);
                 }
 
                 if (level > 0) {
@@ -112,12 +117,13 @@ public class DamageEventHandler {
             });
         }
 
-        // 追撃スキル（Lv14-16）の処理（攻撃側がプレイヤーの場合）
+        // 追撃スキル（Lv991-999）の処理（攻撃側がプレイヤーの場合）
         if (!IS_PURSUIT.get() && event.getSource().getEntity() instanceof Player player) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
-                if (level >= 14) {
-                    int hits = level >= 16 ? 3 : (level >= 15 ? 2 : 1);
+                if (level >= 991) {
+                    // Lv991で1回、Lv992で2回、...Lv999で9回まで増加
+                    int hits = Math.min(9, level - 990);
                     float pursuitDamage = event.getAmount();
 
                     IS_PURSUIT.set(true);
