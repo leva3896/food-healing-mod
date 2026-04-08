@@ -131,6 +131,7 @@ public class FoodHealingHandler {
                 while (cap.getEatCount() >= required && cap.getLevel() < 1000) {
                     cap.addLevel(1);
                     cap.setEatCount(cap.getEatCount() - required);
+                    notifyLevelUp((ServerPlayer) player, cap.getLevel());
                 }
                 
                 // カンスト処理
@@ -188,5 +189,52 @@ public class FoodHealingHandler {
                 }
             });
         }
+    }
+
+    private static void notifyLevelUp(ServerPlayer player, int newLevel) {
+        player.level().playSound(null, player.blockPosition(), net.minecraft.sounds.SoundEvents.PLAYER_LEVELUP, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+        String skillName = getLearnedSkillName(newLevel);
+        if (skillName != null) {
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal("§6食義レベルが " + newLevel + " にアップした！スキル『" + skillName + "』を覚えた！！"));
+        } else {
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal("§6食義レベルが " + newLevel + " にアップした！"));
+        }
+    }
+
+    private static String getLearnedSkillName(int level) {
+        return switch (level) {
+            case 1 -> "耐火の心得";
+            case 2 -> "水月と暗視の心得";
+            case 3 -> "早食いⅠ";
+            case 4 -> "軽業の心得";
+            case 5 -> "炎の加護";
+            case 6 -> "爆破耐性の心得";
+            case 7 -> "浄化の心得";
+            case 8 -> "豊穣の心得";
+            case 9 -> "屠殺の心得";
+            case 10 -> "火事場力解放";
+            case 11 -> "満足感Ⅰ";
+            case 12 -> "満足感Ⅱ";
+            case 13 -> "満足感Ⅲ";
+            case 14 -> "採取の心得Ⅰ";
+            case 15 -> "採取の心得Ⅱ";
+            case 16 -> "採取の心得Ⅲ";
+            case 17 -> "不壊の心得Ⅰ";
+            case 18 -> "不壊の心得Ⅱ";
+            case 19 -> "不壊の心得Ⅲ";
+            case 20 -> "防具の極意";
+            case 30 -> "飛翔の心得";
+            case 100 -> "金剛の心得";
+            case 991 -> "追撃の心得 極Ⅰ";
+            case 992 -> "追撃の心得 極Ⅱ";
+            case 993 -> "追撃の心得 極Ⅲ";
+            case 994 -> "追撃の心得 極Ⅳ";
+            case 995 -> "追撃の心得 極Ⅴ";
+            case 996 -> "追撃の心得 極Ⅵ";
+            case 997 -> "追撃の心得 極Ⅶ";
+            case 998 -> "追撃の心得 極Ⅷ";
+            case 999 -> "追撃の心得 極Ⅸ";
+            default -> null;
+        };
     }
 }

@@ -1,0 +1,71 @@
+{
+  "entity.the_trial_monolith.trial_monolith": "The Trial Monolith",
+  "entity.the_trial_monolith.invader_monolith": "The Invader Monolith",
+  "entity.the_trial_monolith.small_beam": "Small Beam",
+  "entity.the_trial_monolith.huge_beam": "Huge Beam",
+  "entity.the_trial_monolith.damage_cube": "Damage Cube",
+
+  "death.attack.the_trial_monolith.laser": "%s was vaporized by the laser.",
+  "death.attack.the_trial_monolith.laser.player": "%1$s was vaporized by %2$s's laser.",
+  "death.attack.the_trial_monolith.laser.item": "%1$s was vaporized by %2$s's laser using %3$s",
+
+  "death.attack.the_trial_monolith.cube": "%s was vaporized by the cube.",
+  "death.attack.the_trial_monolith.cube.player": "%1$s was vaporized by %2$s's cube.",
+  "death.attack.the_trial_monolith.cube.item": "%1$s was vaporized by %2$s's cube using %3$s",
+
+  "death.attack.the_trial_monolith.soul_damage": "%s died from excessive soul damage.",
+  "death.attack.the_trial_monolith.soul_damage.player": "%1$s died from excessive soul damage from %2$s.",
+  "death.attack.the_trial_monolith.soul_damage.item": "%1$s died from excessive soul damage from %2$s with %3$s",
+
+  "itemGroup.tab.the_trial_monolith": "The Trial Monolith",
+
+
+  "commands.the_trial_monolith.enabled": "Enabled",
+  "commands.the_trial_monolith.disabled": "Disabled",
+
+  "commands.the_trial_monolith.soul_protection.success.multiple": "Set SoulProtection to %2$s for %1$s entities.",
+  "commands.the_trial_monolith.soul_protection.success.single": "Set %s's SoulProtection to %s",
+  "commands.the_trial_monolith.soul_protection.success.get": "%s's SoulProtection: %s",
+
+  "commands.the_trial_monolith.overclock.success.multiple": "Set OverClocking to %2$s for %1$s entities.",
+  "commands.the_trial_monolith.overclock.success.single": "Set %s's OverClocking to %s",
+  "commands.the_trial_monolith.overclock.success.get": "%s's OverClocking: %s",
+
+  "commands.the_trial_monolith.high_dimensional_barrier.success.multiple": "Set High Dimensional Barrier to %2$s for %1$s entities.",
+  "commands.the_trial_monolith.high_dimensional_barrier.success.single": "Set %s's High Dimensional Barrier to %s",
+  "commands.the_trial_monolith.high_dimensional_barrier.success.get": "%s's High Dimensional Barrier: %s",
+
+  "commands.the_trial_monolith.soul_damage.success.multiple": "Set Soul Damage to %2$s for %1$s entities.",
+  "commands.the_trial_monolith.soul_damage.success.single": "Set %s's Soul Damage to %s",
+  "commands.the_trial_monolith.soul_damage.success.get": "%s's Soul Damage: %s",
+
+  "commands.the_trial_monolith.failure.target_must_be_single": "Target entity must be a single.",
+
+
+  "item.the_trial_monolith.monolith_fragment": "Monolith Fragment",
+
+  "item.the_trial_monolith.trial_monolith_spawn_egg": "Trial Monolith Spawn Egg",
+  "item.the_trial_monolith.invader_monolith_spawn_egg": "Invader Monolith Spawn Egg",
+  "tooltip.the_trial_monolith.invader_monolith_spawn_egg": "This may ruin your world\nSummon far away from your base",
+
+  "item.the_trial_monolith.damage_cube_summoner": "Damage Cube Summoner",
+
+  "item.the_trial_monolith.beam_summoner": "Beam Summoner",
+
+  "item.the_trial_monolith.soul_protector": "Soul Protector",
+  "item.the_trial_monolith.soul_protector.enabled": "Soul Protection is Enabled",
+  "item.the_trial_monolith.soul_protector.disabled": "Soul Protection is Disabled",
+
+  "item.the_trial_monolith.over_clocker": "Over Clocker",
+  "item.the_trial_monolith.over_clocker.enabled": "Over Clocker is Enabled",
+  "item.the_trial_monolith.over_clocker.disabled": "Over Clocker is Disabled",
+  "item.the_trial_monolith.high_dimensional_barrier": "High Dimensional Barrier",
+  "item.the_trial_monolith.high_dimensional_barrier.enabled": "High Dimensional Barrier is Enabled",
+  "item.the_trial_monolith.high_dimensional_barrier.disabled": "High Dimensional Barrier is Disabled",
+
+  "item.the_trial_monolith.bottle_of_the_soul": "Bottle of The Soul",
+
+  "modifier.the_trial_monolith.soul_slayer": "Soul Slayer",
+  "modifier.the_trial_monolith.soul_slayer.flavor": "Slay the soul.",
+  "modifier.the_trial_monolith.soul_slayer.description": "It deals damage to the soul."
+}

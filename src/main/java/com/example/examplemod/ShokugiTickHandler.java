@@ -36,8 +36,8 @@ public class ShokugiTickHandler {
                 applyPermanentEffect(player, MobEffects.NIGHT_VISION, 0);
             }
 
-            // Lv 5: Creative Flight
-            if (level >= 5) {
+            // Lv 30: Creative Flight
+            if (level >= 30) {
                 if (!player.getAbilities().mayfly) {
                     player.getAbilities().mayfly = true;
                     player.onUpdateAbilities();

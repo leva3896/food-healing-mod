@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.kosianodangoo.trialmonolith.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "the_trial_monolith.refmap.json",
+  "mixins": [
+    "EntityMixin",
+    "LevelInvoker",
+    "LevelMixin",
+    "LivingEntityInvoker",
+    "LivingEntityMixin",
+    "PersistentEntitySectionManager$CallbackMixin",
+    "PlayerMixin",
+    "ServerLevelMixin",
+    "client.ClientGamePacketListenerMixin"
+  ],
+  "client": [
+    "client.MinecraftMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "plugin": "io.github.kosianodangoo.trialmonolith.TheTrialMonolithMixinPlugin",
+  "mixinPriority": 2147483647
+}

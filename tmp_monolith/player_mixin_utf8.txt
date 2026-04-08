@@ -1,0 +1,52 @@
+﻿Compiled from "PlayerMixin.java"
+public abstract class io.github.kosianodangoo.trialmonolith.mixin.PlayerMixin extends net.minecraft.world.entity.LivingEntity {
+  private static final net.minecraft.world.item.ItemCooldowns the_trial_monolith$EMPTY_ITEM_COOLDOWNS;
+
+  protected io.github.kosianodangoo.trialmonolith.mixin.PlayerMixin(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LivingEntity>, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #18                 // Method net/minecraft/world/entity/LivingEntity."<init>":(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+       6: return
+
+  public void getCooldownMixin(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraft.world.item.ItemCooldowns>);
+    Code:
+       0: aload_0
+       1: invokestatic  #42                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+       4: ifeq          14
+       7: aload_1
+       8: getstatic     #44                 // Field the_trial_monolith$EMPTY_ITEM_COOLDOWNS:Lnet/minecraft/world/item/ItemCooldowns;
+      11: invokevirtual #50                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      14: return
+
+  public void getAttackStrengthScaleMixin(float, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Float>);
+    Code:
+       0: aload_0
+       1: invokestatic  #42                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+       4: ifeq          15
+       7: aload_2
+       8: fconst_1
+       9: invokestatic  #63                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+      12: invokevirtual #50                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      15: return
+
+  public void getCurrentItemAttackStrengthDelayMixin(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Float>);
+    Code:
+       0: aload_0
+       1: invokestatic  #42                 // Method io/github/kosianodangoo/trialmonolith/common/helper/EntityHelper.isOverClocked:(Lnet/minecraft/world/entity/Entity;)Z
+       4: ifeq          15
+       7: aload_1
+       8: fconst_0
+       9: invokestatic  #63                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+      12: invokevirtual #50                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      15: return
+
+  static {};
+    Code:
+       0: new           #10                 // class io/github/kosianodangoo/trialmonolith/mixin/PlayerMixin$1
+       3: dup
+       4: invokespecial #73                 // Method io/github/kosianodangoo/trialmonolith/mixin/PlayerMixin$1."<init>":()V
+       7: putstatic     #44                 // Field the_trial_monolith$EMPTY_ITEM_COOLDOWNS:Lnet/minecraft/world/item/ItemCooldowns;
+      10: return
+}

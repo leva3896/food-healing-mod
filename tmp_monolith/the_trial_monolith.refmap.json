@@ -1,0 +1,90 @@
+{
+  "mappings": {
+    "io/github/kosianodangoo/trialmonolith/mixin/PersistentEntitySectionManager$CallbackMixin": {
+      "onRemove": "Lnet/minecraft/world/level/entity/PersistentEntitySectionManager$Callback;m_142472_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/client/ClientGamePacketListenerMixin": {
+      "handleRespawn": "Lnet/minecraft/client/multiplayer/ClientPacketListener;m_7992_(Lnet/minecraft/network/protocol/game/ClientboundRespawnPacket;)V",
+      "handleRemoveEntities": "Lnet/minecraft/client/multiplayer/ClientPacketListener;m_182047_(Lnet/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/LevelMixin": {
+      "guardEntityTick": "Lnet/minecraft/world/level/Level;m_46653_(Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/LivingEntityMixin": {
+      "getMaxHealth": "Lnet/minecraft/world/entity/LivingEntity;m_21233_()F",
+      "tickDeath": "Lnet/minecraft/world/entity/LivingEntity;m_6153_()V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker": {
+      "getEntities": "m_142646_()Lnet/minecraft/world/level/entity/LevelEntityGetter;"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/LivingEntityInvoker": {
+      "dropAllDeathLoot": "m_6668_(Lnet/minecraft/world/damagesource/DamageSource;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/PlayerMixin": {
+      "getAttackStrengthScale": "Lnet/minecraft/world/entity/player/Player;m_36403_(F)F",
+      "getCurrentItemAttackStrengthDelay": "Lnet/minecraft/world/entity/player/Player;m_36333_()F",
+      "getCooldowns": "Lnet/minecraft/world/entity/player/Player;m_36335_()Lnet/minecraft/world/item/ItemCooldowns;"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/EntityMixin": {
+      "load": "Lnet/minecraft/world/entity/Entity;m_20258_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "Lnet/minecraft/world/entity/Entity;removeAfterChangingDimensions()V": "Lnet/minecraft/world/entity/Entity;m_6089_()V",
+      "saveWithoutId": "Lnet/minecraft/world/entity/Entity;m_20240_(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;",
+      "setRemoved": "Lnet/minecraft/world/entity/Entity;m_142467_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V",
+      "remove": "Lnet/minecraft/world/entity/Entity;m_142687_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/ServerLevelMixin": {
+      "removePlayerImmediately": "Lnet/minecraft/server/level/ServerLevel;m_143261_(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+    },
+    "io/github/kosianodangoo/trialmonolith/mixin/client/MinecraftMixin": {
+      "tick": "Lnet/minecraft/client/Minecraft;m_91398_()V",
+      "runTick": "Lnet/minecraft/client/Minecraft;m_91383_(Z)V",
+      "setScreen": "Lnet/minecraft/client/Minecraft;m_91152_(Lnet/minecraft/client/gui/screens/Screen;)V",
+      "Lnet/minecraft/client/Timer;advanceTime(J)I": "Lnet/minecraft/client/Timer;m_92525_(J)I"
+    }
+  },
+  "data": {
+    "searge": {
+      "io/github/kosianodangoo/trialmonolith/mixin/PersistentEntitySectionManager$CallbackMixin": {
+        "onRemove": "Lnet/minecraft/world/level/entity/PersistentEntitySectionManager$Callback;m_142472_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/client/ClientGamePacketListenerMixin": {
+        "handleRespawn": "Lnet/minecraft/client/multiplayer/ClientPacketListener;m_7992_(Lnet/minecraft/network/protocol/game/ClientboundRespawnPacket;)V",
+        "handleRemoveEntities": "Lnet/minecraft/client/multiplayer/ClientPacketListener;m_182047_(Lnet/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/LevelMixin": {
+        "guardEntityTick": "Lnet/minecraft/world/level/Level;m_46653_(Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/LivingEntityMixin": {
+        "getMaxHealth": "Lnet/minecraft/world/entity/LivingEntity;m_21233_()F",
+        "tickDeath": "Lnet/minecraft/world/entity/LivingEntity;m_6153_()V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker": {
+        "getEntities": "m_142646_()Lnet/minecraft/world/level/entity/LevelEntityGetter;"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/LivingEntityInvoker": {
+        "dropAllDeathLoot": "m_6668_(Lnet/minecraft/world/damagesource/DamageSource;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/PlayerMixin": {
+        "getAttackStrengthScale": "Lnet/minecraft/world/entity/player/Player;m_36403_(F)F",
+        "getCurrentItemAttackStrengthDelay": "Lnet/minecraft/world/entity/player/Player;m_36333_()F",
+        "getCooldowns": "Lnet/minecraft/world/entity/player/Player;m_36335_()Lnet/minecraft/world/item/ItemCooldowns;"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/EntityMixin": {
+        "load": "Lnet/minecraft/world/entity/Entity;m_20258_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "Lnet/minecraft/world/entity/Entity;removeAfterChangingDimensions()V": "Lnet/minecraft/world/entity/Entity;m_6089_()V",
+        "saveWithoutId": "Lnet/minecraft/world/entity/Entity;m_20240_(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;",
+        "setRemoved": "Lnet/minecraft/world/entity/Entity;m_142467_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V",
+        "remove": "Lnet/minecraft/world/entity/Entity;m_142687_(Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/ServerLevelMixin": {
+        "removePlayerImmediately": "Lnet/minecraft/server/level/ServerLevel;m_143261_(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity$RemovalReason;)V"
+      },
+      "io/github/kosianodangoo/trialmonolith/mixin/client/MinecraftMixin": {
+        "tick": "Lnet/minecraft/client/Minecraft;m_91398_()V",
+        "runTick": "Lnet/minecraft/client/Minecraft;m_91383_(Z)V",
+        "setScreen": "Lnet/minecraft/client/Minecraft;m_91152_(Lnet/minecraft/client/gui/screens/Screen;)V",
+        "Lnet/minecraft/client/Timer;advanceTime(J)I": "Lnet/minecraft/client/Timer;m_92525_(J)I"
+      }
+    }
+  }
+}

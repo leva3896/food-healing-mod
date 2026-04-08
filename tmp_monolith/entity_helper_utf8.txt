@@ -1,0 +1,599 @@
+﻿Compiled from "EntityHelper.java"
+public class io.github.kosianodangoo.trialmonolith.common.helper.EntityHelper {
+  public static final java.lang.String SOUL_PROTECTION_TAG;
+
+  public static final java.lang.String SOUL_DAMAGE_TAG;
+
+  public static final java.lang.String OVER_CLOCKED_TAG;
+
+  public static final java.lang.String HIGH_DIMENSIONAL_BARRIER_TAG;
+
+  public io.github.kosianodangoo.trialmonolith.common.helper.EntityHelper();
+    Code:
+       0: aload_0
+       1: invokespecial #37                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void forEachEntities(net.minecraft.world.level.Level, net.minecraft.world.phys.AABB, java.util.function.Consumer<net.minecraft.world.entity.Entity>);
+    Code:
+       0: aload_0
+       1: instanceof    #44                 // class io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker
+       4: ifeq          26
+       7: aload_0
+       8: checkcast     #44                 // class io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker
+      11: astore_3
+      12: aload_3
+      13: invokeinterface #48,  1           // InterfaceMethod io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker.the_trial_monolith$getEntities:()Lnet/minecraft/world/level/entity/LevelEntityGetter;
+      18: aload_1
+      19: aload_2
+      20: invokeinterface #54,  3           // InterfaceMethod net/minecraft/world/level/entity/LevelEntityGetter.m_142232_:(Lnet/minecraft/world/phys/AABB;Ljava/util/function/Consumer;)V
+      25: return
+      26: aload_0
+      27: ldc           #9                  // class net/minecraft/world/entity/Entity
+      29: invokestatic  #60                 // InterfaceMethod net/minecraft/world/level/entity/EntityTypeTest.m_156916_:(Ljava/lang/Class;)Lnet/minecraft/world/level/entity/EntityTypeTest;
+      32: aload_1
+      33: invokedynamic #79,  0             // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+      38: invokevirtual #85                 // Method net/minecraft/world/level/Level.m_142425_:(Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+      41: aload_2
+      42: invokeinterface #91,  2           // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      47: return
+
+  public static java.util.Collection<net.minecraft.world.entity.Entity> getEntities(net.minecraft.world.level.Level, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+    Code:
+       0: aload_0
+       1: instanceof    #44                 // class io/github/kosianodangoo/trialmonolith/mixin/LevelInvoker
+       4: ifeq          25
+       7: invokestatic  #109                // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+      10: astore_3
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: aload_3
+      15: invokedynamic #122,  0            // InvokeDynamic #1:accept:(Ljava/util/function/Predicate;Ljava/util/List;)Ljava/util/function/Consumer;
+      20: invokestatic  #124                // Method forEachEntities:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Consumer;)V
+      23: aload_3
+      24: areturn
+      25: aload_0
+      26: ldc           #9                  // class net/minecraft/world/entity/Entity
+      28: invokestatic  #60                 // InterfaceMethod net/minecraft/world/level/entity/EntityTypeTest.m_156916_:(Ljava/lang/Class;)Lnet/minecraft/world/level/entity/EntityTypeTest;
+      31: aload_1
+      32: aload_2
+      33: invokevirtual #85                 // Method net/minecraft/world/level/Level.m_142425_:(Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+      36: areturn
+
+  public static void rayTraceEntities(net.minecraft.world.entity.Entity, double, double, java.util.function.Predicate<net.minecraft.world.entity.Entity>, java.util.function.Consumer<net.minecraft.world.entity.Entity>);
+    Code:
+       0: aload_0
+       1: fconst_0
+       2: invokevirtual #137                // Method net/minecraft/world/entity/Entity.m_20252_:(F)Lnet/minecraft/world/phys/Vec3;
+       5: astore        7
+       7: aload         7
+       9: dload_1
+      10: invokevirtual #143                // Method net/minecraft/world/phys/Vec3.m_82490_:(D)Lnet/minecraft/world/phys/Vec3;
+      13: astore        8
+      15: aload_0
+      16: invokevirtual #147                // Method net/minecraft/world/entity/Entity.m_146892_:()Lnet/minecraft/world/phys/Vec3;
+      19: aload         7
+      21: dload_3
+      22: invokevirtual #143                // Method net/minecraft/world/phys/Vec3.m_82490_:(D)Lnet/minecraft/world/phys/Vec3;
+      25: invokevirtual #151                // Method net/minecraft/world/phys/Vec3.m_82546_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+      28: astore        9
+      30: aload         9
+      32: aload         8
+      34: invokevirtual #154                // Method net/minecraft/world/phys/Vec3.m_82549_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+      37: aload         7
+      39: dload_3
+      40: invokevirtual #143                // Method net/minecraft/world/phys/Vec3.m_82490_:(D)Lnet/minecraft/world/phys/Vec3;
+      43: invokevirtual #154                // Method net/minecraft/world/phys/Vec3.m_82549_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+      46: astore        10
+      48: aload_0
+      49: invokevirtual #158                // Method net/minecraft/world/entity/Entity.m_20191_:()Lnet/minecraft/world/phys/AABB;
+      52: aload         7
+      54: ldc2_w        #159                // double -1.0d
+      57: invokevirtual #143                // Method net/minecraft/world/phys/Vec3.m_82490_:(D)Lnet/minecraft/world/phys/Vec3;
+      60: invokevirtual #166                // Method net/minecraft/world/phys/AABB.m_82369_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
+      63: aload         8
+      65: invokevirtual #166                // Method net/minecraft/world/phys/AABB.m_82369_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
+      68: dload_3
+      69: invokevirtual #170                // Method net/minecraft/world/phys/AABB.m_82400_:(D)Lnet/minecraft/world/phys/AABB;
+      72: astore        11
+      74: aload_0
+      75: invokevirtual #174                // Method net/minecraft/world/entity/Entity.m_9236_:()Lnet/minecraft/world/level/Level;
+      78: aload         11
+      80: aload         5
+      82: invokestatic  #176                // Method getEntities:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/Collection;
+      85: invokeinterface #182,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      90: astore        12
+      92: aload         12
+      94: invokeinterface #192,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      99: ifeq          171
+     102: aload         12
+     104: invokeinterface #196,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     109: checkcast     #9                  // class net/minecraft/world/entity/Entity
+     112: astore        13
+     114: aload         13
+     116: aload_0
+     117: if_acmpne     123
+     120: goto          92
+     123: aload         13
+     125: invokevirtual #158                // Method net/minecraft/world/entity/Entity.m_20191_:()Lnet/minecraft/world/phys/AABB;
+     128: aload         13
+     130: invokevirtual #200                // Method net/minecraft/world/entity/Entity.m_6143_:()F
+     133: f2d
+     134: invokevirtual #170                // Method net/minecraft/world/phys/AABB.m_82400_:(D)Lnet/minecraft/world/phys/AABB;
+     137: dload_3
+     138: invokevirtual #170                // Method net/minecraft/world/phys/AABB.m_82400_:(D)Lnet/minecraft/world/phys/AABB;
+     141: astore        14
+     143: aload         14
+     145: aload         9
+     147: aload         10
+     149: invokevirtual #204                // Method net/minecraft/world/phys/AABB.m_82371_:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Ljava/util/Optional;
+     152: astore        15
+     154: aload         15
+     156: aload         6
+     158: aload         13
+     160: invokedynamic #214,  0            // InvokeDynamic #2:accept:(Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)Ljava/util/function/Consumer;
+     165: invokevirtual #219                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+     168: goto          92
+     171: return
+
+  public static float getSoulDamage(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #241,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$getSoulDamage:()F
+      18: freturn
+      19: fconst_0
+      20: freturn
+
+  public static void setSoulDamage(net.minecraft.world.entity.Entity, float);
+    Code:
+       0: aload_0
+       1: instanceof    #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+       4: ifeq          80
+       7: aload_0
+       8: checkcast     #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+      11: astore_2
+      12: aload_0
+      13: invokestatic  #248                // Method isSoulProtected:(Lnet/minecraft/world/entity/Entity;)Z
+      16: ifeq          20
+      19: return
+      20: aload_2
+      21: invokeinterface #241,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$getSoulDamage:()F
+      26: fstore_3
+      27: aload_2
+      28: fload_1
+      29: invokeinterface #252,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$setSoulDamage:(F)V
+      34: fload_3
+      35: fconst_1
+      36: fcmpg
+      37: ifge          55
+      40: aload_2
+      41: invokeinterface #241,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$getSoulDamage:()F
+      46: fconst_1
+      47: fcmpl
+      48: iflt          55
+      51: aload_0
+      52: invokestatic  #255                // Method onSoulDeath:(Lnet/minecraft/world/entity/Entity;)V
+      55: fload_3
+      56: ldc_w         #256                // float 10.0f
+      59: fcmpg
+      60: ifge          80
+      63: aload_2
+      64: invokeinterface #241,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$getSoulDamage:()F
+      69: ldc_w         #256                // float 10.0f
+      72: fcmpl
+      73: iflt          80
+      76: aload_0
+      77: invokestatic  #259                // Method onSoulRemove:(Lnet/minecraft/world/entity/Entity;)V
+      80: return
+
+  public static void onSoulDeath(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: invokevirtual #174                // Method net/minecraft/world/entity/Entity.m_9236_:()Lnet/minecraft/world/level/Level;
+       4: invokestatic  #269                // Method io/github/kosianodangoo/trialmonolith/common/init/TrialMonolithDamageTypes.soulDamage:(Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/damagesource/DamageSource;
+       7: astore_1
+       8: aload_0
+       9: instanceof    #271                // class net/minecraft/world/entity/LivingEntity
+      12: ifeq          128
+      15: aload_0
+      16: checkcast     #271                // class net/minecraft/world/entity/LivingEntity
+      19: astore_2
+      20: aload_2
+      21: ldc_w         #272                // float -Infinityf
+      24: invokevirtual #275                // Method net/minecraft/world/entity/LivingEntity.m_21153_:(F)V
+      27: aload_2
+      28: invokevirtual #279                // Method net/minecraft/world/entity/LivingEntity.m_21231_:()Lnet/minecraft/world/damagesource/CombatTracker;
+      31: aload_1
+      32: ldc_w         #280                // float 3.4028235E38f
+      35: invokevirtual #286                // Method net/minecraft/world/damagesource/CombatTracker.m_289194_:(Lnet/minecraft/world/damagesource/DamageSource;F)V
+      38: aload_2
+      39: aload_1
+      40: invokevirtual #290                // Method net/minecraft/world/entity/LivingEntity.m_6667_:(Lnet/minecraft/world/damagesource/DamageSource;)V
+      43: aload_2
+      44: getfield      #294                // Field net/minecraft/world/entity/LivingEntity.f_20890_:Z
+      47: ifne          69
+      50: aload_0
+      51: instanceof    #296                // class io/github/kosianodangoo/trialmonolith/mixin/LivingEntityInvoker
+      54: ifeq          69
+      57: aload_0
+      58: checkcast     #296                // class io/github/kosianodangoo/trialmonolith/mixin/LivingEntityInvoker
+      61: astore_3
+      62: aload_3
+      63: aload_1
+      64: invokeinterface #299,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/mixin/LivingEntityInvoker.the_trial_monolith$dropAllDeathLoot:(Lnet/minecraft/world/damagesource/DamageSource;)V
+      69: aload_2
+      70: invokevirtual #305                // Method net/minecraft/world/entity/LivingEntity.m_6274_:()Lnet/minecraft/world/entity/ai/Brain;
+      73: invokevirtual #310                // Method net/minecraft/world/entity/ai/Brain.m_276084_:()V
+      76: aload_0
+      77: instanceof    #312                // class net/minecraft/world/entity/Mob
+      80: ifeq          128
+      83: aload_0
+      84: checkcast     #312                // class net/minecraft/world/entity/Mob
+      87: astore_3
+      88: invokedynamic #319,  0            // InvokeDynamic #3:test:()Ljava/util/function/Predicate;
+      93: astore        4
+      95: aload_3
+      96: getfield      #323                // Field net/minecraft/world/entity/Mob.f_21345_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+      99: aload         4
+     101: invokevirtual #329                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_262460_:(Ljava/util/function/Predicate;)V
+     104: aload_3
+     105: getfield      #332                // Field net/minecraft/world/entity/Mob.f_21346_:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+     108: aload         4
+     110: invokevirtual #329                // Method net/minecraft/world/entity/ai/goal/GoalSelector.m_262460_:(Ljava/util/function/Predicate;)V
+     113: aload_3
+     114: aconst_null
+     115: invokevirtual #336                // Method net/minecraft/world/entity/Mob.m_6710_:(Lnet/minecraft/world/entity/LivingEntity;)V
+     118: aload_3
+     119: iconst_1
+     120: invokevirtual #340                // Method net/minecraft/world/entity/Mob.m_21557_:(Z)V
+     123: goto          128
+     126: astore        5
+     128: aload_0
+     129: invokevirtual #343                // Method net/minecraft/world/entity/Entity.m_6074_:()V
+     132: return
+    Exception table:
+       from    to  target type
+          95   123   126   Class java/lang/Exception
+
+  public static void onSoulRemove(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #355                // class net/minecraft/server/level/ServerPlayer
+       4: ifeq          38
+       7: aload_0
+       8: checkcast     #355                // class net/minecraft/server/level/ServerPlayer
+      11: astore_1
+      12: aload_1
+      13: invokevirtual #359                // Method net/minecraft/server/level/ServerPlayer.m_20194_:()Lnet/minecraft/server/MinecraftServer;
+      16: astore_2
+      17: aload_2
+      18: ifnull        37
+      21: aload_1
+      22: getfield      #363                // Field net/minecraft/server/level/ServerPlayer.f_8906_:Lnet/minecraft/server/network/ServerGamePacketListenerImpl;
+      25: aload_2
+      26: invokevirtual #369                // Method net/minecraft/server/MinecraftServer.m_6846_:()Lnet/minecraft/server/players/PlayerList;
+      29: aload_1
+      30: iconst_0
+      31: invokevirtual #375                // Method net/minecraft/server/players/PlayerList.m_11236_:(Lnet/minecraft/server/level/ServerPlayer;Z)Lnet/minecraft/server/level/ServerPlayer;
+      34: putfield      #381                // Field net/minecraft/server/network/ServerGamePacketListenerImpl.f_9743_:Lnet/minecraft/server/level/ServerPlayer;
+      37: return
+      38: aload_0
+      39: instanceof    #383                // class net/minecraft/world/entity/player/Player
+      42: ifeq          46
+      45: return
+      46: aload_0
+      47: getstatic     #387                // Field net/minecraft/world/entity/Entity$RemovalReason.KILLED:Lnet/minecraft/world/entity/Entity$RemovalReason;
+      50: invokevirtual #391                // Method net/minecraft/world/entity/Entity.m_142687_:(Lnet/minecraft/world/entity/Entity$RemovalReason;)V
+      53: aload_0
+      54: getstatic     #387                // Field net/minecraft/world/entity/Entity$RemovalReason.KILLED:Lnet/minecraft/world/entity/Entity$RemovalReason;
+      57: invokevirtual #394                // Method net/minecraft/world/entity/Entity.m_142467_:(Lnet/minecraft/world/entity/Entity$RemovalReason;)V
+      60: aload_0
+      61: invokevirtual #397                // Method net/minecraft/world/entity/Entity.m_8127_:()V
+      64: aload_0
+      65: invokevirtual #401                // Method net/minecraft/world/entity/Entity.m_20197_:()Ljava/util/List;
+      68: invokedynamic #405,  0            // InvokeDynamic #4:accept:()Ljava/util/function/Consumer;
+      73: invokeinterface #91,  2           // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      78: aload_0
+      79: invokevirtual #408                // Method net/minecraft/world/entity/Entity.onRemovedFromWorld:()V
+      82: aload_0
+      83: getfield      #412                // Field net/minecraft/world/entity/Entity.f_146801_:Lnet/minecraft/world/level/entity/EntityInLevelCallback;
+      86: getstatic     #387                // Field net/minecraft/world/entity/Entity$RemovalReason.KILLED:Lnet/minecraft/world/entity/Entity$RemovalReason;
+      89: invokeinterface #417,  2          // InterfaceMethod net/minecraft/world/level/entity/EntityInLevelCallback.m_142472_:(Lnet/minecraft/world/entity/Entity$RemovalReason;)V
+      94: aload_0
+      95: invokevirtual #174                // Method net/minecraft/world/entity/Entity.m_9236_:()Lnet/minecraft/world/level/Level;
+      98: astore_2
+      99: aload_2
+     100: instanceof    #419                // class net/minecraft/server/level/ServerLevel
+     103: ifeq          229
+     106: aload_2
+     107: checkcast     #419                // class net/minecraft/server/level/ServerLevel
+     110: astore_1
+     111: aload_1
+     112: getfield      #423                // Field net/minecraft/server/level/ServerLevel.f_143244_:Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;
+     115: astore_2
+     116: aload_2
+     117: getfield      #429                // Field net/minecraft/world/level/entity/PersistentEntitySectionManager.f_157495_:Lnet/minecraft/world/level/entity/EntitySectionStorage;
+     120: astore_3
+     121: aload_0
+     122: invokevirtual #433                // Method net/minecraft/world/entity/Entity.m_20183_:()Lnet/minecraft/core/BlockPos;
+     125: invokestatic  #439                // Method net/minecraft/core/SectionPos.m_123199_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/SectionPos;
+     128: invokevirtual #443                // Method net/minecraft/core/SectionPos.m_123252_:()J
+     131: lstore        4
+     133: aload_3
+     134: lload         4
+     136: invokevirtual #449                // Method net/minecraft/world/level/entity/EntitySectionStorage.m_156895_:(J)Lnet/minecraft/world/level/entity/EntitySection;
+     139: astore        6
+     141: aload         6
+     143: ifnull        153
+     146: aload         6
+     148: aload_0
+     149: invokevirtual #455                // Method net/minecraft/world/level/entity/EntitySection.m_188355_:(Lnet/minecraft/world/level/entity/EntityAccess;)Z
+     152: pop
+     153: aload_1
+     154: invokevirtual #459                // Method net/minecraft/server/level/ServerLevel.m_7726_:()Lnet/minecraft/server/level/ServerChunkCache;
+     157: aload_0
+     158: invokevirtual #464                // Method net/minecraft/server/level/ServerChunkCache.m_8443_:(Lnet/minecraft/world/entity/Entity;)V
+     161: aload_1
+     162: getfield      #468                // Field net/minecraft/server/level/ServerLevel.f_143243_:Lnet/minecraft/world/level/entity/EntityTickList;
+     165: aload_0
+     166: invokevirtual #473                // Method net/minecraft/world/level/entity/EntityTickList.m_156912_:(Lnet/minecraft/world/entity/Entity;)V
+     169: aload_2
+     170: getfield      #477                // Field net/minecraft/world/level/entity/PersistentEntitySectionManager.f_157494_:Lnet/minecraft/world/level/entity/EntityLookup;
+     173: astore        7
+     175: aload         7
+     177: aload_0
+     178: invokevirtual #483                // Method net/minecraft/world/level/entity/EntityLookup.m_156822_:(Lnet/minecraft/world/level/entity/EntityAccess;)V
+     181: aload_1
+     182: aload_0
+     183: invokevirtual #487                // Method net/minecraft/world/entity/Entity.m_20148_:()Ljava/util/UUID;
+     186: invokevirtual #491                // Method net/minecraft/server/level/ServerLevel.m_8791_:(Ljava/util/UUID;)Lnet/minecraft/world/entity/Entity;
+     189: ifnonnull     229
+     192: getstatic     #495                // Field net/minecraftforge/network/PacketDistributor.DIMENSION:Lnet/minecraftforge/network/PacketDistributor;
+     195: aload_1
+     196: dup
+     197: invokestatic  #501                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     200: pop
+     201: invokedynamic #512,  0            // InvokeDynamic #5:get:(Lnet/minecraft/server/level/ServerLevel;)Ljava/util/function/Supplier;
+     206: invokevirtual #516                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+     209: new           #518                // class net/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket
+     212: dup
+     213: iconst_1
+     214: newarray       int
+     216: dup
+     217: iconst_0
+     218: aload_0
+     219: invokevirtual #522                // Method net/minecraft/world/entity/Entity.m_19879_:()I
+     222: iastore
+     223: invokespecial #525                // Method net/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket."<init>":([I)V
+     226: invokevirtual #529                // Method net/minecraftforge/network/PacketDistributor$PacketTarget.send:(Lnet/minecraft/network/protocol/Packet;)V
+     229: aload_0
+     230: invokevirtual #532                // Method net/minecraft/world/entity/Entity.invalidateCaps:()V
+     233: return
+
+  public static void addSoulDamage(net.minecraft.world.entity.Entity, float);
+    Code:
+       0: aload_0
+       1: instanceof    #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+       4: ifeq          24
+       7: aload_0
+       8: checkcast     #238                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage
+      11: astore_2
+      12: aload_0
+      13: fload_1
+      14: aload_2
+      15: invokeinterface #241,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulDamage.the_trial_monolith$getSoulDamage:()F
+      20: fadd
+      21: invokestatic  #551                // Method setSoulDamage:(Lnet/minecraft/world/entity/Entity;F)V
+      24: return
+
+  public static boolean isSoulProtected(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #556,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection.the_trial_monolith$isSoulProtected:()Z
+      18: ireturn
+      19: iconst_0
+      20: ireturn
+
+  public static void setSoulProtected(net.minecraft.world.entity.Entity, boolean);
+    Code:
+       0: aload_0
+       1: instanceof    #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+      11: astore_2
+      12: aload_2
+      13: iload_1
+      14: invokeinterface #563,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection.the_trial_monolith$setSoulProtected:(Z)V
+      19: return
+
+  public static void toggleSoulProtected(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+       4: ifeq          30
+       7: aload_0
+       8: checkcast     #553                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection
+      11: astore_1
+      12: aload_0
+      13: aload_1
+      14: invokeinterface #556,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulProtection.the_trial_monolith$isSoulProtected:()Z
+      19: ifne          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: invokestatic  #567                // Method setSoulProtected:(Lnet/minecraft/world/entity/Entity;Z)V
+      30: return
+
+  public static boolean shouldBypassProtection(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #570                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #570                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #573,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass.the_trial_monolith$shouldBypass:()Z
+      18: ireturn
+      19: iconst_0
+      20: ireturn
+
+  public static void setBypassProtection(net.minecraft.world.entity.Entity, boolean);
+    Code:
+       0: aload_0
+       1: instanceof    #570                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass
+       4: ifeq          31
+       7: aload_0
+       8: checkcast     #570                // class io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass
+      11: astore_2
+      12: aload_0
+      13: invokevirtual #578                // Method net/minecraft/world/entity/Entity.m_213877_:()Z
+      16: ifeq          24
+      19: iload_1
+      20: ifne          24
+      23: return
+      24: aload_2
+      25: iload_1
+      26: invokeinterface #581,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/ISoulBypass.the_trial_monolith$setShouldBypass:(Z)V
+      31: return
+
+  public static boolean isOverClocked(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #588,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker.the_trial_monolith$isOverClocked:()Z
+      18: ireturn
+      19: iconst_0
+      20: ireturn
+
+  public static void setOverClocked(net.minecraft.world.entity.Entity, boolean);
+    Code:
+       0: aload_0
+       1: instanceof    #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+      11: astore_2
+      12: aload_2
+      13: iload_1
+      14: invokeinterface #594,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker.the_trial_monolith$setOverClocked:(Z)V
+      19: return
+
+  public static void toggleOverClocked(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+       4: ifeq          30
+       7: aload_0
+       8: checkcast     #585                // class io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker
+      11: astore_1
+      12: aload_0
+      13: aload_1
+      14: invokeinterface #588,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IOverClocker.the_trial_monolith$isOverClocked:()Z
+      19: ifne          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: invokestatic  #598                // Method setOverClocked:(Lnet/minecraft/world/entity/Entity;Z)V
+      30: return
+
+  public static boolean hasHighDimensionalBarrier(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #604,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier.the_trial_monolith$hasHighDimensionalBarrier:()Z
+      18: ireturn
+      19: iconst_0
+      20: ireturn
+
+  public static void setHighDimensionalBarrier(net.minecraft.world.entity.Entity, boolean);
+    Code:
+       0: aload_0
+       1: instanceof    #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+      11: astore_2
+      12: aload_2
+      13: iload_1
+      14: invokeinterface #610,  2          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier.the_trial_monolith$setHighDimensionalBarrier:(Z)V
+      19: return
+
+  public static void toggleHighDimensionalBarrier(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: instanceof    #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+       4: ifeq          30
+       7: aload_0
+       8: checkcast     #601                // class io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier
+      11: astore_1
+      12: aload_0
+      13: aload_1
+      14: invokeinterface #604,  1          // InterfaceMethod io/github/kosianodangoo/trialmonolith/api/mixin/IHighDimensionalBarrier.the_trial_monolith$hasHighDimensionalBarrier:()Z
+      19: ifne          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: invokestatic  #614                // Method setHighDimensionalBarrier:(Lnet/minecraft/world/entity/Entity;Z)V
+      30: return
+
+  private static boolean lambda$onSoulDeath$3(net.minecraft.world.entity.ai.goal.Goal);
+    Code:
+       0: aload_0
+       1: invokevirtual #619                // Method net/minecraft/world/entity/ai/goal/Goal.m_8041_:()V
+       4: goto          8
+       7: astore_1
+       8: iconst_1
+       9: ireturn
+    Exception table:
+       from    to  target type
+           0     4     7   Class java/lang/Exception
+
+  private static void lambda$rayTraceEntities$2(java.util.function.Consumer, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #623,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       7: return
+
+  private static void lambda$getEntities$1(java.util.function.Predicate, java.util.List, net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokeinterface #626,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+       7: ifeq          18
+      10: aload_1
+      11: aload_2
+      12: invokeinterface #629,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      17: pop
+      18: return
+
+  private static boolean lambda$forEachEntities$0(net.minecraft.world.entity.Entity);
+    Code:
+       0: iconst_1
+       1: ireturn
+}
