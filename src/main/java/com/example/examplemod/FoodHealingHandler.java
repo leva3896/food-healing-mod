@@ -30,7 +30,7 @@ public class FoodHealingHandler {
         if (itemStack.getItem().getFoodProperties(itemStack, player) != null) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
-                if (level >= 3) {
+                if (level >= 3 && !cap.isSkillDisabled("早食い")) {
                     event.setDuration(event.getDuration() / 2); // 食べる速度 2倍
                 }
             });
@@ -140,29 +140,31 @@ public class FoodHealingHandler {
 
                 // 同期パケット送信
                 PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                        new ShokugiSyncPacket(cap.getLevel(), cap.getEatCount()));
+                        new ShokugiSyncPacket(cap.getLevel(), cap.getEatCount(), cap.getDisabledSkills()));
             });
         }
 
         // 満足感スキルの処理（Lv11-13）アイテム消費を確率で無効化
         player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
             int level = cap.getLevel();
-            float saveChance = 0.0f;
-            if (level >= 13) saveChance = 0.75f;
-            else if (level >= 12) saveChance = 0.50f;
-            else if (level >= 11) saveChance = 0.25f;
+            if (!cap.isSkillDisabled("満足感")) {
+                float saveChance = 0.0f;
+                if (level >= 13) saveChance = 0.75f;
+                else if (level >= 12) saveChance = 0.50f;
+                else if (level >= 11) saveChance = 0.25f;
 
-            if (saveChance > 0 && player.getRandom().nextFloat() < saveChance) {
-                // 返却用アイテム
-                ItemStack refund = itemStack.copyWithCount(1);
-                ItemStack result = event.getResultStack();
-                
-                if (result.isEmpty()) {
-                    event.setResultStack(refund); // 最後の1個だった場合そのまま返却
-                } else if (ItemStack.isSameItemSameTags(result, itemStack)) {
-                    result.grow(1); // スタックサイズが減っただけの場合は+1して戻す
-                } else {
-                    event.setResultStack(refund); // シチューの器など別のアイテムに変わってしまった場合は強制的に元のシチューを返す
+                if (saveChance > 0 && player.getRandom().nextFloat() < saveChance) {
+                    // 返却用アイテム
+                    ItemStack refund = itemStack.copyWithCount(1);
+                    ItemStack result = event.getResultStack();
+                    
+                    if (result.isEmpty()) {
+                        event.setResultStack(refund); // 最後の1個だった場合そのまま返却
+                    } else if (ItemStack.isSameItemSameTags(result, itemStack)) {
+                        result.grow(1); // スタックサイズが減っただけの場合は+1して戻す
+                    } else {
+                        event.setResultStack(refund); // シチューの器など別のアイテムに変わってしまった場合は強制的に元のシチューを返す
+                    }
                 }
             }
         });
@@ -179,7 +181,7 @@ public class FoodHealingHandler {
         if (crafted.getItem().getFoodProperties(crafted, player) != null) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 // Lv 8: 食べ物クラフト2倍
-                if (cap.getLevel() >= 8) {
+                if (cap.getLevel() >= 8 && !cap.isSkillDisabled("豊穣")) {
                     ItemStack bonus = crafted.copy();
                     if (!player.getInventory().add(bonus)) {
                         player.drop(bonus, false);

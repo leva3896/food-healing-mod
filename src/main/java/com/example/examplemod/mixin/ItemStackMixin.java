@@ -22,12 +22,12 @@ public abstract class ItemStackMixin {
             int newAmount = amount;
 
             // Lv 20: Armor Mastery (Cap durability loss to 1) 武器等の耐久最大1ダウン
-            if (level >= 20 && newAmount > 1) {
+            if (level >= 20 && newAmount > 1 && !cap.isSkillDisabled("防具の極意")) {
                 newAmount = 1;
             }
 
             // Lv 17-19: Unbreakable buff (Chance to ignore durability loss)
-            if (newAmount > 0) {
+            if (newAmount > 0 && level >= 17 && !cap.isSkillDisabled("不壊")) {
                 float saveChance = 0.0f;
                 // Lv19: 1/30 chance to break -> 29/30 chance to save (~96.67%)
                 // Lv18: 1/20 chance to break -> 19/20 chance to save (95%)
