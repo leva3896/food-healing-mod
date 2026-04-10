@@ -12,5 +12,10 @@ public interface IShokugiData extends INBTSerializable<CompoundTag> {
     void setEatCount(int count);
     void addEatCount(int amount);
 
+    java.util.Set<String> getDisabledSkills();
+    void setDisabledSkills(java.util.Set<String> skills);
+    boolean isSkillDisabled(String skillName);
+    void toggleSkill(String skillName);
+
     void copyFrom(IShokugiData source);
 }

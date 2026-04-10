@@ -64,7 +64,7 @@ public class DamageEventHandler {
                 }
 
                 // 2. 火事場力によるダメージ倍増処理 (Lv10解放)
-                if (level >= 10) {
+                if (level >= 10 && !cap.isSkillDisabled("火事場力")) {
                     float threshold = FoodHealingConfig.COMMON.heroicsThreshold.get().floatValue();
                     
                     // プレイヤーの現在のHPが最大HPの指定割合(閾値)以下か判定（v2.0.0で緩和: < から <= に変更）
@@ -93,18 +93,18 @@ public class DamageEventHandler {
                 int level = cap.getLevel();
                 
                 // Lv 4: 落下ダメージ無効
-                if (level >= 4 && event.getSource().is(DamageTypes.FALL)) {
+                if (level >= 4 && event.getSource().is(DamageTypes.FALL) && !cap.isSkillDisabled("軽業")) {
                     event.setCanceled(true);
                     return;
                 }
                 
                 // Lv 6: 爆破耐性の心得 90%カット
-                if (level >= 6 && event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
+                if (level >= 6 && event.getSource().is(DamageTypeTags.IS_EXPLOSION) && !cap.isSkillDisabled("爆破耐性")) {
                     event.setAmount(event.getAmount() * 0.1F);
                 }
 
                 // Lv 5: 炎の加護 (燃焼中なら全ダメージ30%OFF)
-                if (level >= 5 && player.isOnFire()) {
+                if (level >= 5 && player.isOnFire() && !cap.isSkillDisabled("炎")) {
                     event.setAmount(event.getAmount() * 0.70F);
                 }
 
@@ -121,7 +121,7 @@ public class DamageEventHandler {
         if (!IS_PURSUIT.get() && event.getSource().getEntity() instanceof Player player) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
-                if (level >= 991) {
+                if (level >= 991 && !cap.isSkillDisabled("追撃")) {
                     // Lv991で1回、Lv992で2回、...Lv999で9回まで増加
                     int hits = Math.min(9, level - 990);
                     float pursuitDamage = event.getAmount();

@@ -27,11 +27,14 @@ public abstract class TaCZGunScriptMixin {
      */
     private boolean foodhealing$shouldConserveAmmo() {
         if (shooter instanceof Player player && !player.level().isClientSide) {
-            int level = player.getCapability(ShokugiProvider.SHOKUGI_CAPA).map(cap -> cap.getLevel()).orElse(0);
-            if (level >= 11) {
-                float conserveChance = Math.min((level - 10) * 0.1f, 1.0f);
-                return player.getRandom().nextFloat() < conserveChance;
-            }
+            return player.getCapability(ShokugiProvider.SHOKUGI_CAPA).map(cap -> {
+                int level = cap.getLevel();
+                if (level >= 11 && !cap.isSkillDisabled("満足感")) {
+                    float conserveChance = Math.min((level - 10) * 0.1f, 1.0f);
+                    return player.getRandom().nextFloat() < conserveChance;
+                }
+                return false;
+            }).orElse(false);
         }
         return false;
     }
@@ -67,7 +70,7 @@ public abstract class TaCZGunScriptMixin {
     private void foodhealing$preventOverheat(boolean consumeAmmo, CallbackInfo ci) {
         if (shooter instanceof Player player && !player.level().isClientSide) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
-                if (cap.getLevel() >= 11 && abstractGunItem != null && itemStack != null) {
+                if (cap.getLevel() >= 11 && !cap.isSkillDisabled("満足感") && abstractGunItem != null && itemStack != null) {
                     ResourceLocation gunId = abstractGunItem.getGunId(itemStack);
                     if (gunId != null && gunId.getPath().toLowerCase().contains("minigun")) {
                         // 発熱を即座にリセットし、オーバーヒートを防ぐ

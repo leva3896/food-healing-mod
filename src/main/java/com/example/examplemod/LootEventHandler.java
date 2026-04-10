@@ -28,7 +28,7 @@ public class LootEventHandler {
             // 対象がモンスター（敵対的）ではない生物かどうか（イカ、コウモリ、村人等も含める広域設定）
             if (event.getEntity().getType().getCategory() != net.minecraft.world.entity.MobCategory.MONSTER) {
                 player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
-                    if (cap.getLevel() >= 9) {
+                    if (cap.getLevel() >= 9 && !cap.isSkillDisabled("屠殺")) {
                         // ConcurrentModificationExceptionを防ぐため、追加分のエンティティを一旦別リストに退避
                         java.util.List<ItemEntity> extraDrops = new java.util.ArrayList<>();
                         
@@ -72,7 +72,7 @@ public class LootEventHandler {
 
         player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
             int level = cap.getLevel();
-            if (level >= 14) {
+            if (level >= 14 && !cap.isSkillDisabled("採取")) {
                 // 倍率: Lv16=6倍, Lv15=4倍, Lv14=2倍
                 int multiplier = level >= 16 ? 6 : (level == 15 ? 4 : 2);
 
