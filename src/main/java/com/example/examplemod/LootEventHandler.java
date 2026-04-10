@@ -25,8 +25,8 @@ public class LootEventHandler {
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {
         if (event.getSource().getEntity() instanceof Player player) {
-            // 対象が非敵対的（好意的）な動物Mobかどうか
-            if (event.getEntity() instanceof Animal) {
+            // 対象がモンスター（敵対的）ではない生物かどうか（イカ、コウモリ、村人等も含める広域設定）
+            if (event.getEntity().getType().getCategory() != net.minecraft.world.entity.MobCategory.MONSTER) {
                 player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                     if (cap.getLevel() >= 9) {
                         // ConcurrentModificationExceptionを防ぐため、追加分のエンティティを一旦別リストに退避
