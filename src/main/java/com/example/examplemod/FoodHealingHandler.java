@@ -30,9 +30,7 @@ public class FoodHealingHandler {
         if (itemStack.getItem().getFoodProperties(itemStack, player) != null) {
             player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                 int level = cap.getLevel();
-                if (level >= 9) {
-                    event.setDuration(1); // 食べる速度 1ティック（瞬時）
-                } else if (level >= 3) {
+                if (level >= 3) {
                     event.setDuration(event.getDuration() / 2); // 食べる速度 2倍
                 }
             });
