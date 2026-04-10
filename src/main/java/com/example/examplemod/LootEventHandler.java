@@ -29,6 +29,9 @@ public class LootEventHandler {
             if (event.getEntity() instanceof Animal) {
                 player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
                     if (cap.getLevel() >= 9) {
+                        // ConcurrentModificationExceptionを防ぐため、追加分のエンティティを一旦別リストに退避
+                        java.util.List<ItemEntity> extraDrops = new java.util.ArrayList<>();
+                        
                         // ドロップアイテムのアイテムスタック量を一律3倍にする
                         // (Lootingエンチャントによる増幅の後で適用されるため完全重複する)
                         event.getDrops().forEach(drop -> {
@@ -47,11 +50,14 @@ public class LootEventHandler {
                                     int spawnCount = Math.min(remaining, stack.getMaxStackSize());
                                     ItemStack extraStack = stack.copy();
                                     extraStack.setCount(spawnCount);
-                                    event.getDrops().add(new ItemEntity(drop.level(), drop.getX(), drop.getY(), drop.getZ(), extraStack));
+                                    extraDrops.add(new ItemEntity(drop.level(), drop.getX(), drop.getY(), drop.getZ(), extraStack));
                                     remaining -= spawnCount;
                                 }
                             }
                         });
+                        
+                        // 退避しておいた追加エンティティを安全にオリジナルのリストに追加
+                        event.getDrops().addAll(extraDrops);
                     }
                 });
             }
