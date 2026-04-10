@@ -83,6 +83,8 @@ public class FoodDiversityHandler {
         } else {
             newPlayer.setHealth(previousHealth);
         }
+
+        syncToClient(newPlayer);
     }
 
     /**
@@ -97,6 +99,7 @@ public class FoodDiversityHandler {
                 LOGGER.info("[FoodHealing] Restored {} max health bonus for player {}",
                         data.getMaxHealthBonus(), player.getName().getString());
             }
+            syncToClient(player);
         });
     }
 
@@ -162,8 +165,27 @@ public class FoodDiversityHandler {
                     LOGGER.info("[FoodHealing] Player {} max health increased! Total bonus: {}",
                             player.getName().getString(), data.getMaxHealthBonus());
                 }
+                
+                // Sync data after a new food discovery update
+                syncToClient(player);
             }
         });
+    }
+
+    /**
+     * Send current diversity data state to client.
+     */
+    public static void syncToClient(Player player) {
+        if (!player.level().isClientSide() && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            player.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(cap -> {
+                if (cap instanceof com.example.examplemod.capability.FoodDiversityData data) {
+                    com.example.examplemod.network.PacketHandler.INSTANCE.send(
+                            net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> serverPlayer),
+                            new com.example.examplemod.network.FoodDiversitySyncPacket(data.serializeNBT())
+                    );
+                }
+            });
+        }
     }
 
     /**
