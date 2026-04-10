@@ -17,5 +17,6 @@ public class PacketHandler {
     public static void register() {
         int id = 0;
         INSTANCE.registerMessage(id++, ShokugiSyncPacket.class, ShokugiSyncPacket::encode, ShokugiSyncPacket::new, ShokugiSyncPacket::handle);
+        INSTANCE.registerMessage(id++, FoodDiversitySyncPacket.class, FoodDiversitySyncPacket::encode, FoodDiversitySyncPacket::new, FoodDiversitySyncPacket::handle);
     }
 }
