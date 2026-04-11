@@ -16,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -87,9 +88,6 @@ public class FoodDiversityHandler {
         syncToClient(newPlayer);
     }
 
-    /**
-     * ログイン時に最大体力ボーナスを適用
-     */
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
@@ -101,6 +99,16 @@ public class FoodDiversityHandler {
             }
             syncToClient(player);
         });
+    }
+
+    /**
+     * ワールド参加時に確実にデータを同期する（ログイン時のパケット空振り対策）
+     */
+    @SubscribeEvent
+    public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+        if (!event.getLevel().isClientSide() && event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            syncToClient(serverPlayer);
+        }
     }
 
     /**

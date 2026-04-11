@@ -1,6 +1,11 @@
 Food Healing MOD - Changelog
 =============================
 
+v2.2.1 (2026-04-11)
+-------------------
+- Fixed: Food diversity tooltips no longer randomly disappear in JEI/Creative menus ("unstable" display bug fixed).
+- Fixed: Added safety sync for food diversity on EntityJoinLevel to prevent synchronization misses during immediate logins.
+
 v1.5.4 (2026-02-06)
 -------------------
 - Fixed: HP display now shifts up when armor is equipped to avoid overlapping with armor bar
