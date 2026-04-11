@@ -19,7 +19,13 @@ public class ClientTooltipHandler {
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
+        // ★ 修正点: プレイヤーが null の場合（JEI等のGUI）はクライアントプレイヤーを取得する
         Player player = event.getEntity();
+        if (player == null) {
+            player = net.minecraft.client.Minecraft.getInstance().player;
+        }
+        
+        // タイトル画面など、完全にプレイヤーが存在しない時だけ中断
         if (player == null) return;
         
         // Ensure the item is food and capable of being eaten
