@@ -25,6 +25,11 @@ public class LootEventHandler {
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {
         if (event.getSource().getEntity() instanceof Player player) {
+            // PVPや自爆ダメージなど、プレイヤー自身が死んだ場合はお墓増殖バグを避けるため絶対に増殖させない
+            if (event.getEntity() instanceof Player) {
+                return;
+            }
+
             // 対象がモンスター（敵対的）ではない生物かどうか（イカ、コウモリ、村人等も含める広域設定）
             if (event.getEntity().getType().getCategory() != net.minecraft.world.entity.MobCategory.MONSTER) {
                 player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
