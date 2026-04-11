@@ -34,4 +34,16 @@ public class CapabilityEvents {
         
         event.getOriginal().invalidateCaps();
     }
+
+    @SubscribeEvent
+    public static void onEntityJoinLevel(net.minecraftforge.event.entity.EntityJoinLevelEvent event) {
+        if (!event.getLevel().isClientSide() && event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            serverPlayer.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                com.example.examplemod.network.PacketHandler.INSTANCE.send(
+                    net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> serverPlayer),
+                    new com.example.examplemod.network.ShokugiSyncPacket(cap.getLevel(), cap.getEatCount(), cap.getDisabledSkills())
+                );
+            });
+        }
+    }
 }
