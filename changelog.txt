@@ -1,6 +1,11 @@
 Food Healing MOD - Changelog
 =============================
 
+v2.2.2 (2026-04-11)
+-------------------
+- Fixed: Critical exploit where "Secret of Slaughter" (Lv9) multiplied a player's inventory drops by 3x upon PvP deaths or suicides.
+- Compatibility: Excluded Player entities from Secret of Slaughter to ensure Grave/Tombstone mods safely recover players' normal inventories without duplicating items.
+
 v2.2.1 (2026-04-11)
 -------------------
 - Fixed: Food diversity tooltips no longer randomly disappear in JEI/Creative menus ("unstable" display bug fixed).
