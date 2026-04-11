@@ -1,6 +1,10 @@
 Food Healing MOD - Changelog
 =============================
 
+v2.2.3 (2026-04-11)
+-------------------
+- Fixed: Bug where the Shokugi Level and Eat Count display resetted to 0 upon login or changing dimensions until food was eaten.
+
 v2.2.2 (2026-04-11)
 -------------------
 - Fixed: Critical exploit where "Secret of Slaughter" (Lv9) multiplied a player's inventory drops by 3x upon PvP deaths or suicides.
