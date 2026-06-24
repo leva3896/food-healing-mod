@@ -35,6 +35,18 @@ public class FoodHealingCommands {
                         .executes(FoodHealingCommands::executeSkillDetail)
                     )
                 )
+                .then(Commands.literal("setlevel")
+                    .requires(source -> source.hasPermission(2))
+                    .then(Commands.argument("level", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0, 1000))
+                        .executes(FoodHealingCommands::executeSetLevel)
+                    )
+                )
+                .then(Commands.literal("setcount")
+                    .requires(source -> source.hasPermission(2))
+                    .then(Commands.argument("count", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0, 1000000))
+                        .executes(FoodHealingCommands::executeSetCount)
+                    )
+                )
             )
         );
     }
@@ -238,5 +250,41 @@ public class FoodHealingCommands {
             case "金剛": return "skill.foodhealing.kongo.desc";
             default: return "skill.foodhealing.unknown.desc";
         }
+    }
+
+    private static int executeSetLevel(CommandContext<CommandSourceStack> context) {
+        try {
+            ServerPlayer player = context.getSource().getPlayerOrException();
+            int newLevel = com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(context, "level");
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                cap.setLevel(newLevel);
+                com.leva.foodhealing.network.PacketHandler.INSTANCE.send(
+                    net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+                    new com.leva.foodhealing.network.ShokugiSyncPacket(cap.getLevel(), cap.getEatCount(), cap.getDisabledSkills())
+                );
+                context.getSource().sendSuccess(() -> Component.literal("§a[FoodHealing] 食義レベルを " + newLevel + " に設定しました。"), true);
+            });
+        } catch (Exception e) {
+            context.getSource().sendFailure(Component.literal("Error: " + e.getMessage()));
+        }
+        return 1;
+    }
+
+    private static int executeSetCount(CommandContext<CommandSourceStack> context) {
+        try {
+            ServerPlayer player = context.getSource().getPlayerOrException();
+            int newCount = com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(context, "count");
+            player.getCapability(ShokugiProvider.SHOKUGI_CAPA).ifPresent(cap -> {
+                cap.setEatCount(newCount);
+                com.leva.foodhealing.network.PacketHandler.INSTANCE.send(
+                    net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+                    new com.leva.foodhealing.network.ShokugiSyncPacket(cap.getLevel(), cap.getEatCount(), cap.getDisabledSkills())
+                );
+                context.getSource().sendSuccess(() -> Component.literal("§a[FoodHealing] 食義カウントを " + newCount + " に設定しました。"), true);
+            });
+        } catch (Exception e) {
+            context.getSource().sendFailure(Component.literal("Error: " + e.getMessage()));
+        }
+        return 1;
     }
 }

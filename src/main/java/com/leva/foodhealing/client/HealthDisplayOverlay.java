@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -37,10 +38,18 @@ public class HealthDisplayOverlay {
 
             // 代わりに数値を描画
             renderHealthText(event.getGuiGraphics());
-            
-            // 追加UIを描画
-            renderHeroicsAndShokugiText(event.getGuiGraphics());
         }
+    }
+
+    // 追加UI（火事場・食義のテキスト）は、他のMODによるHPキャンセルに関わらず、
+    // 画面全体の描画が終わった最終タイミングで最前面に確実に描画する
+    @SubscribeEvent
+    public static void onRenderGuiPost(RenderGuiEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && mc.player.isCreative()) {
+            return;
+        }
+        renderHeroicsAndShokugiText(event.getGuiGraphics());
     }
 
     private static void renderHealthText(GuiGraphics guiGraphics) {
