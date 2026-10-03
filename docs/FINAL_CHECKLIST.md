@@ -1,12 +1,12 @@
 # Food Healing RPG v3.0.0 — Formal Release Checklist
 
-本文更新: 2026-10-03 11:22 JST。**#1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED**。
+本文更新: 2026-10-03 13:00 JST。**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。
 
 - [x] source274/build設定は#8から不変、正式Jar byte一致
 - [x] 26skill/7stat/6command、finite2590、Nutrition2000/schema5/protocol7整合
 - [x] metadata/6Mixin/refmap/reobf/禁止混入0
 - [x] 完全仕様書・maintenance rule・README・current docs整合
-- [ ] authorized GitHub release branch/main反映・remote readback
+- [x] authorized GitHub release branch/main反映・remote readback
 - [x] 未検証/別開始gate・履歴を保持。全MOD互換を宣言しない
 
 詳細は[完全仕様書](FOOD_HEALING_RPG_V3_SPECIFICATION.md)と[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)。下記は実装前の旧チェック表であり、現在の費用/完了判定に使わない。

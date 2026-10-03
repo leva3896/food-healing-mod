@@ -1,6 +1,6 @@
 # AUDIT_REPORT.md — v2.2.5 → Food Healing RPG v3.0.0
 
-現行release更新: **2026-10-03 11:22 JST / #1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED**。現行仕様の単一正本は[Food Healing RPG v3 Specification](FOOD_HEALING_RPG_V3_SPECIFICATION.md)。本書の詳細LOCK・日付付き記録は根拠/履歴として保持し、古いRC/次工程の記載は現行指示にしない。 #8全11分類の限定受入を継承し、新しい製品差分/blockerなし。Security scanではなくsource/Jar/仕様整合確認。
+現行release更新: **2026-10-03 13:00 JST / #1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。現行仕様の単一正本は[Food Healing RPG v3 Specification](FOOD_HEALING_RPG_V3_SPECIFICATION.md)。本書の詳細LOCK・日付付き記録は根拠/履歴として保持し、古いRC/次工程の記載は現行指示にしない。 #8全11分類の限定受入を継承し、新しい製品差分/blockerなし。Security scanではなくsource/Jar/仕様整合確認。
 
 Audit date: 2026-08-24  
 Source baseline: public GitHub `leva3896/food-healing-mod`, main reporting v2.2.5 in project metadata.
@@ -326,10 +326,19 @@ Do not call v3.0.0 release-ready if any of these remain:
 
 旧§14.73の証拠（履歴保全）：[最終Jar監査](../build/verification/release-final-client-20260930-002426/audit/final-jar-audit.json) / [source差分](../build/verification/release-final-client-20260930-002426/audit/implementation.diff) / [build・全unit・check](../build/verification/release-final-client-20260930-002426/audit/final-build-fixed2.log) / [vanilla114](../build/verification/release-final-client-20260930-002426/audit/vanilla-fixed2.log) / [TaCZ114](../build/verification/release-final-client-20260930-002426/audit/tacz-fixed.log) / [外部影響照合](../build/verification/release-final-client-20260930-002426/audit/external-impact-final.json) / [実画面記録](../build/verification/release-final-client-20260930-002426/audit/screens/events.jsonl) / [A保存](../build/verification/release-final-client-20260930-002426/audit/A2-final-save.json) / [Bクラッシュ](../build/verification/release-final-client-20260930-002426/audit/B2-crash.txt) / [終了process](../build/verification/release-final-client-20260930-002426/audit/process-final.json)
 
-### F.2 Queue #9 current RC decision — 2026-10-03 11:22 JST
+### F.2 Queue #9 current RC decision — 2026-10-03 13:00 JST
+
+**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。F.1の限定11分類を維持。Frozen source `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` をmainへFFしreadback一致。詳細は[Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)。
+
+<details><summary>公開前RC判定（11:22 JSTの履歴）</summary>
+
+### F.2 Queue #9 previous RC decision — 2026-10-03 11:22 JST
 
 **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED**。F.1の11分類は同一製品/限定scopeの受入根拠として維持し、再実行PASSにしない。source274とbuild設定の差分0、正式Jar byte一致、仕様26/7/6・価格・schema/protocol・互換範囲を照合。新しい製品矛盾/blockerなしのためRC=YES。
 GitHub連携のrelease branch作成が403 Resource not accessible by integrationで拒否。branch/commit/main更新0、再試行0。GitHub mainは開始commitのまま。 正式release全体の完了判定とRC適格性を分離する。[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)。
+
+
+</details>
 
 ## G. Pre-#8 表示・文書整合の監査
 

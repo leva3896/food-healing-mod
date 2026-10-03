@@ -1,5 +1,63 @@
 # Food Healing RPG v3.0.0 - Codex Status
 
+最終更新: 2026-10-03 13:00 JST
+
+## 現在の要約
+
+**QUEUE #9 COMPLETE / #1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。
+現行仕様は[完全仕様書](FOOD_HEALING_RPG_V3_SPECIFICATION.md)、公開履歴と成果物は[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)、公開完了は[共通計画§14.76](MASTERY_IMPLEMENTATION_PREPARATION.md#queue9-git-publication-complete)。過去の403・Git不在STOPは履歴として保持し、現行指示にしない。
+
+### 成果物と完了項目
+
+- 正式Jar: `release/v3.0.0/Food Healing RPG v3.0.0.jar`、**372,242 bytes / 286 entries / SHA-256 8B8A31FA308CD24C4A139D65FEF5818F1A2DABD8587A238D93974F787FFE10DD**。#8検証済みJarとbyte-for-byte同一。build側を保全、再compile/repack/ゲーム試験0。
+- source274ファイル・build.gradle/gradle.properties/settings.gradleは#8 freeze manifestと差分0。schema5/protocol7、metadata・6Mixin/refmap/reobf・非混入を正式名側で再読取。製品修正0、purchase/SP/外部state変更0。
+- 完全仕様書34章: skills26/26、stats7/7（保存9ID）、commands6/6、有限SP2590、repeatable5/10/10/5/20/20/2、互換・移行・限界・maintenanceを照合。AGENTSにv3.x同時更新ルールを追加。README/changelog/current docsを整合。
+- release blocker全11分類は[AUDIT F.1](AUDIT_REPORT.md#queue8-release-blocker-matrix)の限定受入を継承、新blockerなし。RC=YESはそのscope内の判断。広域安全証明や全MOD互換とは別。
+
+- GitHub mainへの正式v3 source/docs反映とreadback完了。Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7`。公開内容305ファイル、配布Jar/生成証拠の混入なし。
+
+### 仕様・実装・検証の現在一覧
+
+
+| 項目 | 現行判定・証拠の範囲 |
+|---|---|
+| queue #1–#7 | COMPLETE維持。TimeStop限定指定受入、FE6、P/T通常購入、Pam51、Nutrition2000、Flight exact route |
+| queue #8 | COMPLETE。最終source core vanilla/TaCZ各114/114、全unit/build/check、shader static11profiles/426、配布Jar直接A3/B3限定PASS。正常保存/再読込またはQuit/process終了 |
+| P/T・Flight | PURCHASE READY、SP保護維持。P/T optional購入方針A。Break RealmだけIMPLEMENTATION_PENDING |
+| L2/Trial | 6ID133・Cube49・Invader86の既存自動統合と限定実client完了を保持。今回再試験0 |
+| True Root | 完成予約保持/再ON一度/非再発動、保護実測、activeUntil不変の既存PASS維持 |
+| SW/Ammo | 既存通常銃/Ammo限定自動・実client結果保持。全版/全gunpack保証なし |
+| Queue #9 | COMPLETE。正式Jar・完全仕様書・GitHub main source/docs公開・readback完了。既存ゲームPASSは継承、HUMAN INPUT=0 |
+
+
+### 未完了・判断待ち・実行承認待ち
+
+Queue #9の公開残件なし。以下は限定release受入で維持する個別境界であり、完了済みqueueを未完了へ戻さない。
+
+
+| 分類 | 維持する境界 |
+|---|---|
+| 実2-client | **REAL2CLIENT=BLOCKED — SECOND MINECRAFT ACCOUNT REQUIRED**。自動二者/実1-clientで代替しない |
+| TimeStop広域 | **SAFE DESIGN PROVEN=NO / SOURCE DIMENSION TRANSITION VERIFIED=NO / BLOCKED - TIME STOP SOURCE OWNERSHIP**。限定#2完了を戻さない。UOM/P vehicle方針未LOCK |
+| Flight一般化 | GENERIC FLIGHT PROVIDER ATTRIBUTION=NOT AVAILABLE。unknown foreign-after/別版/全組合せ未保証 |
+| 個別未確認 | True Root部分蓄積/親RootOFF/死亡等の予約、Ammo heat購入時INCONCLUSIVE/厳密shot・内部遷移未観測/hot-gun SKIPPED/dedicated遅延、全MOD/性能/GPU等。完全仕様書§31参照 |
+| 対応外 | 他L2 33ID/版、他boss/Hyperlink/Fumetsu/一般敵対MobEffect解除等はoptional backlog・artifact/判断待ち。release必須へ自動昇格しない |
+| 個別開始gate | Break Realm expansion NOT IMPLEMENTED、Bulwark未着手、試作型機関弩は完全一致指示まで監査/設計/実装禁止、V3M0908 FOURTH BOOT NOT RUN / NOT AUTHORIZED |
+
+食料生産の極意による可逆クラフト増加は既知許容仕様・バグ修正対象外。死亡drop/replay/desync等の意図しない重複は許容しない。原FAIL/対象Jar/残WARNは履歴保全。
+
+### 次の1作業
+
+**v3.0.0 maintenance / future version workの利用者明示指示待ち。今回は正式release完了で停止。** 次version・個別保留機能・追加公開へ自動で進まない。
+
+### 今後の更新ルール
+
+v3.xはsource変更と完全仕様書更新を同じ単位で行う。現在要約と履歴を分離し、Jarと最新Statusを併記する。
+
+<details><summary>Queue #9公開復旧前の現在要約（2026-10-03 12:44 JSTの履歴）</summary>
+
+# Food Healing RPG v3.0.0 - Codex Status
+
 最終更新: 2026-10-03 12:44 JST
 
 ## 現在の要約
@@ -57,6 +115,9 @@ Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持
 ### 今後の更新ルール
 
 v3.xはsource変更と完全仕様書更新を同じ単位で行う。現在要約と履歴を分離し、完了項目を未完へ戻さない。完了報告はJarと最新Statusを併記する。
+
+
+</details>
 
 ## 過去の履歴 — #9開始前の要約（2026-09-30 07:19 JST）
 

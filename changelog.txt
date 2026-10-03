@@ -1,9 +1,9 @@
 Food Healing RPG - Changelog
 ============================
 
-v3.0.0 (2026-10-03 11:22 JST)
+v3.0.0 (2026-10-03 13:00 JST)
 -------------------
-- Queue #9 status: #1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED.
+- Queue #9 status: #1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE.
 - Formal RPG progression: Nutrition/Food-Level count2000, server-authoritative SP, 26 skill nodes and seven repeatable base upgrades.
 - Full-respec legacy migration with raw backup, schema5/protocol7, owned modifiers and lifecycle protection.
 - True Root reservation retention, revised skill costs/parity, Quarrying and Immovable Mastery.

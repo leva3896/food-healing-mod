@@ -1,8 +1,7 @@
 # 浄化の極意・真実の極意 — 共通実装計画
 
-最終更新: 2026-10-03 12:44 JST
-現在のpublication残件: LOCAL GIT PREFLIGHT BLOCKED（§14.75末尾）。
-状態: **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED**。現行更新は[§14.75](#queue9-formal-release)。全仕様は[完全仕様書](FOOD_HEALING_RPG_V3_SPECIFICATION.md)、現在集計は[Status](CODEX_STATUS.md#現在の要約)。旧節のSTOP/次/購入停止は当時の履歴であり、現在はFlight/P/T PURCHASE READY・SP保護。今回source/build/game変更0。
+最終更新: 2026-10-03 13:00 JST
+状態: **#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。現行更新は[§14.76](#queue9-git-publication-complete)。全仕様は[完全仕様書](FOOD_HEALING_RPG_V3_SPECIFICATION.md)、現在集計は[Status](CODEX_STATUS.md#現在の要約)。旧節のSTOP/次/購入停止は当時の履歴であり、現在はFlight/P/T PURCHASE READY・SP保護。今回source/build/game変更0。
 
 ## 1. 根拠と判定の区別
 
@@ -5531,3 +5530,15 @@ Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持
 #8 freezeはsrc274とbuild3ファイル差分0、正式Jar372,242 bytes/286 entries/既存SHA-256完全一致、ExampleMod0。staged0/commit0/push0/retry0/HUMAN0。認証には未到達。remote URL/HEAD/現在mainは未確認であり、前回11:20 JSTのmain確認を今回の読戻しに転用しない。既存403は過去履歴として保全。
 **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / FORMAL RELEASE NOT COMPLETE**。
 **次の1作業:** 現在のv3ファイルを保全したまま、このパスを正しい既存Git履歴へ安全に接続する方法の明示承認、または正しい既存checkoutの指定待ち。今回はgit init/clone/fetch/stage/commit/pushを行わず停止。GitHub integration APIへ戻らない。
+
+
+<a id="queue9-git-publication-complete"></a>
+## 14.76 Queue #9 Git CLI publication complete
+
+本文更新: **2026-10-03 13:00 JST**。**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。
+
+GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `59aedf1ccc512c531c73506be38ff9844dbf799b` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
+公開tree305ファイル（元からcopy302＋既存履歴3）。削除139はobsolete source2、参照TaCZ Jar1、外部MOD展開物136の分類済み対象だけ。元workspaceと履歴は保持。stage428件=add263/modify26/delete139、全copy/index blob一致、意図しない差分0、ExampleMod0、release Jar/生成証拠/credential混入0。最初のstageでignored削除pathが拒否され、tracked削除専用 `add -u` に1回修正して解消。sandbox内の最初のremote読取は接続不可、承認済み権限付き実行で1回再実行し成功。
+#8 source274＋build3ファイル・Jar不変。build/test/game/repack0、既存PASSを再実行扱いにしない。tag/Release/binary upload/CurseForge0。今回の文書closureだけを後続commitにし、mainのreadback成功後に元workspaceへ同じ文書だけmirrorする。成果物とGitの識別は[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)を参照。
+
+旧§14.75の403/Git不在は過去履歴。既存REAL2CLIENT・広域TimeStop・vehicle未LOCK・個別gateはStatusの限定条件どおり。次の1作業は利用者の保守/次版指示待ち、今回は停止。

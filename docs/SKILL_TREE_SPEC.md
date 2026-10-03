@@ -1,6 +1,6 @@
 # SKILL_TREE_SPEC.md — Food Healing RPG v3.0.0
 
-現行release更新: **2026-10-03 11:22 JST / #1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED**。現行仕様の単一正本は[Food Healing RPG v3 Specification](FOOD_HEALING_RPG_V3_SPECIFICATION.md)。本書の詳細LOCK・日付付き記録は根拠/履歴として保持し、古いRC/次工程の記載は現行指示にしない。
+現行release更新: **2026-10-03 13:00 JST / #1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。現行仕様の単一正本は[Food Healing RPG v3 Specification](FOOD_HEALING_RPG_V3_SPECIFICATION.md)。本書の詳細LOCK・日付付き記録は根拠/履歴として保持し、古いRC/次工程の記載は現行指示にしない。
 
 過去の侵略者限定追加: 2026-09-15 21:11 JST。実装・自動検証の証拠は[共通計画§11](MASTERY_IMPLEMENTATION_PREPARATION.md#trial-invader-result)。当時は両極意全体完成・購入解放ではなかった。現在の購入ready接続は共通計画§14.58で完了。
 

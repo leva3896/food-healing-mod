@@ -1,5 +1,5 @@
 Food Healing RPG v3.0.0
-Updated: 2026-10-03 11:22 JST
+Updated: 2026-10-03 13:00 JST
 
 Current overview: README.md
 Complete specification: docs/FOOD_HEALING_RPG_V3_SPECIFICATION.md

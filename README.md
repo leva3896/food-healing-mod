@@ -2,7 +2,7 @@
 
 Food-driven RPG progression for Minecraft **1.20.1 Forge**. Eat to heal, gain Shokugi (食技) progress and SP, then choose skills and repeatable base upgrades.
 
-**#1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED** — updated 2026-10-03 11:22 JST.
+**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE** — updated 2026-10-03 13:00 JST.
 
 - [Complete v3.x specification](docs/FOOD_HEALING_RPG_V3_SPECIFICATION.md) — all 26 registered skills, seven upgrade families, prices, exact behavior, migration and compatibility limits.
 - [Release receipt](release/v3.0.0/RELEASE_RECEIPT.md) — accepted artifact identity and source commit.
