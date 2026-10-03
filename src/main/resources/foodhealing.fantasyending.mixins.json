@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leva.foodhealing.mixin.fantasyending",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "foodhealing.refmap.json",
+  "plugin": "com.leva.foodhealing.compat.fantasyending.FantasyEndingMixinPlugin",
+  "mixins": ["UomWitherMixin", "StarEntityMixin", "UomOwnedWitherSkullMixin"],
+  "injectors": {"defaultRequire": 1}
+}

@@ -17,7 +17,21 @@ public class FoodHealingConfig {
                 COMMON_SPEC = builder.build();
         }
 
+        public static long nutritionThreshold() {
+                return COMMON_SPEC.isLoaded() ? COMMON.shokugiNutritionLevelUpRequirement.get() : 2000L;
+        }
+
+        public static long legacyCountThreshold() {
+                return COMMON_SPEC.isLoaded() ? COMMON.legacyFoodActionThreshold.get() : 200L;
+        }
+
         public static void register() {
+                try {
+                        NutritionConfigMigration.prepare(net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR.get()
+                                .resolve("foodhealing-common.toml"));
+                } catch (java.io.IOException | IllegalArgumentException | ArithmeticException error) {
+                        throw new IllegalStateException("Unsafe Nutrition Config migration; do not load player data", error);
+                }
                 ModLoadingContext.get().registerConfig(
                                 net.minecraftforge.fml.config.ModConfig.Type.COMMON,
                                 COMMON_SPEC,
@@ -51,6 +65,9 @@ public class FoodHealingConfig {
 
                 // 食義レベルアップに必要な食事回数
                 public final ForgeConfigSpec.IntValue shokugiLevelUpRequirement;
+                public final ForgeConfigSpec.LongValue shokugiNutritionLevelUpRequirement;
+                public final ForgeConfigSpec.LongValue legacyFoodActionThreshold;
+                public final ForgeConfigSpec.IntValue shokugiCountModelVersion;
 
                 // 食べ物多様性：何種類で体力アップ
                 public final ForgeConfigSpec.IntValue foodsRequiredForBonus;
@@ -96,10 +113,10 @@ public class FoodHealingConfig {
 
                         bonusThreshold = builder
                                         .comment("")
-                                        .comment("[Bonus Effect Threshold / ボーナス効果の閾値]")
-                                        .comment("EN: Minimum nutrition to trigger Resistance IV + Fire Resistance")
-                                        .comment("JP: 耐性IV＋火炎耐性が発動する最小満腹度回復量")
-                                        .comment("Default: 19 | Range: 1 ~ 100")
+                                        .comment("[Legacy Bonus Effect Threshold / 旧ボーナス効果の閾値]")
+                                        .comment("EN: Legacy v2 config retained for config-file compatibility. v3 does not grant free Resistance/Fire Resistance from nutrition.")
+                                        .comment("JP: v2互換用に保持されています。v3では栄養値だけで耐性/火炎耐性を無料付与しません。")
+                                        .comment("Default: 19 | Range: 1 ~ 100 | Currently unused in v3 core")
                                         .defineInRange("bonusThreshold", 19, 1, 100);
 
                         bonusDurationSeconds = builder
@@ -112,10 +129,10 @@ public class FoodHealingConfig {
 
                         gutsThreshold = builder
                                         .comment("")
-                                        .comment("[Guts Effect Threshold / 根性効果の閾値]")
-                                        .comment("EN: Minimum nutrition to trigger Guts effect")
-                                        .comment("JP: 根性（即死回避）効果が発動する最小満腹度回復量")
-                                        .comment("Default: 19 | Range: 1 ~ 100")
+                                        .comment("[Legacy Guts Effect Threshold / 旧根性効果の閾値]")
+                                        .comment("EN: Legacy v2 config retained for config-file compatibility. v3 Root is skill-driven and uses Nutrition 18 rules.")
+                                        .comment("JP: v2互換用に保持されています。v3の根性はスキル駆動でNutrition 18ルールを使います。")
+                                        .comment("Default: 19 | Range: 1 ~ 100 | Currently unused in v3 core")
                                         .defineInRange("gutsThreshold", 19, 1, 100);
 
                         gutsDurationSeconds = builder
@@ -142,13 +159,22 @@ public class FoodHealingConfig {
                                         .comment("Default: 2.0 (Double Damage) | Range: 1.0 ~ 100.0")
                                         .defineInRange("heroicsMultiplier", 2.0, 1.0, 100.0);
 
+                        shokugiNutritionLevelUpRequirement = builder
+                                        .comment("Nutrition/Food-Level units per Shokugi level and SP; default 2000")
+                                        .defineInRange("shokugiNutritionLevelUpRequirement", 2000L, 1L, Long.MAX_VALUE);
+                        legacyFoodActionThreshold = builder
+                                        .comment("Frozen effective legacy threshold for one-time player migration; do not edit")
+                                        .defineInRange("legacyFoodActionThreshold", 200L, 1L, 1_000_000L);
+                        shokugiCountModelVersion = builder
+                                        .comment("Count Config migration version; independent of player schema")
+                                        .defineInRange("shokugiCountModelVersion", 1, 1, 1);
                         shokugiLevelUpRequirement = builder
                                         .comment("")
-                                        .comment("[Shokugi Level Up Requirement / 食義レベルアップに必要な食事回数]")
+                                        .comment("[DEPRECATED: legacy food-action threshold; one-time migration input only]")
                                         .comment("EN: Amount of food items you need to eat to gain 1 Shokugi Level")
-                                        .comment("JP: 食義レベルが1上がるのに必要な食事回数(デフォルト1000回)")
-                                        .comment("Default: 1000 | Range: 1 ~ 1,000,000")
-                                        .defineInRange("shokugiLevelUpRequirement", 1000, 1, 1_000_000);
+                                        .comment("JP: 食義レベルが1上がるのに必要な食事回数(デフォルト200回)")
+                                        .comment("Default: 200 | Range: 1 ~ 1,000,000")
+                                        .defineInRange("shokugiLevelUpRequirement", 200, 1, 1_000_000);
 
                         builder.pop();
 
@@ -212,13 +238,13 @@ public class FoodHealingConfig {
 
                         shokugiTextOffsetY = builder
                                         .comment("")
-                                        .comment("[Shokugi UI Offset Y / 食義UIのY軸(縦)補正]")
+                                        .comment("[Shokugi UI Offset Y / 食技UIのY軸(縦)補正]")
                                         .comment("Default: 42 | Range: -1000 ~ 1000")
                                         .defineInRange("shokugiTextOffsetY", 42, -1000, 1000);
 
                         shokugiTextOffsetX = builder
                                         .comment("")
-                                        .comment("[Shokugi UI Offset X / 食義UIのX軸(横)補正]")
+                                        .comment("[Shokugi UI Offset X / 食技UIのX軸(横)補正]")
                                         .comment("Default: 10 | Range: -1000 ~ 1000")
                                         .defineInRange("shokugiTextOffsetX", 10, -1000, 1000);
 

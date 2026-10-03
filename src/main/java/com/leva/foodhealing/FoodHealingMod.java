@@ -1,10 +1,10 @@
 package com.leva.foodhealing;
 
 import com.leva.foodhealing.client.HealthDisplayOverlay;
+import com.leva.foodhealing.loot.GatheringLootModifier;
+import com.mojang.serialization.Codec;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -20,9 +20,11 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraft.world.effect.MobEffect;
 import org.slf4j.Logger;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import com.leva.foodhealing.capability.IFoodDiversityData;
 import com.leva.foodhealing.capability.IShokugiData;
 import com.leva.foodhealing.network.PacketHandler;
 
@@ -41,9 +43,13 @@ public class FoodHealingMod {
             MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
             .create(Registries.CREATIVE_MODE_TAB, MODID);
+    public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> LOOT_MODIFIER_SERIALIZERS =
+            DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
 
     // 根性エフェクト
     public static final RegistryObject<MobEffect> GUTS_EFFECT = EFFECTS.register("guts", GutsEffect::new);
+    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> GATHERING_LOOT_MODIFIER =
+            LOOT_MODIFIER_SERIALIZERS.register("gathering", () -> GatheringLootModifier.CODEC);
 
     // テスト用超強力食料（満腹度50回復）
     public static final RegistryObject<Item> SUPER_FOOD = ITEMS.register("super_food",
@@ -86,13 +92,13 @@ public class FoodHealingMod {
         ITEMS.register(modEventBus);
         EFFECTS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 
         // 共通イベントハンドラーを登録
         // FoodHealingHandler: 食事時にHP回復＋ボーナス効果を付与
         MinecraftForge.EVENT_BUS.register(FoodHealingHandler.class);
         // HungerChangeHandler: 満腹度の直接増加（Mekanismやコマンド等）時にHP回復
         MinecraftForge.EVENT_BUS.register(HungerChangeHandler.class);
-        MinecraftForge.EVENT_BUS.register(AlwaysEatHandler.class);
         MinecraftForge.EVENT_BUS.register(FoodDiversityHandler.class);
 
         // DamageEventHandler: 根性エフェクトによるダメージ軽減・即死回避処理
@@ -100,6 +106,10 @@ public class FoodHealingMod {
         
         // ShokugiTickHandler: 食義による常時付与エフェクト等のティック処理
         MinecraftForge.EVENT_BUS.register(ShokugiTickHandler.class);
+        MinecraftForge.EVENT_BUS.register(FlightController.class);
+        MinecraftForge.EVENT_BUS.register(RootController.class);
+        MinecraftForge.EVENT_BUS.register(QuarryingController.class);
+        MinecraftForge.EVENT_BUS.register(ImmovableMasteryController.class);
 
         // クライアントサイドのみ：体力数値表示オーバーレイを登録
         if (FMLEnvironment.dist == Dist.CLIENT) {
@@ -111,28 +121,21 @@ public class FoodHealingMod {
 
     private void registerCaps(RegisterCapabilitiesEvent event) {
         event.register(IShokugiData.class);
+        event.register(IFoodDiversityData.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // 最大体力の上限をコンフィグ値に拡張（デフォルト: 100万, 最大: 1兆）とパケット登録
+        // Optional compatibility is initialized only after the network channel is ready.
         event.enqueueWork(() -> {
             PacketHandler.register();
-            try {
-                double maxHealthCap = FoodHealingConfig.COMMON.maxHealthCap.get();
-                RangedAttribute maxHealth = (RangedAttribute) Attributes.MAX_HEALTH;
-                // リフレクションでmaxValueフィールドにアクセス
-                java.lang.reflect.Field maxValueField = RangedAttribute.class.getDeclaredField("maxValue");
-                maxValueField.setAccessible(true);
-                maxValueField.setDouble(maxHealth, maxHealthCap);
-                LOGGER.info("[FoodHealing] Max health cap extended to " + String.format("%,.0f", maxHealthCap) + "!");
-            } catch (Exception e) {
-                LOGGER.error("[FoodHealing] Failed to extend max health cap: " + e.getMessage());
-            }
+            com.leva.foodhealing.compat.TaczAmmoCompatibility.initialize();
+            com.leva.foodhealing.compat.EndingLibraryCompatibility.initialize();
         });
         LOGGER.info("[FoodHealing] Common setup complete!");
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(com.leva.foodhealing.client.TimeStopClientCompatibility::initialize);
         LOGGER.info("[FoodHealing] Client setup complete - HP display overlay enabled!");
     }
 }

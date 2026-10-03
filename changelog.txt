@@ -1,3 +1,21 @@
+Food Healing RPG - Changelog
+============================
+
+v3.0.0 (2026-10-03 11:22 JST)
+-------------------
+- Queue #9 status: #1–#8 COMPLETE / #9 PARTIAL / RC=YES / LOCAL RELEASE ARTIFACT AND SPECIFICATION COMPLETE / GITHUB UPDATE BLOCKED.
+- Formal RPG progression: Nutrition/Food-Level count2000, server-authoritative SP, 26 skill nodes and seven repeatable base upgrades.
+- Full-respec legacy migration with raw backup, schema5/protocol7, owned modifiers and lifecycle protection.
+- True Root reservation retention, revised skill costs/parity, Quarrying and Immovable Mastery.
+- Purchase-ready P/T and Flight with documented exact optional routes; Break Realm remains pending.
+- Built-in FE2.7.20 exact shader compatibility and final standalone/FE client acceptance.
+- Inventory GUI, Japanese 食技 / English Shokugi, numeric HP/ABS HUD, six formal commands.
+- Accepted Queue #8 Jar copied byte-for-byte to formal release name; complete specification and source handoff in Queue #9.
+- Limits and known upstream issues remain explicit. No claim of all MODs/versions/gunpacks or REAL2CLIENT testing.
+
+Historical changelog (unchanged entries)
+=======================================
+
 Food Healing MOD - Changelog
 =============================
 

@@ -1,47 +1,58 @@
 package com.leva.foodhealing.mixin;
 
+import com.leva.foodhealing.DurabilityTransactions;
+import com.leva.foodhealing.SatisfactionTransactions;
 import com.leva.foodhealing.capability.ShokugiProvider;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
-
-    @ModifyVariable(method = "hurt", at = @At("HEAD"), argsOnly = true, ordinal = 0)
-    private int foodhealing$modifyHurtAmount(int amount, int originalAmount, RandomSource random, ServerPlayer player) {
-        if (player == null) {
-            return amount;
+    @Inject(method = "finishUsingItem", at = @At("HEAD"), cancellable = true)
+    private void foodhealing$applySatisfaction(Level level, LivingEntity entity,
+                                               CallbackInfoReturnable<ItemStack> callback) {
+        if (level.isClientSide() || !(entity instanceof ServerPlayer player)) {
+            return;
         }
 
-        return player.getCapability(ShokugiProvider.SHOKUGI_CAPA).map(cap -> {
-            int level = cap.getLevel();
-            int newAmount = amount;
+        ItemStack original = (ItemStack) (Object) this;
+        if (original.getFoodProperties(player) == null) {
+            return;
+        }
 
-            // Lv 20: Armor Mastery (Cap durability loss to 1) 武器等の耐久最大1ダウン
-            if (level >= 20 && newAmount > 1 && !cap.isSkillDisabled("防具の極意")) {
-                newAmount = 1;
-            }
+        if (!SatisfactionTransactions.consumeDecision(player, original)) {
+            return;
+        }
 
-            // Lv 17-19: Unbreakable buff (Chance to ignore durability loss)
-            if (newAmount > 0 && level >= 17 && !cap.isSkillDisabled("不壊")) {
-                float saveChance = 0.0f;
-                // Lv19: 1/30 chance to break -> 29/30 chance to save (~96.67%)
-                // Lv18: 1/20 chance to break -> 19/20 chance to save (95%)
-                // Lv17: 1/10 chance to break -> 9/10 chance to save (90%)
-                if (level >= 19) saveChance = 29.0f / 30.0f;
-                else if (level >= 18) saveChance = 19.0f / 20.0f;
-                else if (level >= 17) saveChance = 9.0f / 10.0f;
+        // Apply the food's canonical finish behavior to a copy. Effects and hunger are
+        // produced once, while the real stack and its NBT/capabilities are never consumed.
+        ItemStack consumedCopy = original.copy();
+        original.getItem().finishUsingItem(consumedCopy, level, player);
+        callback.setReturnValue(original);
+    }
 
-                if (saveChance > 0 && player.getRandom().nextFloat() < saveChance) {
-                    newAmount = 0;
-                }
-            }
-
-            return newAmount;
-        }).orElse(amount);
+    // Both direct hurt and hurtAndBreak converge here, after Forge Item.damageItem
+    // (for hurtAndBreak) and before vanilla's Unbreaking enchantment. No second hook.
+    @ModifyVariable(
+            method = "hurt(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z",
+            at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private int foodhealing$applyEquipmentDurabilitySkills(int amount, int originalAmount,
+                                                          RandomSource random, ServerPlayer player) {
+        if (player == null || amount <= 0) {
+            return amount;
+        }
+        ItemStack stack = (ItemStack) (Object) this;
+        return player.getCapability(ShokugiProvider.SHOKUGI_CAPA)
+                .map(data -> DurabilityTransactions.adjustDamage(
+                        data, stack, amount, random))
+                .orElse(amount);
     }
 }

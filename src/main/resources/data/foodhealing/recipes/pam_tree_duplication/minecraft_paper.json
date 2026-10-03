@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2trees"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+  "result": {
+    "item": "minecraft:paper",
+    "count": 2
+  }
+}

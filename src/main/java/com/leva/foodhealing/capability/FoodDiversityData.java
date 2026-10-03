@@ -49,7 +49,12 @@ public class FoodDiversityData implements IFoodDiversityData, INBTSerializable<C
 
     @Override
     public void addMaxHealthBonus(int amount) {
-        maxHealthBonus += amount;
+        if (amount <= 0) {
+            return;
+        }
+        maxHealthBonus = maxHealthBonus > Integer.MAX_VALUE - amount
+                ? Integer.MAX_VALUE
+                : maxHealthBonus + amount;
     }
 
     @Override
@@ -71,7 +76,7 @@ public class FoodDiversityData implements IFoodDiversityData, INBTSerializable<C
     public void copyFrom(IFoodDiversityData source) {
         this.currentEatenFoods = new HashSet<>(source.getEatenFoods());
         this.allEatenFoods = new HashSet<>(source.getAllEatenFoods());
-        this.maxHealthBonus = source.getMaxHealthBonus();
+        this.maxHealthBonus = Math.max(0, source.getMaxHealthBonus());
     }
 
     @Override
@@ -125,6 +130,6 @@ public class FoodDiversityData implements IFoodDiversityData, INBTSerializable<C
         }
 
         // 最大体力ボーナスを復元
-        maxHealthBonus = tag.getInt("MaxHealthBonus");
+        maxHealthBonus = Math.max(0, tag.getInt("MaxHealthBonus"));
     }
 }

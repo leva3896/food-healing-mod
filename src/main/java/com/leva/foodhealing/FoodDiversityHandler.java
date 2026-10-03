@@ -1,7 +1,6 @@
 package com.leva.foodhealing;
 
 import com.leva.foodhealing.capability.FoodDiversityProvider;
-import com.leva.foodhealing.capability.IFoodDiversityData;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -13,7 +12,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -35,16 +33,7 @@ public class FoodDiversityHandler {
             "food_diversity");
 
     // AttributeModifier用のUUID
-    private static final UUID HEALTH_BONUS_UUID = UUID.fromString("a5f8c2d1-3e7b-4a2c-9f1d-6e8b4c2a1d3f");
-
-    /**
-     * Capabilityを登録
-     */
-    @SubscribeEvent
-    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(IFoodDiversityData.class);
-        LOGGER.info("[FoodHealing] Food diversity capability registered!");
-    }
+    static final UUID HEALTH_BONUS_UUID = UUID.fromString("a5f8c2d1-3e7b-4a2c-9f1d-6e8b4c2a1d3f");
 
     /**
      * プレイヤーにCapabilityをアタッチ
@@ -56,47 +45,13 @@ public class FoodDiversityHandler {
         }
     }
 
-    /**
-     * 死亡時・ディメンション変更時にデータを保持
-     * (エンドポータル・ネザーポータル通過時もプレイヤーエンティティが再作成されるため)
-     */
-    @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        Player oldPlayer = event.getOriginal();
-        Player newPlayer = event.getEntity();
-
-        // ディメンション変更時は現在HPも保持する（死亡時はデフォルトHPで復活）
-        float previousHealth = oldPlayer.getHealth();
-
-        oldPlayer.reviveCaps();
-        oldPlayer.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(oldData -> {
-            newPlayer.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(newData -> {
-                newData.copyFrom(oldData);
-                // 最大体力ボーナスを再適用
-                applyHealthBonus(newPlayer, newData.getMaxHealthBonus());
-            });
-        });
-        oldPlayer.invalidateCaps();
-
-        // ディメンション変更時は元のHPを復元、死亡時は最大HPで復活
-        if (event.isWasDeath()) {
-            newPlayer.setHealth(newPlayer.getMaxHealth());
-        } else {
-            newPlayer.setHealth(previousHealth);
-        }
-
-        syncToClient(newPlayer);
-    }
-
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
         player.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(data -> {
-            if (data.getMaxHealthBonus() > 0) {
-                applyHealthBonus(player, data.getMaxHealthBonus());
-                LOGGER.info("[FoodHealing] Restored {} max health bonus for player {}",
-                        data.getMaxHealthBonus(), player.getName().getString());
-            }
+            applyHealthBonus(player, data.getMaxHealthBonus());
+            LOGGER.info("[FoodHealing] Restored {} max health bonus for player {}",
+                    data.getMaxHealthBonus(), player.getName().getString());
             syncToClient(player);
         });
     }
@@ -107,8 +62,35 @@ public class FoodDiversityHandler {
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (!event.getLevel().isClientSide() && event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            serverPlayer.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(data -> {
+                applyHealthBonus(serverPlayer, data.getMaxHealthBonus());
+            });
             syncToClient(serverPlayer);
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) {
+            return;
+        }
+        player.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(data -> {
+            applyHealthBonus(player, data.getMaxHealthBonus());
+            syncToClient(player);
+        });
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) {
+            return;
+        }
+        player.getCapability(FoodDiversityProvider.FOOD_DIVERSITY).ifPresent(data -> {
+            applyHealthBonus(player, data.getMaxHealthBonus());
+            syncToClient(player);
+        });
     }
 
     /**
@@ -199,18 +181,20 @@ public class FoodDiversityHandler {
     /**
      * 最大体力ボーナスを適用
      */
-    private static void applyHealthBonus(Player player, int totalBonus) {
-        if (totalBonus <= 0)
+    public static void applyHealthBonus(Player player, int totalBonus) {
+        if (player.level().isClientSide()) {
             return;
+        }
 
         var healthAttribute = player.getAttribute(Attributes.MAX_HEALTH);
         if (healthAttribute == null)
             return;
 
-        // 既存のModifierを削除
         healthAttribute.removeModifier(HEALTH_BONUS_UUID);
 
-        // 新しいModifierを追加
+        if (totalBonus <= 0)
+            return;
+
         AttributeModifier modifier = new AttributeModifier(
                 HEALTH_BONUS_UUID,
                 "Food Diversity Health Bonus",

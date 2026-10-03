@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leva.foodhealing.mixin.trialmonolith",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "foodhealing.refmap.json",
+  "plugin": "com.leva.foodhealing.compat.TrialMonolithMixinPlugin",
+  "mixins": ["TrialMonolithDamageCubeMixin", "TrialInvaderProtectionMixin", "TrialInvaderBeamSoulMixin", "TrialInvaderHugeBeamMixin"],
+  "injectors": {"defaultRequire": 1}
+}

@@ -4,11 +4,28 @@
   "package": "com.leva.foodhealing.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "foodhealing.refmap.json",
+  "plugin": "com.leva.foodhealing.compat.TaczMixinPlugin",
   "mixins": [
+    "AbstractFurnaceMenuMixin",
+    "CampfireBlockEntityMixin",
+    "CraftingMenuMixin",
+    "FurnaceResultSlotMixin",
+    "ItemMixin",
     "ItemStackMixin",
-    "TaCZGunScriptMixin"
+    "LivingEntityMixin",
+    "ResultSlotMixin",
+    "tacz.TaczScriptMixin",
+    "tacz.TaczBoltMixin",
+    "tacz.TaczShootMixin",
+    "FoodDataMixin",
+    "PlayerFoodDataMixin",
+    "QuarryingHarvestMixin",
+    "ImmovableArrowMixin",
+    "ImmovableExplosionMixin"
   ],
   "client": [
+    "ClientItemStackMixin",
+    "tacz.ClientTaczBoltMixin"
   ],
   "injectors": {
     "defaultRequire": 1

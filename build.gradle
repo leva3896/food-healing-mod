@@ -16,6 +16,94 @@ base {
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+sourceSets {
+    fantasyEndingTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    trialInvaderTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    l2HostilityTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    trialMonolithTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    superbwarfareTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    restartTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
+def restartPhase = providers.gradleProperty('foodHealingRestartPhase').orNull
+def restartRun = providers.gradleProperty('foodHealingRestartRun').getOrElse('local')
+if (restartPhase != null && (!(restartPhase in ['write', 'read', 'soak']) || !(restartRun ==~ /[A-Za-z0-9_-]+/))) {
+    throw new GradleException('Restart verification requires phase write/read/soak and an alphanumeric run ID.')
+}
+def realLegacyRun = providers.gradleProperty('foodHealingRealLegacyRun').orNull
+if (realLegacyRun != null && (!(realLegacyRun ==~ /[0-9]{8}-[0-9]{6}/)
+        || (restartPhase != null && !(restartPhase in ['write', 'read'])))) {
+    throw new GradleException('Real legacy verification requires a timestamp run ID and write/read phase only.')
+}
+def realLegacyDirectory = realLegacyRun == null ? null : file("build/verification/real-v225-migration-${realLegacyRun}")
+if (realLegacyDirectory != null) {
+    if (realLegacyDirectory.canonicalFile.parentFile != file('build/verification').canonicalFile
+            || new File(realLegacyDirectory, 'migrated-test').canonicalFile.parentFile != realLegacyDirectory.canonicalFile) {
+        throw new GradleException('Real legacy verification must remain inside its project verification root.')
+    }
+    def requestedTasks = gradle.startParameter.taskNames.collect { it.tokenize(':').last() }
+    if (requestedTasks.contains('runClient') || (requestedTasks.contains('runServer') && restartPhase == null)) {
+        throw new GradleException('Real legacy opt-in forbids runClient and requires write/read for runServer.')
+    }
+}
+def restartDirectory = realLegacyDirectory == null ? file("build/verification/restart-${restartRun}")
+        : new File(realLegacyDirectory, 'migrated-test')
+def legacyDisk = providers.gradleProperty('foodHealingLegacyDisk').orNull == 'true'
+if (legacyDisk && !(restartPhase in ['write', 'read'])) {
+    throw new GradleException('Legacy disk fixture requires an isolated write/read restart phase.')
+}
+def restartToken = UUID.randomUUID().toString()
+def restartResult = new File(restartDirectory, "result-${restartToken}.properties")
+def taczIntegration = providers.gradleProperty('foodHealingTaczIntegration').orNull == 'true'
+if (realLegacyRun != null && (taczIntegration || legacyDisk)) {
+    throw new GradleException('Real legacy verification must not mix optional mods or synthetic legacy disk inputs.')
+}
+def gameTestRun = providers.gradleProperty('foodHealingGameTestRun').orNull
+if (gameTestRun != null && (!(gameTestRun ==~ /[A-Za-z0-9_-]+/) || taczIntegration)) {
+    throw new GradleException('Isolated vanilla GameTest requires an alphanumeric run ID without TaCZ opt-in.')
+}
+def gameTestDirectory = taczIntegration ? new File(restartDirectory, 'gametest')
+        : (gameTestRun != null ? file("build/verification/gametest-${gameTestRun}") : file('run'))
+if (taczIntegration) {
+    if (restartPhase == null || !restartRun.startsWith('tacz-')) {
+        throw new GradleException('TaCZ verification requires an isolated restart phase and tacz-prefixed run ID.')
+    }
+    def referenceJar = file('libs/tacz-1.20.1.jar')
+    def digest = java.security.MessageDigest.getInstance('SHA-256')
+    referenceJar.withInputStream { input ->
+        byte[] buffer = new byte[8192]
+        int count
+        while ((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
+    }
+    if (digest.digest().encodeHex().toString() != 'fc5f1dab09afd5399604db0f60845d41d46cf015c158cbc12e7ef716cf6bdb46') {
+        throw new GradleException('TaCZ reference Jar differs from the approved 1.1.7-hotfix2 artifact.')
+    }
+    sourceSets {
+        taczTest {
+            compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath + sourceSets.main.runtimeClasspath
+            runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+        }
+    }
+}
+
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
@@ -44,10 +132,25 @@ minecraft {
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui', '-mixin.config=foodhealing.mixins.json'
+            if (restartPhase != null) {
+                workingDirectory restartDirectory
+                property 'foodhealing.restart.phase', restartPhase
+                property 'foodhealing.restart.root', restartDirectory.absolutePath
+                property 'foodhealing.restart.token', restartToken
+                if (realLegacyDirectory != null) property 'foodhealing.test.realLegacyRoot', realLegacyDirectory.canonicalPath
+                if (legacyDisk) property 'foodhealing.test.legacyDisk', 'true'
+                if (taczIntegration) {
+                    property 'foodhealing.test.tacz', '1.1.7-hotfix2'
+                    mods { "${mod_id}" { source sourceSets.taczTest } }
+                }
+                mods { "${mod_id}" { source sourceSets.restartTest } }
+            }
         }
 
         gameTestServer {
             property 'forge.enabledGameTestNamespaces', mod_id
+            workingDirectory gameTestDirectory
+            mods { "${mod_id}" { source sourceSets.restartTest } }
         }
 
         data {
@@ -61,17 +164,42 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+        content { includeModule('local.foodhealing.reference', 'tacz-1.20.1') }
+    }
 }
 
 mixin {
     add sourceSets.main, "foodhealing.refmap.json"
     config "foodhealing.mixins.json"
+    config "foodhealing.trial_monolith.mixins.json"
+    config "foodhealing.l2hostility.mixins.json"
+    config "foodhealing.endinglibrary.mixins.json"
+    config "foodhealing.fantasyending.mixins.json"
+    config "foodhealing.feuniform.mixins.json"
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    compileOnly fileTree(dir: 'libs', include: ['*.jar']) // TaCZ API
+    // The supplied local 1.4.9 artifact is compile-only. Never bundle it or load it in vanilla runs.
+    compileOnly files('libs/TheTrialMonolith-1.20.1-Forge-1.4.9.jar')
+    compileOnly files('libs/l2hostility-2.5.19.jar', 'libs/l2library-2.5.3.jar', 'libs/l2complements-2.6.1.jar')
+    // Exact approved local APIs, compile-only. They are never copied into the product Jar.
+    compileOnly files('build/verification/fantasy-ending-20260920-204205/audit/artifacts/EndingLibrary-1.20.1-2.1.19fix-all.jar',
+            'build/verification/fantasy-ending-20260920-204205/audit/artifacts/fantasy_ending-1.20.1-2.7.20-all.jar')
+    l2HostilityTestCompileOnly files('build/verification/source-world-boot-20260906-172148/game/mods/curios-forge-5.12.0+1.20.1.jar')
+    compileOnly files('build/verification/fantasy-ending-20260920-204205/audit/artifacts/curios-forge-5.14.1+1.20.1.jar')
+    compileOnly files('build/verification/flight-mekanism-20260929-184800/audit/Mekanism-1.20.1-10.4.16.80.jar')
+    compileOnly files(layout.buildDirectory.file('l2-compile-only/Registrate.jar'),
+            layout.buildDirectory.file('l2-compile-only/l2serial.jar'),
+            layout.buildDirectory.file('l2-compile-only/l2damagetracker.jar'))
+    // Compile the isolated optional Adapter; never bundle or enable TaCZ in vanilla runs.
+    compileOnly fg.deobf('local.foodhealing.reference:tacz-1.20.1:1.1.7-hotfix2')
+    if (taczIntegration) {
+        runtimeOnly fg.deobf('local.foodhealing.reference:tacz-1.20.1:1.1.7-hotfix2')
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -90,6 +218,8 @@ tasks.named('processResources', ProcessResources).configure {
 }
 
 tasks.named('jar', Jar).configure {
+    // Keep existing dev GameTests runnable without shipping test classes to players.
+    exclude 'com/leva/foodhealing/FoodHealing*GameTests*.class'
     manifest {
         attributes([
                 'Specification-Title'     : mod_id,
@@ -121,3 +251,191 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.register('foodHealingUnitTest', JavaExec) {
+    group = 'verification'
+    description = 'Runs lightweight Food Healing data-model regression tests.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.leva.foodhealing.ShokugiDataUnitTest'
+}
+
+tasks.register('foodHealingLegacyArchiveAudit', JavaExec) {
+    group = 'verification'
+    description = 'Read-only NBT inventory of a development world backup; does not claim migration provenance.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.leva.foodhealing.LegacyArchiveAudit'
+    systemProperty 'file.encoding', 'UTF-8'
+    doFirst {
+        def archive = providers.gradleProperty('foodHealingAuditArchive').orNull
+        if (archive == null) throw new GradleException('Specify a project backup ZIP with -PfoodHealingAuditArchive.')
+        args file('backups').canonicalPath, file(archive).canonicalPath
+    }
+}
+
+tasks.register('foodHealingRealLegacyAudit', JavaExec) {
+    group = 'verification'
+    description = 'Audits an explicitly copied real legacy payload without loading its world.'
+    classpath = sourceSets.restartTest.runtimeClasspath
+    mainClass = 'com.leva.foodhealing.RealLegacyCapabilityVerification'
+    systemProperty 'file.encoding', 'UTF-8'
+    doFirst {
+        if (realLegacyDirectory == null || !realLegacyDirectory.isDirectory()) {
+            throw new GradleException('An existing isolated -PfoodHealingRealLegacyRun timestamp is required.')
+        }
+        def mode = providers.gradleProperty('foodHealingRealLegacyAuditMode').getOrElse('retention')
+        if (!(mode in ['retention', 'dependencies'])) throw new GradleException('Unknown real legacy audit mode.')
+        args realLegacyDirectory.canonicalPath, mode
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('fantasyEndingTestClasses')
+    dependsOn tasks.named('foodHealingUnitTest')
+    dependsOn tasks.named('restartTestClasses')
+    dependsOn tasks.named('superbwarfareTestClasses')
+    dependsOn tasks.named('trialMonolithTestClasses')
+    dependsOn tasks.named('trialInvaderTestClasses')
+    dependsOn tasks.named('l2HostilityTestClasses')
+}
+
+tasks.register('trialMonolithTestJar', Jar) {
+    archiveFileName = 'foodhealing-trial-monolith-verification.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification-artifacts')
+    from sourceSets.trialMonolithTest.output
+    finalizedBy 'reobfTrialMonolithTestJar'
+}
+reobf { trialMonolithTestJar {} }
+
+tasks.register('trialInvaderTestJar', Jar) {
+    archiveFileName = 'foodhealing-trial-invader-verification.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification-artifacts')
+    from sourceSets.trialInvaderTest.output
+    finalizedBy 'reobfTrialInvaderTestJar'
+}
+reobf { trialInvaderTestJar {} }
+
+// Explicit test artifact only. No external MOD or fixture is included in the product Jar.
+tasks.register('superbwarfareTestJar', Jar) {
+    archiveFileName = 'foodhealing-superbwarfare-verification.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification-artifacts')
+    from sourceSets.superbwarfareTest.output
+    finalizedBy 'reobfSuperbwarfareTestJar'
+}
+reobf { superbwarfareTestJar {} }
+
+tasks.register('prepareFoodHealingRestartTest') {
+    doLast {
+        if (restartPhase == null) {
+            throw new GradleException('Set -PfoodHealingRestartPhase=write, read or soak.')
+        }
+        if (providers.gradleProperty('foodHealingRestartEulaAccepted').orNull != 'true') {
+            throw new GradleException('Explicit EULA approval is required for the isolated test server.')
+        }
+        restartDirectory.mkdirs()
+        def eula = new File(restartDirectory, 'eula.txt')
+        if (!eula.exists()) eula.text = 'eula=true\n'
+        def config = new File(restartDirectory, 'server.properties')
+        if (!config.exists()) {
+            def settings = new Properties()
+            settings.putAll([
+                    'server-ip': '127.0.0.1', 'server-port': '0', 'online-mode': 'true',
+                    'level-name': 'world', 'level-type': 'minecraft:flat',
+                    'generator-settings': '{"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"biome":"minecraft:plains"}',
+                    'generate-structures': 'false', 'view-distance': '2', 'simulation-distance': '2',
+                    'difficulty': 'normal', 'spawn-monsters': 'false', 'spawn-animals': 'false',
+                    'enable-rcon': 'false', 'enable-query': 'false', 'max-tick-time': '60000'])
+            config.withOutputStream { settings.store(it, 'Isolated Food Healing restart verification') }
+        }
+    }
+}
+
+tasks.register('prepareFoodHealingGameTestStructures', Copy) {
+    group = 'verification'
+    description = 'Copies textual GameTest structures into the Forge development run directory.'
+    from layout.projectDirectory.dir('src/gametest/resources')
+    into new File(gameTestDirectory, 'gameteststructures')
+    doFirst {
+        if (gameTestRun != null || taczIntegration) {
+            gameTestDirectory.mkdirs()
+            def config = new File(gameTestDirectory, 'server.properties')
+            if (!config.exists()) {
+                def settings = new Properties()
+                settings.putAll(['server-ip': '127.0.0.1', 'server-port': '0', 'online-mode': 'true',
+                                 'enable-rcon': 'false', 'enable-query': 'false'])
+                config.withOutputStream { settings.store(it, 'Isolated Food Healing GameTest') }
+            }
+        }
+    }
+}
+
+tasks.configureEach {
+    if (name == 'runServer' && restartPhase != null) {
+        dependsOn tasks.named('prepareFoodHealingRestartTest')
+        doLast {
+            if (!restartResult.isFile()) {
+                throw new GradleException('Restart verification did not produce a success receipt; inspect the server log.')
+            }
+            def receipt = new Properties()
+            restartResult.withInputStream { receipt.load(it) }
+            if (receipt.getProperty('token') != restartToken || receipt.getProperty('phase') != restartPhase
+                    || receipt.getProperty('status') != 'PASS') {
+                throw new GradleException('Restart verification receipt is invalid or stale.')
+            }
+            def serverLog = new File(restartDirectory, 'logs/latest.log')
+            if (!serverLog.isFile() || (serverLog.getText('UTF-8') =~ /\[[^\]\r\n]*\/(?:ERROR|FATAL)\]/).find()) {
+                throw new GradleException('Restart verification has a missing log or ERROR/FATAL entries.')
+            }
+        }
+    }
+    if (name == 'runGameTestServer') {
+        dependsOn tasks.named('prepareFoodHealingGameTestStructures')
+        doLast {
+            def serverLog = new File(gameTestDirectory, 'logs/latest.log')
+            if (!serverLog.isFile() || (serverLog.getText('UTF-8') =~ /\[[^\]\r\n]*\/(?:ERROR|FATAL)\]/).find()) {
+                throw new GradleException('GameTest verification has a missing log or ERROR/FATAL entries.')
+            }
+        }
+    }
+}
+
+// Only the three nested APIs javac needs. Never install these extracted copies into a mods directory.
+def l2CompileApis = [
+    ['libs/l2library-2.5.3.jar', 'META-INF/jarjar/Registrate-MC1.20-1.3.11.jar', 'Registrate.jar', '81c5041b9a0017c5ac61c46655e984f78d711a6981330567d6fddfbde0385449'],
+    ['libs/l2library-2.5.3.jar', 'META-INF/jarjar/l2serial-1.2.2.jar', 'l2serial.jar', '5a99af5cd142b2ef1f83621f05edf47436581fefbe03170f5d85b6060da06a79'],
+    ['libs/l2complements-2.6.1.jar', 'META-INF/jarjar/l2damagetracker-0.4.4.jar', 'l2damagetracker.jar', '1f77c9a835b1d3c5e01f1e36b8df982f7b475f8438d56c835c5ee2583e3a9469']
+]
+tasks.register('prepareL2CompileApis') {
+    inputs.files(l2CompileApis.collect { file(it[0]) })
+    outputs.dir(layout.buildDirectory.dir('l2-compile-only'))
+    doLast {
+        def dest = layout.buildDirectory.dir('l2-compile-only').get().asFile
+        dest.mkdirs()
+        l2CompileApis.each { spec ->
+            new java.util.zip.ZipFile(file(spec[0])).withCloseable { zip ->
+                def entry = zip.getEntry(spec[1])
+                if (entry == null) throw new GradleException('Missing approved nested API: ' + spec[1])
+                byte[] bytes = zip.getInputStream(entry).withCloseable { it.readAllBytes() }
+                def hash = java.security.MessageDigest.getInstance('SHA-256').digest(bytes).encodeHex().toString()
+                if (hash != spec[3]) throw new GradleException('Unreviewed nested API: ' + spec[1])
+                new File(dest, spec[2]).bytes = bytes
+            }
+        }
+    }
+}
+tasks.named('compileJava').configure { dependsOn tasks.named('prepareL2CompileApis') }
+tasks.register('l2HostilityTestJar', Jar) {
+    archiveFileName = 'foodhealing-l2-hostility-verification.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification-artifacts')
+    from sourceSets.l2HostilityTest.output
+    finalizedBy 'reobfL2HostilityTestJar'
+}
+reobf { l2HostilityTestJar {} }
+
+tasks.register('fantasyEndingTestJar', Jar) {
+    archiveFileName = 'foodhealing-fe6-verification.jar'
+    destinationDirectory = layout.buildDirectory.dir('verification-artifacts')
+    from sourceSets.fantasyEndingTest.output
+    manifest.attributes('MixinConfigs': 'fe6_verification.mixins.json')
+    finalizedBy 'reobfFantasyEndingTestJar'
+}
+reobf { fantasyEndingTestJar {} }

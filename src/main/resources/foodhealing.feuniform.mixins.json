@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.leva.foodhealing.compat.feuniform.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "com.leva.foodhealing.compat.feuniform.FeUniformGatePlugin",
+  "refmap": "foodhealing.refmap.json",
+  "client": [
+    "ShaderConstructorParseMixin",
+    "MShaderParserBridgeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

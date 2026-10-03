@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2trees"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "pamhc2trees:orangeitem"
+    },
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+  "result": {
+    "item": "pamhc2trees:orangeitem",
+    "count": 2
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "mod_id": "pamhc2trees",
+  "version": "1.0.2",
+  "reference_sha256": "69E0C722C786B78AEA299E7FAF27991E6533A671A66F281FB5CED279EB31B0DD",
+  "mappings": [
+    {
+      "block": "pamhc2trees:pamacorn",
+      "harvest": "pamhc2trees:acornitem"
+    },
+    {
+      "block": "pamhc2trees:pamalmond",
+      "harvest": "pamhc2trees:almonditem"
+    },
+    {
+      "block": "pamhc2trees:pamapple",
+      "harvest": "minecraft:apple"
+    },
+    {
+      "block": "pamhc2trees:pamapricot",
+      "harvest": "pamhc2trees:apricotitem"
+    },
+    {
+      "block": "pamhc2trees:pamavocado",
+      "harvest": "pamhc2trees:avocadoitem"
+    },
+    {
+      "block": "pamhc2trees:pambanana",
+      "harvest": "pamhc2trees:bananaitem"
+    },
+    {
+      "block": "pamhc2trees:pambreadfruit",
+      "harvest": "pamhc2trees:breadfruititem"
+    },
+    {
+      "block": "pamhc2trees:pamcandlenut",
+      "harvest": "pamhc2trees:candlenutitem"
+    },
+    {
+      "block": "pamhc2trees:pamcashew",
+      "harvest": "pamhc2trees:cashewitem"
+    },
+    {
+      "block": "pamhc2trees:pamcherry",
+      "harvest": "pamhc2trees:cherryitem"
+    },
+    {
+      "block": "pamhc2trees:pamchestnut",
+      "harvest": "pamhc2trees:chestnutitem"
+    },
+    {
+      "block": "pamhc2trees:pamcinnamon",
+      "harvest": "pamhc2trees:cinnamonitem"
+    },
+    {
+      "block": "pamhc2trees:pamcoconut",
+      "harvest": "pamhc2trees:coconutitem"
+    },
+    {
+      "block": "pamhc2trees:pamdate",
+      "harvest": "pamhc2trees:dateitem"
+    },
+    {
+      "block": "pamhc2trees:pamdragonfruit",
+      "harvest": "pamhc2trees:dragonfruititem"
+    },
+    {
+      "block": "pamhc2trees:pamdurian",
+      "harvest": "pamhc2trees:durianitem"
+    },
+    {
+      "block": "pamhc2trees:pamfig",
+      "harvest": "pamhc2trees:figitem"
+    },
+    {
+      "block": "pamhc2trees:pamgooseberry",
+      "harvest": "pamhc2trees:gooseberryitem"
+    },
+    {
+      "block": "pamhc2trees:pamgrapefruit",
+      "harvest": "pamhc2trees:grapefruititem"
+    },
+    {
+      "block": "pamhc2trees:pamguava",
+      "harvest": "pamhc2trees:guavaitem"
+    },
+    {
+      "block": "pamhc2trees:pamhazelnut",
+      "harvest": "pamhc2trees:hazelnutitem"
+    },
+    {
+      "block": "pamhc2trees:pamjackfruit",
+      "harvest": "pamhc2trees:jackfruititem"
+    },
+    {
+      "block": "pamhc2trees:pamlemon",
+      "harvest": "pamhc2trees:lemonitem"
+    },
+    {
+      "block": "pamhc2trees:pamlime",
+      "harvest": "pamhc2trees:limeitem"
+    },
+    {
+      "block": "pamhc2trees:pamlychee",
+      "harvest": "pamhc2trees:lycheeitem"
+    },
+    {
+      "block": "pamhc2trees:pammango",
+      "harvest": "pamhc2trees:mangoitem"
+    },
+    {
+      "block": "pamhc2trees:pammaple",
+      "harvest": "pamhc2trees:maplesyrupitem"
+    },
+    {
+      "block": "pamhc2trees:pamnutmeg",
+      "harvest": "pamhc2trees:nutmegitem"
+    },
+    {
+      "block": "pamhc2trees:pamolive",
+      "harvest": "pamhc2trees:oliveitem"
+    },
+    {
+      "block": "pamhc2trees:pamorange",
+      "harvest": "pamhc2trees:orangeitem"
+    },
+    {
+      "block": "pamhc2trees:pampapaya",
+      "harvest": "pamhc2trees:papayaitem"
+    },
+    {
+      "block": "pamhc2trees:pampaperbark",
+      "harvest": "minecraft:paper"
+    },
+    {
+      "block": "pamhc2trees:pampassionfruit",
+      "harvest": "pamhc2trees:passionfruititem"
+    },
+    {
+      "block": "pamhc2trees:pampawpaw",
+      "harvest": "pamhc2trees:pawpawitem"
+    },
+    {
+      "block": "pamhc2trees:pampeach",
+      "harvest": "pamhc2trees:peachitem"
+    },
+    {
+      "block": "pamhc2trees:pampear",
+      "harvest": "pamhc2trees:pearitem"
+    },
+    {
+      "block": "pamhc2trees:pampecan",
+      "harvest": "pamhc2trees:pecanitem"
+    },
+    {
+      "block": "pamhc2trees:pampeppercorn",
+      "harvest": "pamhc2trees:peppercornitem"
+    },
+    {
+      "block": "pamhc2trees:pampersimmon",
+      "harvest": "pamhc2trees:persimmonitem"
+    },
+    {
+      "block": "pamhc2trees:pampinenut",
+      "harvest": "pamhc2trees:pinenutitem"
+    },
+    {
+      "block": "pamhc2trees:pampistachio",
+      "harvest": "pamhc2trees:pistachioitem"
+    },
+    {
+      "block": "pamhc2trees:pamplum",
+      "harvest": "pamhc2trees:plumitem"
+    },
+    {
+      "block": "pamhc2trees:pampomegranate",
+      "harvest": "pamhc2trees:pomegranateitem"
+    },
+    {
+      "block": "pamhc2trees:pamrambutan",
+      "harvest": "pamhc2trees:rambutanitem"
+    },
+    {
+      "block": "pamhc2trees:pamsoursop",
+      "harvest": "pamhc2trees:soursopitem"
+    },
+    {
+      "block": "pamhc2trees:pamspiderweb",
+      "harvest": "minecraft:string"
+    },
+    {
+      "block": "pamhc2trees:pamstarfruit",
+      "harvest": "pamhc2trees:starfruititem"
+    },
+    {
+      "block": "pamhc2trees:pamtamarind",
+      "harvest": "pamhc2trees:tamarinditem"
+    },
+    {
+      "block": "pamhc2trees:pamvanillabean",
+      "harvest": "pamhc2trees:vanillabeanitem"
+    },
+    {
+      "block": "pamhc2trees:pamwalnut",
+      "harvest": "pamhc2trees:walnutitem"
+    }
+  ]
+}

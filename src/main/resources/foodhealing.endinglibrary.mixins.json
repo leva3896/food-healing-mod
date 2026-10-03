@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leva.foodhealing.mixin.endinglibrary",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "foodhealing.refmap.json",
+  "priority": 500,
+  "plugin": "com.leva.foodhealing.compat.endinglibrary.NativeTerminalSitePlugin",
+  "mixins": [
+    "ServerContextHolder",
+    "UseObserver",
+    "CountObserver",
+    "InitialGoalMixin",
+    "NativeTerminalMarker",
+    "MovementBoundary",
+    "VehicleBoundary"
+  ],
+  "client": [
+    "ClientInputBridge"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

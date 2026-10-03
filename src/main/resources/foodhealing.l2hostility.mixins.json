@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leva.foodhealing.mixin.l2hostility",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "foodhealing.refmap.json",
+  "plugin": "com.leva.foodhealing.compat.l2hostility.L2HostilityMixinPlugin",
+  "mixins": ["TargetEffectTraitMixin", "SlotIterateDamageTraitMixin", "EquipmentDamageTraitMixin", "MobTraitCapMixin"],
+  "injectors": {"defaultRequire": 1}
+}
