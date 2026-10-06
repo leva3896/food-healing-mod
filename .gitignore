@@ -37,3 +37,23 @@ tmp_monolith/
 /logs/
 /release/**/*.jar
 *.log
+
+# Private local evidence, launchers, credential stores, and Python bytecode
+/crash-reports/
+/screenshots/
+/verification/
+/runtime/
+/runtimes/
+/.privacy-local/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+.git-credentials
+accounts.json
+credentials.json
+credentials.db
+id_rsa
+id_ed25519
+*.p12
+*.pfx

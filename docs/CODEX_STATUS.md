@@ -89,7 +89,7 @@ v3.xはsource変更と完全仕様書更新を同じ単位で行う。現在要�
 
 | 分類 | 維持する境界 |
 |---|---|
-| 今回の必須残件 | Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。 今回指定のGit CLI経路の前提が未成立。旧API403は履歴。 |
+| 今回の必須残件 | Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。 今回指定のGit CLI経路の前提が未成立。旧API403は履歴。 |
 | 実2-client | **REAL2CLIENT=BLOCKED — SECOND MINECRAFT ACCOUNT REQUIRED**。自動二者/実1-clientで代替しない |
 | TimeStop広域 | **SAFE DESIGN PROVEN=NO / SOURCE DIMENSION TRANSITION VERIFIED=NO / BLOCKED - TIME STOP SOURCE OWNERSHIP**。限定#2完了を戻さない。UOM/P vehicle方針未LOCK |
 | Flight一般化 | GENERIC FLIGHT PROVIDER ATTRIBUTION=NOT AVAILABLE。unknown foreign-after/別版/全組合せ未保証 |
@@ -105,7 +105,7 @@ v3.xはsource変更と完全仕様書更新を同じ単位で行う。現在要�
 
 ### Git CLI publication resume — 2026-10-03 12:44 JST
 
-Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
+Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
 #8 freezeはsrc274とbuild3ファイル差分0、正式Jar372,242 bytes/286 entries/既存SHA-256完全一致、ExampleMod0。staged0/commit0/push0/retry0/HUMAN0。認証には未到達。remote URL/HEAD/現在mainは未確認であり、前回11:20 JSTのmain確認を今回の読戻しに転用しない。既存403は過去履歴として保全。
 **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / FORMAL RELEASE NOT COMPLETE**。
 **次の1作業:** 現在のv3ファイルを保全したまま、このパスを正しい既存Git履歴へ安全に接続する方法の明示承認、または正しい既存checkoutの指定待ち。今回はgit init/clone/fetch/stage/commit/pushを行わず停止。GitHub integration APIへ戻らない。
@@ -794,7 +794,7 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-15 Trial通常Cube実clientの取得準備・最小手順の文書化（未実行）
 
-- 記録日時 **2026-09-15 14:10 JST**、基準Status2026-09-15 13:29。正本 `<LOCAL_PATH>/food-healing-mod-main/docs/CODEX_STATUS.md`。[変更前Status](../build/verification/trial-client-plan-20260915-135500/before/CODEX_STATUS.md) / [変更前共通計画](../build/verification/trial-client-plan-20260915-135500/before/MASTERY_IMPLEMENTATION_PREPARATION.md) / [before manifest](../build/verification/trial-client-plan-20260915-135500/audit/before-manifest.json)。直前までの履歴はbytes保持、全体調査/Status大規模再整理はしない。
+- 記録日時 **2026-09-15 14:10 JST**、基準Status2026-09-15 13:29。正本 `<LOCAL_PATH>/docs/CODEX_STATUS.md`。[変更前Status](../build/verification/trial-client-plan-20260915-135500/before/CODEX_STATUS.md) / [変更前共通計画](../build/verification/trial-client-plan-20260915-135500/before/MASTERY_IMPLEMENTATION_PREPARATION.md) / [before manifest](../build/verification/trial-client-plan-20260915-135500/audit/before-manifest.json)。直前までの履歴はbytes保持、全体調査/Status大規模再整理はしない。
 - **今回の実施**: AGENTS、現行要約、共通計画§8、TestPlan19、購入/取得/通常GUI-toggle/登録packet-sync/provider保存、前回fixtureの該当部分をREAD ONLY照合。補助作成・build・59/49・ゲーム/Prism/server起動・world操作・Security scan・外部downloadは実施せず。今回の文書化は実client PASSではない。
 - **方法**: 製品と別の検証MODで、new run/world/対象UUIDをbindしてprepare1回。正常fresh dataだけを許可し、人工検証credit103→trySpend103→通常浄化/極意Lv1×2・ON、SP0/103。真実/他skillなし。既存setter/trySpend/serialize/sync APIを使い、購入readiness・HP/MAX_HEALTH/Soul/外部flag・pending/schemaを変更しない。PREPARING/PREPAREDの永続receiptで再付与/retryを防ぎ、測定には付与経路を持たせない。通常GUI購入実績ではない。
 - **最小3比較**: 既定Soul0.03、MAX_HEALTH20、HP20、Root/軽減/外部免疫なし、自然回復OFFの新規Survival。通常GUIでA両ON/B親だけOFF/C極意だけOFF、実登録Cube.activate各1回・総3。期待Soulは0→0、0→0.03、0.03→0.06、通常数値3でHP20→17→14→11。native選択を通し、Cubeをworldへ登録せず自然tick再発動なし。自然boss/Cube出現の証拠にはしない。再ONは攻撃せずSoul0.06保持を確認しseal。
@@ -809,7 +809,7 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-15 浄化の極意 × Trial Monolith1.4.9 Damage Cube限定実装・実配布Jar自動統合
 
-- 記録日時 **2026-09-15 13:29 JST**。開始Status2026-09-13 21:06、正本 `<LOCAL_PATH>/food-healing-mod-main/docs/CODEX_STATUS.md`。[変更前Status](../build/verification/trial-monolith-20260915-125400/before/docs/CODEX_STATUS.md)、[変更前計画](../build/verification/trial-monolith-20260915-125400/before/docs/MASTERY_IMPLEMENTATION_PREPARATION.md)、[before manifest](../build/verification/trial-monolith-20260915-125400/audit/before-manifest.json)。`.git`なし、実ファイル比較を使用。下の9/13以前の履歴bytesは保持。
+- 記録日時 **2026-09-15 13:29 JST**。開始Status2026-09-13 21:06、正本 `<LOCAL_PATH>/docs/CODEX_STATUS.md`。[変更前Status](../build/verification/trial-monolith-20260915-125400/before/docs/CODEX_STATUS.md)、[変更前計画](../build/verification/trial-monolith-20260915-125400/before/docs/MASTERY_IMPLEMENTATION_PREPARATION.md)、[before manifest](../build/verification/trial-monolith-20260915-125400/audit/before-manifest.json)。`.git`なし、実ファイル比較を使用。下の9/13以前の履歴bytesは保持。
 - **利用者LOCK**: Q1新規Cube Soul蓄積/実効HP制限/派生強制作用だけを防ぎ、別numeric hurtは通す。Q2通常浄化/極意の両取得・両ONのみ。旧親OFF有効提案は不採用。[正本Q1](COMPATIBILITY_POLICY.md#trial-monolith-149) / [正本Q2](SKILL_TREE_SPEC.md#purification-mastery-activation)。双方の購入停止/SP保護、取得100/500SPを維持。
 - **受領**: TheTrialMonolith-1.20.1-Forge-1.4.9.jar、IDthe_trial_monolith、loader/Implementation1.4.9、263159bytes/240entries、SHA256 `5EFE4C068F24E611C215A0A20FE9698D5C5F7EFC1476C8E5CEAEA78B8CE1A0AD`。[現物metadata/CRC](../build/verification/trial-monolith-20260915-125400/audit/input-artifact.json)。元Jar未提供の停止理由を解除、原物/参照/配置同hash。Curios optional、外部必須MOD/同梱Jarなし。
 - **1.2.8との差・実装**: 1.4.9は高次元かつ外部Soul免疫ならforce(config/10)、それ以外normal(config)。PurificationMasteryController＋optional version plugin＋DamageCube内Redirect2箇所で本人canonicalを判定。数値hurt/motion、helper全体、command/load、他player/mob、Root、共通damage/packetは変更なし。modifyHealth/transformer/Soul値閾値1/10、loadのsetSoulDamageForceを実物再読取。[詳細](MASTERY_IMPLEMENTATION_PREPARATION.md#mastery-trial-route)。
@@ -829,7 +829,7 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-13 両極意の効果実装準備 / 仕様・現行コード・対象artifact・第一単位の整理
 
-- 記録日時: **2026-09-13 21:06 JST**。workspace `<LOCAL_PATH>/food-healing-mod-main`、開始Status **2026-09-13 20:13 JST**と一致。変更前は[完全保全](../build/verification/mastery-preparation-20260913-205500/before/CODEX_STATUS.md)、675,385 bytes / SHA-256 `146E8F2F1BB8F45BEACBFFD3FD12BBC2F3DD384EFFE6C364C81147D98E172F31`。この記録より後の既存履歴はbytesを保持し、過去のFAIL/NOT RUN/実client記録を消していない。
+- 記録日時: **2026-09-13 21:06 JST**。workspace `<LOCAL_PATH>/`、開始Status **2026-09-13 20:13 JST**と一致。変更前は[完全保全](../build/verification/mastery-preparation-20260913-205500/before/CODEX_STATUS.md)、675,385 bytes / SHA-256 `146E8F2F1BB8F45BEACBFFD3FD12BBC2F3DD384EFFE6C364C81147D98E172F31`。この記録より後の既存履歴はbytesを保持し、過去のFAIL/NOT RUN/実client記録を消していない。
 - [共通計画](MASTERY_IMPLEMENTATION_PREPARATION.md)を1ファイル作成。各極意の6列対照表、A確定/B現行/C過去/D提案/E未確定、限定artifact一覧、実在する介入点、第一単位と試験計画を集約。SPEC/Skill Tree/Compatibility Policy/Test Plan/Audit本文を上書きせず、OPEN-02/03のLOCKとIMPLEMENTATION_PENDING/SP保護を維持。
 - [限定配置metadata照合](../build/verification/mastery-preparation-20260913-205500/audit/artifact-inventory.json): libs1、run/mods0、既知参照mods104×2、Downloads直下5 Jar。L2 Hostility/Trial/Hyperlink/Fumetsu本体候補は確認範囲で未発見。PC全体/全cache/原本world走査なし。project直下`tmp_monolith`の参考展開物を確認：**The Trial Monolith / the_trial_monolith / 1.2.8**、必須記載MC `[1.20.1,1.21)`・Forge/loader `[47,)`、entrypointのtconstructはoptional判定あり。[metadata/classの実測hash](../build/verification/mastery-preparation-20260913-205500/audit/monolith-reference-manifest.json)。元Jar hash/来歴・正式対象版は未確認。参考展開物を正式Jarとして起動/再包装しない。
 - `javap`で実classを再読取。DamageCubeのSoul加算→setSoulDamage→閾値1でonSoulDeath/10でonSoulRemoveと別numeric hurtを確認。onSoulDeathは直接HP・death/drop、ServerPlayerのonSoulRemoveは強制respawn。TTMのLOWEST/receiveCanceled death取消解除、Soul値のhealth/dead計算、NBT/SynchedEntityData保存を確認。強制死helperだけのskipやSoulProtection flag借用では仕様を満たせない。**Q1 Soul加算/HP上限低下の防御範囲、Q2 効果時の自身/親toggle**を元Jar不足と分けた。L2のtrait内部は未提供のため架空のAPI/class/marker名を確定していない。
@@ -841,14 +841,14 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-13 最終配布Jar直接ロード / SuperbWarfare GLOCK-17通常射撃の実client限定確認
 
-- 記録日時: **2026-09-13 20:13 JST**。開始checkpointは2026-09-13 19:25 JST、正本 `<LOCAL_PATH>/food-healing-mod-main/docs/CODEX_STATUS.md`。新規証拠root `build/verification/superbwarfare-client-20260913-194701`。[変更前Status](../build/verification/superbwarfare-client-20260913-194701/before/CODEX_STATUS.md)を保全。現在の要約を直接更新し、この節より後の旧履歴本文はbytesを保持した。`.git`なし、git diff実行の主張なし。
+- 記録日時: **2026-09-13 20:13 JST**。開始checkpointは2026-09-13 19:25 JST、正本 `<LOCAL_PATH>/docs/CODEX_STATUS.md`。新規証拠root `build/verification/superbwarfare-client-20260913-194701`。[変更前Status](../build/verification/superbwarfare-client-20260913-194701/before/CODEX_STATUS.md)を保全。現在の要約を直接更新し、この節より後の旧履歴本文はbytesを保持した。`.git`なし、git diff実行の主張なし。
 - **実行範囲・主体**: COMPUTER USEで既存認証済み検証Prismから専用新規instanceを起動、新規flat/survival/cheats ON world作成、準備用通常command、銃/弾取得、R reload、腰だめcrosshairで胴体へ左クリック各1回、data get、GUI/HUD/F2、Save & Quit→title→Quit Game。AUTOMATEDはローカルJar/bytecode・log・通常終了後の保存・hash/process照合のみ。今回HUMAN射撃/食事なし（既存ログインは前フェーズの利用者操作）。dev runClient、performDamage/API、/damage、弾Entity生成、packet手動送信、攻撃fixture、再build/GameTest/別JVM/Security scanなし。
 
 **実物・実ロード環境**
 
 - [配布Jar現物照合](../build/verification/superbwarfare-client-20260913-194701/audit/final-review.json): `build/libs/foodhealing-3.0.0.jar`、**200,558 bytes / 125 entries / SHA-256 DC3663C68A3DC7D76BCC1D1F844CFCD68CF809113FB1AA892BCAE9049D8D10BC**。配置Jarも同hash、mods.toml/Mixin/refmap・CRCを確認、攻撃fixture/GameTest/ExampleMod/外部Jar非混入。再生成・差替えなし。
 - 承認SuperbWarfare原物 `<LOCAL_DOWNLOADS>/superbwarfare-0.8.9.1-hotfix-mc1.20.1-993063bed-all.jar` は **42,162,514 bytes / SHA-256 3AAF4C239BC0FB31F9217927A44D74071D904D1DD03C5308CA3395ECD67D86DC**。loader **0.8.9.1**、Implementation-Version **0.8.9.1-mc1.20.1-993063bed**、hotfixはfilename。原物/配置コピーとも前後hash一致。
-- instance: `<LOCAL_PATH>/food-healing-mod-main/build/verification/direct-jar-20260913-114729/launcher/instances/FHR_SW_Client_20260913_194701`、game directoryはその`minecraft`、worldは`saves/FHR_SW_Client_20260913_194701`。以前のCore/TaCZ worldを再開せず、新規1world・integrated server起動1回。Prism10.0.5、**MC1.20.1 / Forge47.4.0 / Microsoft Java17.0.15 / LWJGL3.3.1 / 1280×800 / GUI2 / 日本語**。前回自動serverのForge47.2.0/Java17.0.7との差を記録。既存承認ローカルruntime/assets/librariesを利用し、新downloadなし。アカウント/token/passwordファイルの読取・コピー・手動編集なし。
+- instance: `<LOCAL_PATH>/build/verification/direct-jar-20260913-114729/launcher/instances/FHR_SW_Client_20260913_194701`、game directoryはその`minecraft`、worldは`saves/FHR_SW_Client_20260913_194701`。以前のCore/TaCZ worldを再開せず、新規1world・integrated server起動1回。Prism10.0.5、**MC1.20.1 / Forge47.4.0 / Microsoft Java17.0.15 / LWJGL3.3.1 / 1280×800 / GUI2 / 日本語**。前回自動serverのForge47.2.0/Java17.0.7との差を記録。既存承認ローカルruntime/assets/librariesを利用し、新downloadなし。アカウント/token/passwordファイルの読取・コピー・手動編集なし。
 - mods直下はFood Healing、承認SuperbWarfare、**Kotlin for Forge4.11.0、Patchouli1.20.1-84-FORGE**の4ファイル。[配置/hash](../build/verification/superbwarfare-client-20260913-194701/audit/preparation.json)、[実load記録](../build/verification/superbwarfare-client-20260913-194701/audit/load-evidence.log)。同梱Jarは通常解決され、**Curios5.14.1+1.20.1 / GeckoLib4.4.6 / SimpleBedrockModel2.5.1-forge-mc1.20.1 / Ponder1.0.91 / Flywheel1.0.5 / Cloth Config11.1.106 / MixinExtras0.3.6**を実load（MC/Forge等を含む13 MOD）。Rhino/mclib/mae/kfflang/kfflibは同梱libraryとして区別。Food Healingのロード元は新instanceのmodsでcontainer1個、旧Jar/dev classes/攻撃fixtureとの二重ロードなし。TaCZなし。
 
 **比較設計と観測**
@@ -879,7 +879,7 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-13 SuperbWarfare実物照合・v3通常弾接続・隔離自動検証完了
 
-- 記録日時: **2026-09-13 19:25 JST**。正本: `<LOCAL_PATH>/food-healing-mod-main/docs/CODEX_STATUS.md`。開始前Statusは2026-09-13 18:21 JST。[変更前の保全](../build/verification/superbwarfare-20260913-190540/before/docs/CODEX_STATUS.md)と[全対象manifest](../build/verification/superbwarfare-20260913-190540/audit/before-manifest.json)、[変更差分](../build/verification/superbwarfare-20260913-190540/audit/changes.diff)あり。`.git`なし。git diffを実行済みとは記録しない。
+- 記録日時: **2026-09-13 19:25 JST**。正本: `<LOCAL_PATH>/docs/CODEX_STATUS.md`。開始前Statusは2026-09-13 18:21 JST。[変更前の保全](../build/verification/superbwarfare-20260913-190540/before/docs/CODEX_STATUS.md)と[全対象manifest](../build/verification/superbwarfare-20260913-190540/audit/before-manifest.json)、[変更差分](../build/verification/superbwarfare-20260913-190540/audit/changes.diff)あり。`.git`なし。git diffを実行済みとは記録しない。
 - 承認範囲: 実物・旧bytecode照合、optional最小接続、fresh disposable server/GameTest、自動検証、Jar再生成・測定、Status更新。実client/Prism/人力操作なし。原本world・過去world・通常MOD構成・product Config・schema/migration変更・外部download・Security scanなし。旧server配下はForge librariesを読取参照しただけで、旧worldは起動していない。
 
 **入力・依存・静的照合**
@@ -921,7 +921,7 @@ run20260920-163342。旧A/B/T限定PASSを維持し、今回A/B/TはC準備の�
 
 ### 2026-09-13 OPEN-02/03取得前提・OPEN-04倍率維持LOCK / 前提実装・自動55/55 / SuperbWarfare接続のみBLOCKED
 
-- **開始・保全**: 正本14:23 JST・実workspace `<LOCAL_PATH>/food-healing-mod-main` を照合。新root `build/verification/open-decisions-20260913-175749/` の `before/` に対象src/docs/ルール/build設定/Jar等122ファイルを保全。[開始manifest](../build/verification/open-decisions-20260913-175749/audit/before-manifest.json)。.gitなし、Git差分の主張なし。原本/過去world・Prism未起動。旧配布Jar **196,761 bytes / 123 entries / 15BE0512CF2602FC399F518BFA919460F26BB4F74EF8DDF4DC5AC589C44300FB**を保存。
+- **開始・保全**: 正本14:23 JST・実workspace `<LOCAL_PATH>/` を照合。新root `build/verification/open-decisions-20260913-175749/` の `before/` に対象src/docs/ルール/build設定/Jar等122ファイルを保全。[開始manifest](../build/verification/open-decisions-20260913-175749/audit/before-manifest.json)。.gitなし、Git差分の主張なし。原本/過去world・Prism未起動。旧配布Jar **196,761 bytes / 123 entries / 15BE0512CF2602FC399F518BFA919460F26BB4F74EF8DDF4DC5AC589C44300FB**を保存。
 - **利用者決定**: OPEN-02/03は取得条件 **RESOLVED / LOCKED**、OPEN-04は旧倍率維持と式 **RESOLVED / LOCKED**。正本はSKILL_TREE_SPEC §9–10・COMPATIBILITY_POLICY §14、SPECは参照で反映。AUDIT_REPORTの現在OPEN索引とCODEX_LOOP_PROMPTの古い未確定記述を必要箇所だけ更新。旧選択の履歴を残し、取得前提のLOCKを効果完成や実統合PASSにしない。
 - **実装範囲**: FoodHealingSkillsの両nodeは既存ID/requiredLv1・cost100/500のdata-drivenリストを維持しopenPrerequisites=false。両極意をIMPLEMENTATION_PENDINGに加え、効果未完成なのにSPだけ消費することを防止。新しいread-only `purchaseStatus` をserver transactionとGUIで共有。未知ID/移行pending/未確定定義（将来用）/stale/max、前提、SP、対応版optional MOD、実装readinessを区別。前提/SPが不足すればその理由、揃っても両極意は未readyで拒否。SP支出は従来trySpendSkillPointsの会計上限保護付きでserverだけが実行し、expectedLevelによる重複防止を維持。packet形式/protocol6/sender・consumerMainThreadは変更なし。
 - **GUIと管理経路**: 費用と前提の既存表示は確定リストを使い、ボタンとtooltipは共有判定を使用。PurchaseSkillPacketの返答とen/ja翻訳を前提不足/SP不足/効果・Adapter未ready/対応TaCZ1.1.7-hotfix2不足等へ分離。旧OPEN判断待ちを両極意の購入不可理由にしない。既存管理commandはSP準備・詳細・toggleで、購入/強制skill付与経路は追加しない。未取得の両極意を詳細/toggleで取得させないことを登録command経由で確認。効果時の親依存・toggle規則、schema/migration/保存形式は変更なし。
@@ -1587,7 +1587,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 #### 2026-09-08 人間Microsoft認証完了・認証後pre-flight
 
-- 利用者の通常Microsoft認証完了報告を受領。対象は`<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`のみ。Codexはメイン画面の`<MINECRAFT_ACCOUNT>`表示に加え、既存アカウント一覧の**ユーザー名Leva9846 / タイプMSA / 状態準備完了**を実GUI/accessibilityで照合し、**HUMAN MSA AUTHENTICATION / <MINECRAFT_ACCOUNT> / PASS**と判定した。閲覧後は設定を変更せずEscapeでメイン画面へ戻した。Microsoft/Offlineアカウント追加、再読み込み、デフォルト切替、再認証、更新、instance起動は操作していない。
+- 利用者の通常Microsoft認証完了報告を受領。対象は`<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`のみ。Codexはメイン画面の`<MINECRAFT_ACCOUNT>`表示に加え、既存アカウント一覧の**ユーザー名Leva9846 / タイプMSA / 状態準備完了**を実GUI/accessibilityで照合し、**HUMAN MSA AUTHENTICATION / <MINECRAFT_ACCOUNT> / PASS**と判定した。閲覧後は設定を変更せずEscapeでメイン画面へ戻した。Microsoft/Offlineアカウント追加、再読み込み、デフォルト切替、再認証、更新、instance起動は操作していない。
 - 原本保全: 認証直前`control-reopen-20260908-103027-confirm.json`と認証後`control-post-msa-20260908-104351.json`を直接比較。元instance13,351 / sharedMeta31 / sharedCache4,384 / sharedLibraries453 / sharedAssets12,049 filesは、追加・削除・SHA-256・size・mtime(ns)変更0。元shared `metacache`も不変。結果は`post-msa-20260908-104351-approved-baseline-comparison.json`の全group差分0と`authorizedLauncherConfigUnchanged=true`で記録した。
 - 原本3metadataを10:47:19 JSTに再取得し、以下の値を維持した。元launcher直下cfgの9/7既存mtime差分は利用者承認済み新baselineに対する照合であり、過去の差分原因解明・無害判定・restoreを意味しない。
 
@@ -1610,7 +1610,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 #### 2026-09-08 セットアップ完了後の原本保全再確認・認証前待機
 
 - 利用者から隔離Prismクイックセットアップの「完了」操作、検証instance1件、未認証・Minecraft未起動・更新未実施の報告を受領。Codexも対象processのメイン画面を読み取り確認し、`FHR Source Current Wrapper Control 20260906 195153`だけが一覧に存在し、元`1.20.1`および他instanceがないことを実GUI/accessibilityで確認した。右上は「アカウント」、総プレイ時間は0秒。認証操作・instance選択/起動・更新操作は行わない。
-- **ISOLATED PRISM REOPEN / PREFLIGHT PASS / WAITING FOR HUMAN MSA AUTHENTICATION**。対象は既存の`<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`のみ。10:35:17 JSTのprocess確認で隔離Prism PID26340（10:23:55起動）のみ継続、元Prismなし、Java/javaw 0件。隔離Prismは終了せずメイン画面のまま人間操作待ちにする。
+- **ISOLATED PRISM REOPEN / PREFLIGHT PASS / WAITING FOR HUMAN MSA AUTHENTICATION**。対象は既存の`<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`のみ。10:35:17 JSTのprocess確認で隔離Prism PID26340（10:23:55起動）のみ継続、元Prismなし、Java/javaw 0件。隔離Prismは終了せずメイン画面のまま人間操作待ちにする。
 - 原本照合は同audit rootの`control-reopen-20260908-102215-before.json`対`control-reopen-20260908-103027-confirm.json`で実施。元instance13,351 / sharedMeta31 / sharedCache4,384 / sharedLibraries453 / sharedAssets12,049 filesの集合・SHA-256・size・mtime(ns)は追加変更0。元shared `metacache`も不変。元`instance.cfg`と`mmc-pack.json`のhash/size/mtimeは直前フェーズ記載値を維持する。
 - 元launcher直下`prismlauncher.cfg`は承認済み`reopen-20260908-102215-authorized-baseline.json`と一致: SHA `E124B846B8CB91E936A7E8C1A01BD39FC481B834582B83F485295F3CE272F54A` / 4655 bytes / mtime **2026-09-07 17:57:47.3770247 JST**。今回再起動・セットアップ完了後の追加mtime更新も0。9/6 baselineからの既存mtime差分は比較履歴に残り、原因解明済み・無害・復元済みとはしない。他の保護baselineは変更しない。
 - 10:34:38 JST開始の保全監査でも、元world181 / pristine181 / 前回boot186 files、元ZIP、runtime source16,750 files、元mods/config/defaultconfigs/resourcepacks、前回boot logs、v3 Jarは不変。元ZIP SHA `B83E28255F90BEB356253AB60A5B12D9C8DBFB5E631C12309C38962A62AC5C7B`を維持。検証instance1件・104 top-level MOD Jar hash一致・world持込0。world/NBTのコピー・編集・起動はしていない。
@@ -1633,7 +1633,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 | size | 4655 bytes |
 | mtime | 2026-09-07 17:57:47.3770247 JST / epoch ns `1788771467377024700` |
 
-- 起動対象は`<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`だけ。通常起動で**PID26340 / 開始10:23:55.9877836 JST / Prism 10.0.5**を確認。元Prism/元instanceは起動・終了・再表示・操作していない。更新、認証、Minecraft起動、MOD変更、proxy/Firewall変更はしていない。
+- 起動対象は`<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`だけ。通常起動で**PID26340 / 開始10:23:55.9877836 JST / Prism 10.0.5**を確認。元Prism/元instanceは起動・終了・再表示・操作していない。更新、認証、Minecraft起動、MOD変更、proxy/Firewall変更はしていない。
 - 起動した隔離Prismは、メイン画面の前に**「Microsoftアカウントを追加」クイックセットアップ画面を再表示**した。実画面とaccessibilityで「Microsoftアカウントを追加する」「完了」を確認したが、認証画面の操作は代行せず、人間へ**アカウント追加をせず「完了」だけを押す**よう引き継いだ。これはMinecraftクラッシュやMOD不具合の検出ではなく、メイン一覧がまだ表示されていない状態。設定を変更して画面を回避したり、アカウントを追加したりしない。
 - 起動前後の保全を、今回直前snapshot `control-reopen-20260908-102215-before.json`と`...-after.json`で直接比較。元instance13,351 / sharedMeta31 / sharedCache4,384 / sharedLibraries453 / sharedAssets12,049 filesは追加・削除・hash/size/mtime変更0。元shared `metacache`および**新baseline化した元`prismlauncher.cfg`もhash/size/mtime追加変更0**。比較結果は`reopen-20260908-102215-approved-baseline-comparison.json`。旧baselineとの差分表示には承認済みmtime差分が残り、それを削除・隠していない。
 - 元`instances/1.20.1/instance.cfg`はSHA `F7CE76548CA5A7535BDB51C3031BD69BD6120661F4CFD07F09CCAEABC64B2DEF` / 2677 bytes / mtime9/6 20:01:29.8709466 JST、`mmc-pack.json`はSHA `313DCBAB3CA09A22498DD5AE92F0E9E5BA4E670A3ECCA57BD531704F112EEBC3` / 945 bytes / mtime9/6 20:01:34.9006503 JSTのまま。元world181 / pristine181 / 前回boot186 files、元ZIP（SHA `B83E28255F90BEB356253AB60A5B12D9C8DBFB5E631C12309C38962A62AC5C7B`）、runtime source16,750files、元mods/config/defaultconfigs/resourcepacks、過去boot log、v3 Jarも不変。world持込・起動・NBT編集なし。
@@ -1666,7 +1666,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 #### 2026-09-06 本日の終了checkpoint・隔離Prism通常終了
 
 - 利用者の終了指示により、**ISOLATION PRE-FLIGHT = PASS**を本日の最終checkpointとして維持し、Microsoft認証・Minecraft起動・WORLDLESS SMOKEを行わず終了処理だけを実施した。既存PASSの範囲を拡張せず、元metadata書込検出等の過去履歴も保持する。
-- 終了対象は`<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`（PID37424）だけ。実行pathと検証instance1件のメイン画面を再確認して、通常のウィンドウ終了操作`Alt+F4`を送った。強制kill/API停止は使用していない。**21:43:19 JSTにread-only process waitで終了を確認**。数値exit codeは取得結果nullのため、exit0とは断定しない。
+- 終了対象は`<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher\prismlauncher.exe`（PID37424）だけ。実行pathと検証instance1件のメイン画面を再確認して、通常のウィンドウ終了操作`Alt+F4`を送った。強制kill/API停止は使用していない。**21:43:19 JSTにread-only process waitで終了を確認**。数値exit codeは取得結果nullのため、exit0とは断定しない。
 - **21:43:45 JST: isolated Prism processなし / Java・javaw 0件**。元Prism PID35948は開始20:01:29のまま生存し、元launcher・元instanceへの操作、終了、再起動、restore/editはしていない。証拠は同audit rootの`launcher-normal-shutdown.json`、`process-day-close.json`。process command lineや認証秘密情報は取得していない。
 - 終了後、元metadataは今回開始前baselineと次の値がすべて一致した。byte/hashだけでなくsize・mtime(ns)も不変。これは前回別フェーズのmetadata変更を修復・取消した意味ではない。
 
@@ -1688,7 +1688,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 #### 2026-09-06 隔離Prismメイン画面pre-flight完了・人間MSA認証待ち
 
 - **ISOLATION PRE-FLIGHT / PASS**。利用者から、新しい隔離Prismの初期設定「完了」を押し、検証instance1件だけが表示されたとの報告を受領。Minecraft未起動・Microsoftアカウント未追加・Prism更新未実施という報告と分離して、Codexも隔離processの実メイン画面を読み取り確認した。認証操作・起動・設定変更は行っていない。
-- 対象rootは`<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher`。PID37424、開始21:19:24、当該rootの`prismlauncher.exe`、file/product version10.0.5.0を確認。GUI一覧には`FHR Source Current Wrapper Control 20260906 195153`の1項目のみ、元`1.20.1`や他instanceは表示されない。総プレイ時間0秒。右上はアカウント名ではなく「アカウント」表示で、今回の`<MINECRAFT_ACCOUNT> / MSA`確認はまだ行っていない。ニュース欄のRelease 11.1.0表示を更新適用とは扱わず、更新ボタンも押していない。
+- 対象rootは`<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher`。PID37424、開始21:19:24、当該rootの`prismlauncher.exe`、file/product version10.0.5.0を確認。GUI一覧には`FHR Source Current Wrapper Control 20260906 195153`の1項目のみ、元`1.20.1`や他instanceは表示されない。総プレイ時間0秒。右上はアカウント名ではなく「アカウント」表示で、今回の`<MINECRAFT_ACCOUNT> / MSA`確認はまだ行っていない。ニュース欄のRelease 11.1.0表示を更新適用とは扱わず、更新ボタンも押していない。
 - 新rootのinstance directoryも`FHR_Source_CurrentWrapper_20260906_195153`1件のみ。MC1.20.1 / Forge47.4.0 / LWJGL3.3.1の通常component、JavaPathは新root内Microsoft Java17.0.15のコピーを参照し、追加JVM引数は空のまま。104 top-level MOD Jarすべてコピー計画のhashと一致、world/saves/region/playerdata/level.dat/session.lock持込なし。Food Healing2.2.5とcurrent Wrapperの準備済みartifactは前項の値を維持するが、**実使用Wrapper・runtime116 ID/version・main menu・Minecraft ERROR/FATAL/Mixin/dependencyは未観測/NOT RUN**。
 - 原本metadata再照合は次のとおりで、**byteだけでなくsize・mtime(ns)も開始前と完全一致**。前回別フェーズのmetadata書込や過去の未解明差分をrestore/修正済みとはしない。
 
@@ -1708,7 +1708,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 #### 2026-09-06 完全隔離portable Prismの準備・初期設定待ち
 
-- 最新添付依頼`<LOCAL_PATH>/pasted-text.txt`の条件付き承認により、監査root `build/verification/isolated-prism-control-20260906-211429`、**isolated Prism root `<LOCAL_PATH>/food-healing-mod-main\build\verification\isolated-prism-control-20260906-211429\launcher`**を新規作成した。今回の許可はcurrent-wrapper/worldless controlだけ。world/full boot/v3 migrationは実行していない。
+- 最新添付依頼`<LOCAL_PATH>/pasted-text.txt`の条件付き承認により、監査root `build/verification/isolated-prism-control-20260906-211429`、**isolated Prism root `<LOCAL_PATH>/build\verification\isolated-prism-control-20260906-211429\launcher`**を新規作成した。今回の許可はcurrent-wrapper/worldless controlだけ。world/full boot/v3 migrationは実行していない。
 - 隔離方法は既存local Prism 10.0.5 executable/supportのportableコピー。元配布物の`portable.txt`には、同fileが実行ファイルのrootに存在するとデータをそのrootへ保存する旨の説明がある。`--dir`はlocal binaryにapplication root指定の説明があるものの、共有process/保存先を含む隔離をそれだけでは確証できず、許可されたportable方式を選択。元Prismのexe再起動・再表示・終了・UI操作はしていない。新process PID37424の実行pathと新root内の初期生成fileを確認した。
 - コピー元instanceは前回作成済み未起動`FHR_Source_CurrentWrapper_20260906_195153`のみ。元`instances/1.20.1`、元instance.cfg/mmc-pack.json、旧instances一覧、元launcher cfg/metacache/account store、world/ZIP/pristine/boot worldはコピーしていない。新root内instanceディレクトリは1件のみ。コピー先の`instance.cfg`のJavaPathだけを新rootの`runtime/java/bin/javaw.exe`へ変更し、元/前回instanceには書き戻していない。custom componentなし、historical Wrapper強制なし。
 - local distribution manifestとMC1.20.1/Forge47.4.0/LWJGL3.3.1の標準component metadata、Forge installerのlibrary宣言、MC asset index5から必要ファイルを選別。**4,702 files / 1,449,257,629 bytesをコピーしSHA-256一致、必要local artifact不足0**。MOD/cache一括流用やMODのdownload/update/replaceは行っていない。prepared instanceのsource snapshotに一致する924filesと新規cfg/packを含み、104 top-level MOD Jarはすべて一致。world持込0、Minecraft logs/crash-reports生成なし。詳細hashは`isolated-copy-plan.json`、完了記録は`copy-completed.json`。
@@ -1937,7 +1937,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 - **総合判定: REAL V2.2.5 WORLD COPY / FULL BOOT ATTEMPTED / STOPPED - WORLD LOAD ERROR REVIEW REQUIRED / NOT PASS**。world選択・ロード・integrated server起動・player spawn・chunk/world表示には到達。停止条件となる新規logを検出したため、ゲームプレイ/修復/再試行はせず、ESC→セーブしてタイトルへ戻る→Minecraftの「終了」で終了した。world描画成立やexit0を根拠にエラーを無害扱いしない。
 - 使用環境は前回smokeと同じMC1.20.1 / Forge47.4.0 / Microsoft Java17.0.15+6-LTS / ForgeWrapper `prism-2025-12-07` / Food Healing2.2.5。起動log対source LoadingModListは**116 ID/version一致・差分0**、104 top-level MOD Jar。現在hashは前回表および本rootの`audit/runtime-manifest.json`と同一で、Food Healing2.2.5 SHAは`5BAC83E55419D96849823D7A7BB0933E01600564E13739992E43782C925A6A8C`。version変更、MOD削除/置換/download、Forge downgrade、v3差し替えなし。歴史的全Jar byte同一性は引き続き未証明。
-- 今回の独立rootは`<LOCAL_PATH>/food-healing-mod-main\build\verification\source-world-boot-20260906-172148`。起動したworldは`game/saves/圧倒的物量で大都市を作るMinecraft`だけ。`pristine-world/圧倒的物量で大都市を作るMinecraft`は一度も起動せず、今後の承認された試験用に保持する。原本/ZIP→pristine→bootの開始前manifestと、終了後manifestを別fileで保存した。
+- 今回の独立rootは`<LOCAL_PATH>/build\verification\source-world-boot-20260906-172148`。起動したworldは`game/saves/圧倒的物量で大都市を作るMinecraft`だけ。`pristine-world/圧倒的物量で大都市を作るMinecraft`は一度も起動せず、今後の承認された試験用に保持する。原本/ZIP→pristine→bootの開始前manifestと、終了後manifestを別fileで保存した。
 
 ##### 起動・保存・終了の観測範囲
 
@@ -1978,7 +1978,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 #### 2026-09-06 実v2.2.5 full boot用の原本保護・独立環境準備
 
-- root: `<LOCAL_PATH>/food-healing-mod-main\build\verification\source-world-boot-20260906-172148`。`pristine-world/圧倒的物量で大都市を作るMinecraft`を保全用、`game/saves/圧倒的物量で大都市を作るMinecraft`を起動・保存用として分離した。runtime/pristine/bootはいずれも新規の実copyで、原本を参照するlink/junctionを使用しない。
+- root: `<LOCAL_PATH>/build\verification\source-world-boot-20260906-172148`。`pristine-world/圧倒的物量で大都市を作るMinecraft`を保全用、`game/saves/圧倒的物量で大都市を作るMinecraft`を起動・保存用として分離した。runtime/pristine/bootはいずれも新規の実copyで、原本を参照するlink/junctionを使用しない。
 - 開始前の元world全181 filesのhash/size/mtime/file集合、元ZIPのhash/size/mtimeを`audit/original-before.json`へ記録。ZIP全fileと元worldがSHA-256一致することを確認後、元world→pristine→bootの順でcopyし、`pristine-before.json`/`boot-before.json`へmanifestを保存。pristineとbootの初期値は元worldと完全一致。
 - `audit/capability-before.json`: level.dat内Playerと既存playerdataのFood Healing NBTを読み取りのみで確認。両方ともShokugi Lv2/EatCount35/DisabledSkills空、Food Diversity All28/Current3/MaxHealthBonus10。tag型と食品ID集合も保存し、起動後比較の基準にする。NBT編集/再シリアライズは行っていない。
 - 前回copy-manifestのsourceを現在hash再照合して16,750 filesを新規runtimeへcopy。MC1.20.1、Forge47.4.0、Microsoft17.0.15、Wrapper`prism-2025-12-07`、104 top-level Jar/source116 ID、Food Healing2.2.5を維持。MOD version変更・download・削除なし。旧world固有datapack/serverconfig/外部保存dataもworld全体copyに含めており、safe modeで省略しない。
@@ -1990,7 +1990,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 - **判定: SOURCE V2.2.5 RUNTIME REPRODUCTION / SMOKE PASS WITH RECORDED BASELINE ERRORS**。利用者承認のworldなし起動だけを実施。main menuにMinecraft1.20.1 / Forge47.4.0 / 116 MOD読込の表示を画面で確認し、world一覧・Singleplayer・Multiplayerへ入らず「終了」を押した。GUI/ゲーム内効果のMANUAL PASSではなく、Codexによるsource起動smokeの結果。
 - 環境: Microsoft Java17.0.15+6-LTS、LWJGL3.3.1、ForgeWrapper`prism-2025-12-07`。旧`PrismLauncher-3.log:265`のclasspathが対応根拠。現Wrapperへ代用せず、元Prismを起動/編集せず直接旧Wrapper mainから起動。現GPU/driver等まで保存当日と完全再現した主張はしない。
 - MOD構成: 元instance由来**104 top-level Jar**。両試行の起動logがsource LoadingModListに対して**116 ID/version一致 / 0不足・不一致 / 0追加ID**。Food Healingは`2.2.5`、Pam Extendedは元環境同様に`0.0NONE`でロードされた。これはmetadata/runtime対応であり、**EXACT HISTORICAL BYTE REPRODUCTIONではない**。MODを削除・置換・更新せず、v3 Jarを入れていない。
-- 隔離root: `<LOCAL_PATH>/food-healing-mod-main\build\verification\source-runtime-20260906-165001`。初回`game`と再実行`game-visible`を分離。再実行側も元のgame関連fileをsource hash照合後に新規copyし、初回のlog/config履歴を上書きしていない。Java/libraries/assetsは同root内の同じlocal copyを使用。どちらにもworld/NBTを持ち込まず、`level.dat`/region/session.lock/保存worldは0件、integrated server開始logも0件。
+- 隔離root: `<LOCAL_PATH>/build\verification\source-runtime-20260906-165001`。初回`game`と再実行`game-visible`を分離。再実行側も元のgame関連fileをsource hash照合後に新規copyし、初回のlog/config履歴を上書きしていない。Java/libraries/assetsは同root内の同じlocal copyを使用。どちらにもworld/NBTを持ち込まず、`level.dat`/region/session.lock/保存worldは0件、integrated server開始logも0件。
 
 ##### 起動・終了履歴
 
@@ -2188,7 +2188,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 #### 2026-09-05 実1-client dedicated / STEP 6専用server正常終了・client終了待ち
 
 - **STEP 6 / SERVER NORMAL SHUTDOWN VERIFIED / CLIENT EXIT + FINAL CLIENT LOG REVIEW PENDING**。人間から正常切断・Minecraftがサーバー一覧画面・再接続なしの報告と終了続行指示を受領。専用server logで**18:30:03.171〜172 JST**の`Disconnected` / `left the game`、consoleの`list`で**18:31:34.168**に接続0/1名を確認した。
-- 対象は`<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051\server`の既存console session94552のみ。**18:31:39.068**に通常`stop`を1回送り、**18:31:39.119**の`Saving players` / `Saving worlds`、overworld/nether/endの保存、**18:31:39.876**の各`All chunks are saved`と`All dimensions are saved`を確認。強制終了・kill・再起動は行っていない。
+- 対象は`<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051\server`の既存console session94552のみ。**18:31:39.068**に通常`stop`を1回送り、**18:31:39.119**の`Saving players` / `Saving worlds`、overworld/nether/endの保存、**18:31:39.876**の各`All chunks are saved`と`All dimensions are saved`を確認。強制終了・kill・再起動は行っていない。
 - console session94552は**終了コード0**で完了。**18:31:55 JST**のprocess確認でserver PID28580は存在しない。通常配布Forge serverの終了結果であり、Gradleの`BUILD SUCCESSFUL`とは表記しない。今回build/unit/check/GameTest/runClient/runServerの再実行なし。
 - 保存ファイルの読取確認: 専用worldの`level.dat`は18:31:39.870更新、対象UUIDのplayerdata `.dat`は正常切断時の18:30:03.174更新。通常保存のログ・ファイル存在/更新時刻を確認したもので、NBT直接編集やworld再起動による再検証はしていない。worldとログは保存したまま維持する。
 - server終了時log確認 **18:32:33 JST**: `latest.log`の184〜197行、`debug.log`の1018〜1034行（今回の18:30:03切断から末尾まで）を確認。新規ERROR/FATAL、network/sync/capability例外、Mixin失敗を検出しなかった。debug末尾は18:31:39.887のserver config unloadで、終了時エラーではない。
@@ -2304,7 +2304,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 #### 2026-09-05 実1-client dedicated / 試験用worldの安全確保
 
 - **TEST ENVIRONMENT PREPARATION / COMPLETE（Food Healing機能のPASSではない）**: 実1-client dedicated試験用worldの安全確保として、昼/晴れ固定、自然湧き停止、既存hostile除去用の一時Peaceful後Normal復帰を実施した。STEP 1のGUI/SP同期は未確認のままで、既存PARTIAL PASSを昇格しない。
-- 対象は既存console session94552が接続する`<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051\server`の新規`world`だけ。稼働server/clientを再起動・切断せず、consoleの`list`で操作前後ともLeva9846の1/1接続を確認した。`run/saves`、人間用world、他verification world、Prismの他worldへ操作していない。
+- 対象は既存console session94552が接続する`<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051\server`の新規`world`だけ。稼働server/clientを再起動・切断せず、consoleの`list`で操作前後ともLeva9846の1/1接続を確認した。`run/saves`、人間用world、他verification world、Prismの他worldへ操作していない。
 - 事前確認14:59:13: difficulty Normal、`naturalRegeneration=false`、`doMobSpawning=false`。同じForge47.2.0/MC1.20.1のローカルsourceで、PlayerのPeaceful時HP/満腹度回復がnaturalRegenerationを条件とすることを確認。この既存falseは変更していない。`data get entity`の読取でFood Healingを含むForgeCaps全体とHealth/foodLevel/foodSaturationLevel/foodExhaustionLevel/Inventoryを記録し、データ書換えはしていない。
 - 15:00:10 console操作: `time set day`（1000）、`gamerule doDaylightCycle false`、`weather clear`、`gamerule doWeatherCycle false`。`doMobSpawning`は既にfalseのため設定し直さずqueryで維持を確認した。
 - 一時Peaceful: **15:00:10.822 → 15:00:13.921、gametime55320 → 55382（62 server ticks）**。その間、vanillaのPeaceful despawn処理でtick対象の既存hostileを掃除する時間を確保した。個体数の全world調査や未読込chunkの強制loadは行っていない。`finally`経路で`difficulty normal`を送り、直後の`difficulty`queryでも**Normal**を確認。Peacefulは準備中だけで、正式試験difficultyはNormalのまま。
@@ -2333,7 +2333,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 - 利用者から再接続準備完了、server/clientを維持し設定変更・再起動なしとの報告を受領。14:45 JSTにserver PID28580（14:13:39開始）、Prism client PID23360（14:24:11開始）、IPv4 `127.0.0.1:25575` LISTENを再確認。同一Java実体と開始時刻を採取前にも検証する。
 - 状態は引き続き**MANUAL SINGLE-CLIENT DEDICATED INTEGRATION TEST / STEP 1 / CONNECTION FAILED - TIMEOUT / INVESTIGATING**。先行接続は分類C、原因未特定。今回の準備成功は接続・認証・ゲーム内操作のPASSではない。
-- 採取専用directory: `<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051\diagnostic-reconnect-20260905-1445`。同directoryだけに一時診断`observe.ps1`と生成記録を置いた。Java/Mixin/network実装・build設定・Config・既存テスト・仕様は変更していない。
+- 採取専用directory: `<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051\diagnostic-reconnect-20260905-1445`。同directoryだけに一時診断`observe.ps1`と生成記録を置いた。Java/Mixin/network実装・build設定・Config・既存テスト・仕様は変更していない。
 - **DIAGNOSTIC ARMED**: 非表示の採取helper PID26656、14:47:44開始。接続待ち期限は**2026-09-05 14:57:44 JST**。次の1回の接続ログまたは25575のEstablished socketを検出すると45秒間採取し、helperだけを終了する。期限内に接続がなければ`EXPIRED / NO CONNECTION OBSERVED`で終了し、ゲーム試験FAIL/PASSへ置き換えない。Minecraftの停止・再起動・自動接続は行わない。
 - 採取範囲: 両側latest/debugの開始時EOF以降だけ（読取共有で追記を監視）、対象portのTCP状態を約1秒間隔、接続検出付近/約10秒/約20秒のJDK17 `Thread.print`を各server/client最大3回。jcmdは低頻度の診断attachであり、無負荷・完全無干渉とは扱わず、実採取時刻と終了結果を残す。個別jcmdが8秒を超えた場合も停止対象は新規jcmd helperだけで、Minecraft PIDや子processを停止しない。
 - 生成物は`events.jsonl`、`state.json`、`server-threads-1..3.txt`、`client-threads-1..3.txt`、helper stdout/stderr。認証token・account保存データ・全起動引数・packet payloadは収集しない。ログ内のcredentialらしい行は採取記録から除外する。Firewall/router/online-mode/server-ip/portへの操作、TCP接続probeはなし。
@@ -2345,7 +2345,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 - 判定: **MANUAL SINGLE-CLIENT DEDICATED INTEGRATION TEST / STEP 1 / CONNECTION FAILED - TIMEOUT / INVESTIGATING**。人間から、正規MSA認証Prism client（MC1.20.1 / Forge47.2.0 / Java17.0.7 / Food Healing3.0.0のみ）でDirect Connect `127.0.0.1:25575`が「サーバーへの接続に失敗しました / タイムアウトしました」となった報告を受領。clientは起動済みであり、先行SERVER READY時点の「client未起動」は過去の状態として残す。認証成功・GUI同期・後続STEPはPASSにしない。
 - process/socket確認: 14:34および14:40 JSTにserver **PID28580**（14:13:39開始）が生存。client **PID23360**（14:24:11開始）も生存。OSのTCP照会で**LISTEN / LocalAddress 127.0.0.1 / LocalPort25575 / PID28580**、IPv4 loopbackの待受を確認した。25575のIPv6待受なし、最終snapshotには接続中socketなし。listenerのRemoteAddress `0.0.0.0:0`は公開bindを意味せず、LocalAddressは127.0.0.1。権限付き読み取り照会を使用し、接続probe・server consoleへの操作は行っていない。
-- server log: `<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051\server\logs\latest.log`と`debug.log`。debugの**14:32:04.444**に`Netty Server IO #1 / FMLHANDSHAKE: Starting new modded impl connection. Found 22 messages to dispatch.`、**14:32:34.326**に`ServerLoginPacketListenerImpl`が`<MINECRAFT_ACCOUNT> / 127.0.0.1:57970 / lost connection: Disconnected`を記録。latestにも後者がある。専用の`connection accepted`行はないが、これらで今回のTCP/初期login到達を確認できる。14:34の定期world保存も続いている。
+- server log: `<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051\server\logs\latest.log`と`debug.log`。debugの**14:32:04.444**に`Netty Server IO #1 / FMLHANDSHAKE: Starting new modded impl connection. Found 22 messages to dispatch.`、**14:32:34.326**に`ServerLoginPacketListenerImpl`が`<MINECRAFT_ACCOUNT> / 127.0.0.1:57970 / lost connection: Disconnected`を記録。latestにも後者がある。専用の`connection accepted`行はないが、これらで今回のTCP/初期login到達を確認できる。14:34の定期world保存も続いている。
 - client log実在path: `<LOCAL_DOWNLOADS>\PrismLauncher-Windows-MinGW-w64-Portable-9.1\instances\Food Healing RPG v3 Dedicated Test\minecraft\logs\latest.log`および`debug.log`。**05:32:03.979**に`Connecting to 127.0.0.1, 25575`、debugの**05:32:04.170**にIPv4認識、**05:32:04.286**に`Netty Client IO #0 / FMLHANDSHAKE: Starting new vanilla impl connection.`。client記録はserver/JSTより9時間前の表示で、同じ接続試行として対応づけた。clientのこの初期化行だけでvanilla client/Forge未導入とは判断しない（起動logにForge47.2.0とFood Healingの初期化あり）。
 - 到達段階: serverの22メッセージはdispatch準備の記録で、全件交換完了ではない。認証完了/UUID確定、Forge MOD一覧交換完了、channel照合完了、player joinは確認できない。server切断時のprofile `id=<null>`だけでMSA不正・未所有・認証失敗とは断定しない。約30秒の経過と人間のTIMEOUT表示は一致するが、client log自体に明示的なtimeout例外は出ていない。
 - エラー照合: 両側latest/debugでERROR/FATAL、connection refused、明示的認証失敗、channel/version mismatch、network/Mixin例外は確認されなかった。serverの`Disconnected`以外に原因を示す接続失敗stack traceなし。起動時の`.mixin.out`清掃DEBUGは両側にあり、先行監査のexporter IOException捕捉と同種の記録として残す。clientには既知test foodモデル欠損・shader/sound等の起動warningもあるが、今回の接続原因とは断定せず変更しない。
@@ -2361,7 +2361,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 - AGENTS、最新Status、正本SINGLE_CLIENT_DEDICATED_MANUAL_TEST、TEST_PLAN、build.gradle/run構成・成果物を再確認。通常Gradle `runServer`は`run`を使い、既存restart opt-inはfixture/自動停止を伴うため使用しなかった。**build.gradle変更なし**で公式Forgeの独立した通常配布serverを新規専用rootに準備した。
 - 実在を確認したPrism instance管理directory: `<LOCAL_DOWNLOADS>\PrismLauncher-Windows-MinGW-w64-Portable-9.1\instances\Food Healing RPG v3 Dedicated Test`。Minecraft実行directoryはその中の`minecraft`。`instance.cfg`のnameと`mmc-pack.json`によりMinecraft 1.20.1 / Forge 47.2.0を確認。JavaPathは`<LOCAL_PATH>/Program Files/Eclipse Adoptium/jdk-17.0.7.7-hotspot/bin/javaw.exe`、`OverrideJavaLocation=true`。Prism共通設定ではなくinstance固有のJava 17設定を確認した。
 - Prismの`minecraft/mods`は`foodhealing-3.0.0.jar`1個のみ（236,977 bytes）。coremods/resourcepacks/shaderpacks/texturepacks/savesは空。instanceの作成・rename・clone・設定変更・Jar置換・起動・world作成はしていない。他instanceには変更なし。
-- 新規専用root: **`<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051`**。server working directory: **同rootの`server`**。未使用rootを作成し、その`server/world`だけを新規生成。`run/world`、`run/saves`、人間用FHR_v3_Manual_20260905、Prism world、他verification worldは使用・コピー・変更していない。既定`run/world/level.dat`は08:38:58のまま。
+- 新規専用root: **`<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051`**。server working directory: **同rootの`server`**。未使用rootを作成し、その`server/world`だけを新規生成。`run/world`、`run/saves`、人間用FHR_v3_Manual_20260905、Prism world、他verification worldは使用・コピー・変更していない。既定`run/world/level.dat`は08:38:58のまま。
 - Forge入手元: [Forge公式Minecraft 1.20.1配布一覧](http<LOCAL_PATH>/files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html)で指定47.2.0を確認し、公式Mavenのinstallerを専用rootに取得。公開SHA-1 `ded43dd18b3a1dd5098b114c28432224d72bd9f7`と一致。installer SHA-256は`BC2A0F7B161A2D8284DF3D603F7F2B22313B246F026AD77511CBD35BCD01CAAC`。`--help`確認後、Java 17で`--installServer .`を専用server内から実行し、通常runtime準備成功・exit0。installerが選んだForge/Mojang依存はchecksum検証付きで当該server内だけに配置。外部MODは追加せず、配布成果物へ同梱しない。installer logは`server/forge-1.20.1-47.2.0-installer.jar.log`。
 - 元成果物・serverの`mods/foodhealing-3.0.0.jar`・Prismの同名Jarは3者ともSHA-256 **`0ED44141581547511787E7562A555D46C9047D52B6FEF6DD338F49AC3A2F9E93`**。Statusの最新hashとも一致。Jar内metadataとserver実読込logでFood Healing RPG 3.0.0を確認した。古いJarへの巻戻し・再buildはしていない。
 - 起動: Java実体`<LOCAL_PATH>/Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin\java.exe`へ`@user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.2.0/win_args.txt nogui`を渡した。Forge installer生成の正規引数（`--launchTarget forgeserver`）を使用。専用JVM memoryはXms1G/Xmx3G。dev/restart/TaCZ fixture・自動player生成・自動停止なし、追加MODはFood Healingだけ。
@@ -2394,7 +2394,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 - 利用者の正規Minecraft Java Editionアカウントは1つのみで、2つ目は用意できない。実2-clientは**BLOCKED - SECOND MINECRAFT ACCOUNT REQUIRED**へ変更し、未確認を維持する。先行Legacy phase 4/5の「2つの正規アカウントで開始可能」は当時の準備履歴であり、最新条件では実施不能。追加アカウント購入や外部協力者を必須要求にしない。
 - `online-mode=false`、同一アカウント二重接続、fake/offline playerで代替しない。既存server-side 2-player capability / packet / replayの自動PASSを実2-client PASSへ昇格しない。
 - 別項目 **MANUAL SINGLE-CLIENT DEDICATED INTEGRATION TEST / PREPARED (手順のみ) / NOT YET MANUAL INTEGRATION TESTED** を新規手順書へ切り出した。正規接続、GUI/server同期、通常購入、toggle、食事・進行、death/respawn、disconnect/reconnect、進行・toggle保持、両側ERROR/FATAL確認を最小範囲とする。2人間の分離・同時操作・PvP・相手側同期は対象外。
-- 専用root予定は`<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-<timestamp>`、その中の`server`と`client`へ隔離。`127.0.0.1`、未使用port候補25575、`online-mode=true`、`max-players=1`、RCON/query無効を起動時の設定予定として記録した。directory・設定ファイルはまだ作成せず、既存worldや設定は未変更。
+- 専用root予定は`<LOCAL_PATH>/build\verification\single-client-dedicated-<timestamp>`、その中の`server`と`client`へ隔離。`127.0.0.1`、未使用port候補25575、`online-mode=true`、`max-players=1`、RCON/query無効を起動時の設定予定として記録した。directory・設定ファイルはまだ作成せず、既存worldや設定は未変更。
 - 人間の最初の準備は所有アカウントのLauncherログインとMinecraft 1.20.1 / Forge 47.2.0の独立profile有無の確認だけ。認証情報は共有不要。開始指示後に専用game directoryと接続先を案内する。未認証dev `runClient`を正規接続と扱わない。
 - 既存`runServer`の既定directoryは`run`、restart opt-inは自動fixture/停止を伴うため、そのまま手動環境へ流用しない。起動時に隔離・fixtureなしの起動方法を確認する。この段階でserver/client起動、接続操作、EULA/Config書込みを行っていない。
 - 変更ファイル: `docs/MULTIPLAYER_MANUAL_TEST.md`（既存手順を保留参考として保持）、新規`docs/SINGLE_CLIENT_DEDICATED_MANUAL_TEST.md`、`docs/CODEX_STATUS.md`のみ。Java/Mixin/resource/Config/build設定/仕様/テストは未変更。
@@ -2636,7 +2636,7 @@ TaCZの通常pause保存比較（絶対gameTimeは実保存値。GUI操作・pau
 
 #### 2026-09-03 試作型機関弩5SP版の将来仕様書受領・保留登録
 
-- **DEFERRED / NOT IMPLEMENTED / WAITING FOR USER START APPROVAL**: 「試作型機関弩」5SP版を含むクロスボウ改修の将来実装用仕様書を受領した。参照元の実ファイルは[Food_Healing_RPG_Codex_Crossbow_Spec.md](<LOCAL_DOWNLOADS>/Food_Healing_RPG_Codex_Crossbow_Spec.md)（文書版1.2、2026-09-03）。依頼文中の末尾`(1)`付きファイル名ではなく、添付として確認できたこの実ファイルを参照する。
+- **DEFERRED / NOT IMPLEMENTED / WAITING FOR USER START APPROVAL**: 「試作型機関弩」5SP版を含むクロスボウ改修の将来実装用仕様書を受領した。参照元の実ファイルは[Food_Healing_RPG_Codex_Crossbow_Spec.md] `<LOCAL_DOWNLOADS>/Food_Healing_RPG_Codex_Crossbow_Spec.md`（文書版1.2、2026-09-03）。依頼文中の末尾`(1)`付きファイル名ではなく、添付として確認できたこの実ファイルを参照する。
 - 利用者の2026-09-03最新指示が添付MD第0章の実装開始指示に優先する。現在のv3.0.0のデバッグ・安定化・回帰確認・必要な手動試験がすべて完了し、かつ利用者が後日、明示的に「試作型機関弩の実装を開始してください」と指示するまで、監査・実装フェーズへ進まない。デバッグ完了だけでは自動着手しない。
 - 開始条件を満たした時点で初めてMD第3章「実装前の現状監査」から開始し、第16章の段階0→1→2…の順に、一段階ずつbuild・自動試験・実クライアント試験を挟む。今回の受領は改訂案や未確定事項の採用・LOCKを意味しない。
 - 現行の確定仕様、release blocker、手動試験、「次の作業」の内容と優先順位を変更しない。クロスボウ機能を現在のデバッグへ混ぜず、v3.0.0のリリース候補判定や収録を先行決定しない。`OPEN` / `NOT LOCKED`も未変更。

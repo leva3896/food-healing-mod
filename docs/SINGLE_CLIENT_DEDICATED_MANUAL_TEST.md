@@ -4,7 +4,7 @@ Test category: **MANUAL SINGLE-CLIENT DEDICATED INTEGRATION TEST**
 
 Status: **STEP 1〜6 / COMPLETE - PASS WITH RECORDED SCOPE AND CONNECTION HISTORY**
 
-2026-09-06記録整合: 正規Minecraft Java Editionアカウント1つと**Prism Launcher**で、2026-09-05に下記STEP 1〜6を各記録範囲で完了した。試験rootは`<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-20260905-141051`、正式接続先は`127.0.0.1:25575`。serverは通常stop・保存完了・exit0、clientも人間による通常終了と最終log差分・process終了を確認済み。現在は両方停止している。詳細・前後値・実Prism path・終了証跡は[CODEX_STATUS.md](CODEX_STATUS.md)の9/5各STEP記録を正本とする。
+2026-09-06記録整合: 正規Minecraft Java Editionアカウント1つと**Prism Launcher**で、2026-09-05に下記STEP 1〜6を各記録範囲で完了した。試験rootは`<LOCAL_PATH>/build\verification\single-client-dedicated-20260905-141051`、正式接続先は`127.0.0.1:25575`。serverは通常stop・保存完了・exit0、clientも人間による通常終了と最終log差分・process終了を確認済み。現在は両方停止している。詳細・前後値・実Prism path・終了証跡は[CODEX_STATUS.md](CODEX_STATUS.md)の9/5各STEP記録を正本とする。
 
 初回14:32 TIMEOUTと18:21の途中IPv4切断は原因未確定、IPv6別接続先refusedは正式試験外の履歴として残す。今回の完了を全接続試行の成功や接続問題の修正済み判定へ拡張しない。以下は実施済みrunbookの参考手順であり、再起動・再試験の指示ではない。
 
@@ -18,7 +18,7 @@ Status: **STEP 1〜6 / COMPLETE - PASS WITH RECORDED SCOPE AND CONNECTION HISTOR
 2. 完全に独立した検証用instanceが既にあれば、下記の条件と実際のdirectoryを監査してから再利用可否を判断する。普段遊んでいるinstanceは対象外。条件を満たすものがなければ、他instanceの複製ではなく新規instanceを作り、Minecraft 1.20.1とForge 47.2.0を指定する。既存の普段用world/config/optionsは流用しない。
 3. 専用instanceで使用するJavaが17であることを確認する。必要な設定はその検証用instanceだけに限定し、Prism本体の共通設定や他instanceのJava設定を変更しない。
 4. Prismから専用instanceのファイル保存先を確認する。実在するinstance directoryとMinecraft実行directory（異なる場合は両方）を開始時に確認して`CODEX_STATUS.md`へ記録する。ここでは内部pathやfolder名を推測で固定しない。
-5. 確認した専用instanceの`mods`に最新の`<LOCAL_PATH>/food-healing-mod-main\build\libs\foodhealing-3.0.0.jar`だけを配置する。Codexが開始時に元Jar・server配置Jar・client配置JarのSHA-256一致を確認する。古いFood Healing Jarや重複Jarが残っていれば先へ進まず、専用instance内であることを確認して整理する。今回はコピー・削除を実行しない。
+5. 確認した専用instanceの`mods`に最新の`<LOCAL_PATH>/build\libs\foodhealing-3.0.0.jar`だけを配置する。Codexが開始時に元Jar・server配置Jar・client配置JarのSHA-256一致を確認する。古いFood Healing Jarや重複Jarが残っていれば先へ進まず、専用instance内であることを確認して整理する。今回はコピー・削除を実行しない。
 
 Prismの操作名はUI表記を推測せず一般化している。今回の専用instance path・Minecraft/Forge/Java設定・配置Jarはfilesystemから読み取り確認した。MSA認証済みとの人間報告に加え、STEP 1で本serverへの正規認証接続とGUI同期を確認済み。account保存ファイルを調査・変更したことを意味しない。
 
@@ -35,7 +35,7 @@ Prismの操作名はUI表記を推測せず一般化している。今回の専�
 
 ## Codexの起動準備手順
 
-専用root: `<LOCAL_PATH>/food-healing-mod-main\build\verification\single-client-dedicated-<timestamp>`。`<timestamp>`は開始時の未使用タイムスタンプに置換し、既存環境を上書きしない。
+専用root: `<LOCAL_PATH>/build\verification\single-client-dedicated-<timestamp>`。`<timestamp>`は開始時の未使用タイムスタンプに置換し、既存環境を上書きしない。
 
 | 用途 | 場所・予定 |
 | --- | --- |

@@ -10,7 +10,7 @@
 | Field | Value |
 |---|---|
 | Formal filename | Food Healing RPG v3.0.0.jar |
-| Local artifact | `<LOCAL_PATH>/food-healing-mod-main/release/v3.0.0/Food Healing RPG v3.0.0.jar` |
+| Local artifact | `<LOCAL_PATH>/release/v3.0.0/Food Healing RPG v3.0.0.jar` |
 | Accepted source | `build/libs/foodhealing-3.0.0.jar`, Queue #8 run20260930-065113 |
 | Bytes / ZIP entries | **372,242 / 286** |
 | SHA-256 | `8B8A31FA308CD24C4A139D65FEF5818F1A2DABD8587A238D93974F787FFE10DD` |
@@ -27,7 +27,7 @@
 | Field | Value |
 |---|---|
 | Repository | [leva3896/food-healing-mod](https://github.com/leva3896/food-healing-mod) |
-| Read-only original | `<LOCAL_PATH>/food-healing-mod-main` (no Git initialization) |
+| Read-only original | `<LOCAL_PATH>/` (no Git initialization) |
 | Publication checkout | `.` |
 | Starting remote main | `59aedf1ccc512c531c73506be38ff9844dbf799b` |
 | Release branch | `codex/release-v3.0.0` — normal push and readback successful |
@@ -80,7 +80,7 @@ This receipt records the release event. The complete specification is the mainta
 | Field | Value |
 |---|---|
 | Formal filename | Food Healing RPG v3.0.0.jar |
-| Local artifact | `<LOCAL_PATH>/food-healing-mod-main/release/v3.0.0/Food Healing RPG v3.0.0.jar` |
+| Local artifact | `<LOCAL_PATH>/release/v3.0.0/Food Healing RPG v3.0.0.jar` |
 | Accepted source | `build/libs/foodhealing-3.0.0.jar`, Queue #8 run20260930-065113 |
 | Bytes / ZIP entries | **372,242 / 286** |
 | SHA-256 | `8B8A31FA308CD24C4A139D65FEF5818F1A2DABD8587A238D93974F787FFE10DD` |
@@ -134,7 +134,7 @@ Final formal release is **NOT COMPLETE** until main contains the frozen source a
 
 ### Git CLI publication resume — 2026-10-03 12:44 JST
 
-Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
+Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
 #8 freezeはsrc274とbuild3ファイル差分0、正式Jar372,242 bytes/286 entries/既存SHA-256完全一致、ExampleMod0。staged0/commit0/push0/retry0/HUMAN0。認証には未到達。remote URL/HEAD/現在mainは未確認であり、前回11:20 JSTのmain確認を今回の読戻しに転用しない。既存403は過去履歴として保全。
 **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / FORMAL RELEASE NOT COMPLETE**。
 **次の1作業:** 現在のv3ファイルを保全したまま、このパスを正しい既存Git履歴へ安全に接続する方法の明示承認、または正しい既存checkoutの指定待ち。今回はgit init/clone/fetch/stage/commit/pushを行わず停止。GitHub integration APIへ戻らない。

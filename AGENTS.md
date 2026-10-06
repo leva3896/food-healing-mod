@@ -167,3 +167,13 @@ For every v3.x behavior, cost, prerequisite, compatibility, persistence, protoco
 update that specification in the same work unit as the implementation. Code-only completion is not completion.
 Keep current status and historical evidence separate; do not promote untested behavior to PASS.
 For a future major version, create its own specification and retain the v3.x document and evidence.
+
+## 11. Mandatory privacy and publication gate
+
+- Never open account/credential stores, launcher accounts, browser cookies, private keys, `.env`, or auth caches to find credentials. Block sensitive filenames without reading contents.
+- Never put private account names, real Player UUIDs, personal email, user/machine identifiers, or absolute local paths into public docs, code, reports, or handoffs. Use repo-relative paths or the placeholders in [PRIVACY_AND_SECRET_HYGIENE.md](docs/PRIVACY_AND_SECRET_HYGIENE.md), including `<MINECRAFT_ACCOUNT>`, `<PLAYER_UUID>`, and `<LOCAL_PRISM_INSTANCE>` for client evidence.
+- Keep intentionally public repository identity, `foodhealing`, Java packages, and reviewed synthetic/owned UUIDs intact. Never rename product identities merely for privacy.
+- On a suspected credential, do not echo, hash, copy, test, or transmit its value. Record only rule/type, file, line, surface, and severity; stop publication. Public/history credentials require a security remediation decision.
+- Keep build reports, logs, worlds, screenshots, backups, and local launchers/runtimes private and ignored; never force-add them. Preserve local evidence rather than deleting it.
+- Before every commit, push, PR, or release, run `python tools/privacy_guard.py --self-test`, `--tracked`, `--candidates`, and `--staged`. Any blocking hit or unreadable scope stops publication. Separately review the planned working/staged diff for privacy. Do not alter the stage to obtain PASS.
+- A clean working tree does not clean public branches or Git history. Remote writes and history rewriting require explicit user authorization. See the privacy policy for scope and limitations.

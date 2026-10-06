@@ -1,0 +1,275 @@
+{
+  "policy": "Exact path and full-line SHA for reviewed nonpersonal UUID evidence only. Any edit requires review; never allow credentials.",
+  "reviewedUuidLines": [
+    {
+      "path": "docs/CODEX_STATUS.md",
+      "lineSha256": "cc1b9d5da861f134d57e1d3acc496c23dc97be9aebbef3561e28b85ab36e8fdb",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/CODEX_STATUS.md",
+      "lineSha256": "a48aa9ead92f1c0a4f3cdd96c4dffc6c5ba4b69545afc653d33b1432178a7a6a",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/CODEX_STATUS.md",
+      "lineSha256": "258f26a4460efc4fd93b2e720dfe79586322e3b162f78aff7e919b20a1753886",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/CODEX_STATUS.md",
+      "lineSha256": "335ba3cf0ce304636c674847b4eeae87f319cda6f254d2256f20609a2acc088b",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/CODEX_STATUS.md",
+      "lineSha256": "555121094267bc9c9737c41c1feb5bc9528ac924341c03307393316338279d27",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/FOOD_HEALING_RPG_V3_SPECIFICATION.md",
+      "lineSha256": "d21508e09da98d1faf863b303b6ecf52aa332405851c9ef11e7a113fa134520a",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "0d46b30f1778e2efbf2e8cf91211e2f8fbd395a7d39cc0cfcd1d1a1ab3eb5bd0",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "e10544b6a2311cf28079399ac9595128756af9393681aecf7b3876c87518ec1d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "0bbea7d87fdaf36b7456df6178e046127dfb2ff2b445c81adcba6008048718f0",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "aac452442e97e6bc5f59889e5330194edda0e5e312bb4d3d381121461f12bb89",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "5491c55e20cfd9df3af2dcba0a456f6f5b31d607c6a7b592d38c3624a28f489d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "12d7f8eeca6794d18630097e3b44aabce434487ef069025bd6b5d018fa062aa2",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "a08edd7e029668ec3005bf295ee18010cf09a1b972ec4c3b95506a3cdcc94ae7",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "ecdfaf00a7308bd1009542b41d21a68dd00a8feb128e5a6bb2c6d94cbe7744d0",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "e2215becee055aa8ca7108a0950e8297c1892ca9c4de580e7d6ddd4e11c41984",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "b5dcdddd0fe0c7644b8314d9bdde85df5d78acd834b51dea583db965fffc0c3b",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "bf34a04e54c70c02ff5d92fc3b5a98800b6d8f1ab2c8b196a13583ee8cabcfa2",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "7bb8f3307bd521e9f16b3b3a39b3735b476bbcfb48f03d0a39cc4c0951e67b5f",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "2e5fe6c9ba327f1b3686e86e3ebfab7d663a065c10d9248e4be9a013ed7682f0",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "92ea0a120b10674df3a22afb08fd5f27113c3193edca8ff96b90946a69cf9a09",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "26dc0eb8ba1fd01fd50c0b359e2eac3c33336243ce0d07b86e5c7990746397d0",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "d040c22d539a1040f67ca4fdcf75efe49a5490a4df31431beba2111c5ed99fed",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "043279de277c802180a715f4fbb548533ed7bcffc46e7875a16250016621bb6e",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "bc2c5b326d354525c97581c853acfa022b4ae58e92b6d2ebadc23dbc931f56b7",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "bcfe61903b22008c75565a55fc190c1e08551ef0a726136ec781811bfdd016b6",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "f8c09d709899093734adbf90caf6234edb0f4d54a8a531f1d366b27f6e23445b",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "docs/MASTERY_IMPLEMENTATION_PREPARATION.md",
+      "lineSha256": "3ab9670e9feda9c0a4795ae1aa02de07ecc9b8dc94041361ffb33990debbd822",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed generated test entity, Mixin session, or public MOD/vanilla modifier UUID; personal account repeats redacted separately."
+    },
+    {
+      "path": "src/fantasyEndingTest/java/com/leva/foodhealing/verification/fe6/FE6Verification.java",
+      "lineSha256": "e99df245a402d6db7774951aebab74360a6713aeb119b6b423617f1c2439c142",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/l2HostilityTest/java/com/leva/foodhealing/verification/L2HostilityVerification.java",
+      "lineSha256": "7e437d886e76f92eaa3eb9d0c51a8d525d019cc1f9fbf77303efb8dc53b9a79d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodDiversityHandler.java",
+      "lineSha256": "c9be7afa70707adca24e20690ce55ca0540bd9cc5bff1595d11df1ce9235b465",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingBaseStats.java",
+      "lineSha256": "33f3146d55c82cdb169e77eb8a3d13e3e70dda774a76c3094c59f42654a9ca9d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingBaseStats.java",
+      "lineSha256": "66c5192e1a52996037612de8c2472bff79a2e16d682f838c9857b6d55c29ce6f",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingCombatGameTests.java",
+      "lineSha256": "6457078bd2268994d216deda14822750f96f1809d36254a0bcc2c1037b9dc1f5",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingCombatGameTests.java",
+      "lineSha256": "2e95d59c6994e46cab65761dbc56fed00a30698d6f914b5d3da079b279f4f81d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingPriorityZeroGameTests.java",
+      "lineSha256": "7fbe1df6bba2a8adb4d0dabbfb766ee3aed14092c4d33ef9cc835488259336b9",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/FoodHealingPriorityZeroGameTests.java",
+      "lineSha256": "cda036593555073cc7da7f7c7939a4a6f4b76f42b34ce7afa194a477d1b36505",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/HeroicsController.java",
+      "lineSha256": "aac38a159453f832ae7f6add3a6cce9f4307f9b7a4b5bf11b384e0bde96b794a",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/main/java/com/leva/foodhealing/HeroicsController.java",
+      "lineSha256": "b8b1592570d52c25e1be11965add7cb164bfda11ad12a0dd7b522039edd4109d",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/restartTest/java/com/leva/foodhealing/LegacyDiskVerification.java",
+      "lineSha256": "282a4491920f75012496e7ebe8e2daca2920aef8be5c122d7692a48c07cd9423",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/restartTest/java/com/leva/foodhealing/RestartPersistenceVerification.java",
+      "lineSha256": "1371bab6e93af96d7d37ecd07ddea98e123602221d8c03833a8ecce165fe4cff",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/restartTest/java/com/leva/foodhealing/RestartPersistenceVerification.java",
+      "lineSha256": "d102c53018f0a035ae15e29ddf4af23be989f3b360654bf016ca9c2870cbe27a",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/restartTest/java/com/leva/foodhealing/RestartPersistenceVerification.java",
+      "lineSha256": "dfc58b9269b30987ee6888e759da91f450e79b930b4762bdae149cc03fc3c341",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/taczTest/java/com/leva/foodhealing/TaczAmmoRestartVerification.java",
+      "lineSha256": "eee9762f426253cf9462d03e86bbac83dc92e3bee04a4f46e134b3168e074fc5",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/taczTest/java/com/leva/foodhealing/TaczAmmoRestartVerification.java",
+      "lineSha256": "60d74438759b91c8d1e28ec003d7d2e1b2cda2189ab9c14829caeaf186506dd9",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    },
+    {
+      "path": "src/trialMonolithTest/java/com/leva/foodhealing/verification/TrialMonolithVerification.java",
+      "lineSha256": "4a86815793c9738b282bad2828c68c60a375de59af803ef5eb944add00c77993",
+      "rule": "RULE_UUID_REVIEW_REQUIRED",
+      "reason": "Reviewed stable owned/foreign modifier ID or deterministic synthetic GameTest/verification fixture; no account UUID match."
+    }
+  ]
+}

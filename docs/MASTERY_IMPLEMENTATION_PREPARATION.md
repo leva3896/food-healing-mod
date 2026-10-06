@@ -233,7 +233,7 @@ HP/Soul初期値を各caseでリセットせず、同じplayerで連続比較す
 
 [今回の限定read-only配置照合](../build/verification/trial-client-plan-20260915-135500/audit/local-inputs.json):
 
-- 既存検証Prism: `<LOCAL_PATH>/food-healing-mod-main/build/verification/direct-jar-20260913-114729/launcher/prismlauncher.exe`。
+- 既存検証Prism: `<LOCAL_PATH>/build/verification/direct-jar-20260913-114729/launcher/prismlauncher.exe`。
 - 同launcher内のlocal Java releaseは **17.0.15**、Minecraft1.20.1/Forge47.4.0/LWJGL3.3.1の既存component metadata、client/universal/installer Jar、asset index5を確認。Forge version.jsonの29ライブラリは既知libraries内に全て存在。全asset objectの総走査や起動検証はしていない。
 - Food Healing最終Jarは今回再測定して **205,688 bytes /131 entries /SHA256 8F4AB9F60C2B0D64CF2902944248261A806759BF57CA308EA4273FBC950C3529**。Trial原物も承認1.4.9/既知hash一致。再提供不要、Q1/Q2再判断不要。Curios等のoptional MOD追加や新downloadは予定しない。
 - 新規instance `FHR_Trial_Client_<runId>`を同launcher配下へ作り、modsはFHR原物コピー・Trial原物コピー・上記別fixtureのみ。既存world/instanceをコピーしない。共有local runtime/libraries/assetsと非認証component情報を利用する。既存認証済みアカウントはPrism自身に使用させ、認証ファイルの読取/コピーなし。
@@ -322,7 +322,7 @@ ID `l2hostility`、displayName `L2 Hostility`、mods.toml `${file.jarVersion}`�
 | curios | `[5.3.4,)` | 既存`curios-forge-5.12.0+1.20.1.jar`、ID curios / Manifest 5.12.0+1.20.1、394,715 bytes、SHA **E2EDACD8DD16FB4172B517A2FA1B642DFFF45B6E94712E468ED5B8F7D673AA03** | Forge `[46,)`、MC `[1.20,1.21)`。追加必須MODなし、同梱Jarなし |
 | patchouli | `[1.20.1-81-FORGE,)` | 既存`Patchouli-1.20.1-84-FORGE.jar`、ID patchouli / Manifest 1.20.1-84-FORGE、642,506 bytes、SHA **E883F33AE0E5EB128B36E145072027E620E9992E24809DC07BF4E7AC195B9519** | Forge `[47.1.3,)`、MC `[1.20.1,1.21)`。追加必須MODなし、同梱Jarなし |
 
-既存2MODは `<LOCAL_PATH>/food-healing-mod-main/build/verification/source-world-boot-20260906-172148/game/mods/` と `source-runtime-20260906-165001/game/mods/` の双方で同hashを再確認。**再提供不要。今回の新規隔離modsへのコピーのみ、原物は不変**。本体はForge `[47.1.0,)`、MC `[1.20.1,1.21)`、javafml loader `[46,)`。cataclysm `[2.02,)` はoptionalで不足必須物に含めない。
+既存2MODは `<LOCAL_PATH>/build/verification/source-world-boot-20260906-172148/game/mods/` と `source-runtime-20260906-165001/game/mods/` の双方で同hashを再確認。**再提供不要。今回の新規隔離modsへのコピーのみ、原物は不変**。本体はForge `[47.1.0,)`、MC `[1.20.1,1.21)`、javafml loader `[46,)`。cataclysm `[2.02,)` はoptionalで不足必須物に含めない。
 
 | Hostility本体内包（JarJar、追加候補は§10.7） | 現物 / SHA-256 | 内部宣言 |
 |---|---|---|
@@ -2598,7 +2598,7 @@ FE6 site STATIC AUDITED / NOT IMPLEMENTED、TimeStop production NOT IMPLEMENTED�
 
 #### a. 新run・helperと初回write guard
 
-- run `20260921-141541`、ROOT `<LOCAL_PATH>/food-healing-mod-main/build/verification/uom-reconnect-20260921-141541`、新instance `FHR_UOM_Reconnect_20260921-141541`。旧run/source/Jar/audit/receipt/worldは再利用・変更しない。
+- run `20260921-141541`、ROOT `<LOCAL_PATH>/build/verification/uom-reconnect-20260921-141541`、新instance `FHR_UOM_Reconnect_20260921-141541`。旧run/source/Jar/audit/receipt/worldは再利用・変更しない。
 - 必須JVM property `foodhealing.uomReconnect.runId` / `foodhealing.uomReconnect.root`、役割`foodhealing.uomReconnect.role=server|client`。`Audit.RUN/ROOT`は`RunContext.load()`のruntime値。Network/Lease/Sessionも同一値を参照し、old fallback/cwd/Jar位置からの推測なし。
 - Audit初期化時、最初のlog/onceより先にrun形式・新run manifest・helper metadata version・canonical realpath・server/world/audit/artifacts・instance identity・役割/cwd整合・原物と配置全hash・正確なmods集合を検証。旧rootは対応manifest/versionがなく拒否。新helper metadata版とrun identityも拘束するため、後続runでは新identity/version/manifestを用意する。sourceにruntime RUN固定値を再導入しない。
 - [static gate](../build/verification/uom-reconnect-20260921-141541/audit/helper-static-gate.json)：27 own class、FHR/FE/EL class・nested Jar・ExampleMod0、全classの旧RUN/旧ROOT runtime定数0。missing両方/片方、blank、wrong/old root、traversalの7条件を実行してwrite前hard fail。旧audit不変。server/client両役割の[配置正条件](../build/verification/uom-reconnect-20260921-141541/audit/deployment-gate.json)も書込なしでPASS、実起動時も同run検証成立。
@@ -3865,7 +3865,7 @@ helper初回作成＋修理2 cycleの計3回、専用offline compile/reobf各SUC
 
 ### 正式APIの確認結果と採用方法
 
-- 現行[Computer Use API定義](<USER_HOME>/.codex/plugins/cache/openai-bundled/computer-use/26.924.22138/docs/api.md)の`PressKeyInput = { key: string; window: Window; }`にはduration/hold・down/up指定がない。
+- 現行[Computer Use API定義] `<USER_HOME>/.codex/plugins/cache/openai-bundled/computer-use/26.924.22138/docs/api.md`の`PressKeyInput = { key: string; window: Window; }`にはduration/hold・down/up指定がない。
 - 実際にロードされた`@oai/sky`の公開action名をREAD ONLY列挙した。`target=windows`、`activate_window, click, drag, get_window, get_window_state, launch_app, list_apps, list_windows, perform_secondary_action, press_key, scroll, set_value, type_text`。別keyDown/keyUp/hold actionはなく、現在callableなtool一覧にも正式OS hold機能なし。現在の`cua_repl` schemaはnative computer APIs disabledであり、browser APIをMinecraft入力へ転用しない。
 - **AUTOMATED**は今回のschema/action照合だけ。OSキー送信・COMPUTER USEによるゲーム操作・**HUMAN INPUTはいずれも未実施**。保持時間・key tick数は未測定。短press再試行、未公開API推測、MC input/GLFW/packet/位置setter、外部入力注入は使用しない。
 - 採用する次回方式は**HUMAN物理W保持**。依頼は「次回、画面に『REAL INPUT READY / Wを押してください』と表示・報告した時だけ、物理キーボードのWを約1秒押し続けて離してください」。今は起動も入力依頼の実行も行わない。次回もreadonly実client tickで`forwardKey=true`または`forwardImpulse>0`を確認するまでは入力/移動PASSにしない。
@@ -5526,7 +5526,7 @@ REAL2CLIENT=BLOCKED、広いTimeStop SAFE DESIGN PROVEN=NO/source dimension NO/o
 
 ### Git CLI publication resume — 2026-10-03 12:44 JST
 
-Git CLI再開preflightで `<LOCAL_PATH>/food-healing-mod-main` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
+Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/branch/HEAD/statusの5確認がすべてexit128 `not a git repository`。**STOP — LOCAL GIT REPOSITORY NOT FOUND**。
 #8 freezeはsrc274とbuild3ファイル差分0、正式Jar372,242 bytes/286 entries/既存SHA-256完全一致、ExampleMod0。staged0/commit0/push0/retry0/HUMAN0。認証には未到達。remote URL/HEAD/現在mainは未確認であり、前回11:20 JSTのmain確認を今回の読戻しに転用しない。既存403は過去履歴として保全。
 **#1–#8 COMPLETE / #9 PARTIAL / RC=YES / FORMAL RELEASE NOT COMPLETE**。
 **次の1作業:** 現在のv3ファイルを保全したまま、このパスを正しい既存Git履歴へ安全に接続する方法の明示承認、または正しい既存checkoutの指定待ち。今回はgit init/clone/fetch/stage/commit/pushを行わず停止。GitHub integration APIへ戻らない。
