@@ -9,7 +9,7 @@
 
 ## 1. 基準・証拠・数え方
 
-- 旧基準は公開[commit 59aedf1ccc512c531c73506be38ff9844dbf799b](https://github.com/leva3896/food-healing-mod/tree/59aedf1ccc512c531c73506be38ff9844dbf799b)。候補を無条件採用せず、`gradle.properties`の**mod_version=2.2.5 / mod_id=foodhealing / MC1.20.1 / Forge47.2.0**、`FoodHealingMod.MODID`、resources/lang/Mixin、同commit収録仕様を照合した。
+- 旧基準は公開[commit 7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1](https://github.com/leva3896/food-healing-mod/tree/7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1)。候補を無条件採用せず、`gradle.properties`の**mod_version=2.2.5 / mod_id=foodhealing / MC1.20.1 / Forge47.2.0**、`FoodHealingMod.MODID`、resources/lang/Mixin、同commit収録仕様を照合した。
 - 既存9/5 source ZIP2件はいずれもmetadataが3.0.0なので不採用。公開commitのsourceを監査rootだけへ取得。Git treeのblob SHA-1と**35基準ファイル**を照合。[identity](../build/verification/legacy-parity-20260929-202500/audit/baseline-identity.json)。ローカル`.git`なし。git diffを実行したとは記録しない。
 - 旧仕様書のファイル名・本文は**v2.2.0**のままv2.2.5 commitに収録されている。[旧仕様][O-SPEC]と[旧日本語lang][O-LANG]を「当該commitに同梱された説明」として扱い、2.2.5 actual Javaより優先しない。旧チャットGUIはcommand一覧/詳細リンクで、独立スキル画面はない。
 - 旧Java **25ファイル全体**を機械検索。**17 skill/toggle群、31 unlock/stage値、literal `isSkillDisabled`効果参照19箇所**（17 skill本体＋満足感に結合したTaCZ節約/熱2箇所）。commandの可変key照会2箇所とinterface/getterはこの19に含めない。31はLv1–20・30・100・991–999で、31個の独立購入nodeという意味ではない。

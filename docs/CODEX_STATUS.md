@@ -14,7 +14,7 @@
 - 完全仕様書34章: skills26/26、stats7/7（保存9ID）、commands6/6、有限SP2590、repeatable5/10/10/5/20/20/2、互換・移行・限界・maintenanceを照合。AGENTSにv3.x同時更新ルールを追加。README/changelog/current docsを整合。
 - release blocker全11分類は[AUDIT F.1](AUDIT_REPORT.md#queue8-release-blocker-matrix)の限定受入を継承、新blockerなし。RC=YESはそのscope内の判断。広域安全証明や全MOD互換とは別。
 
-- GitHub mainへの正式v3 source/docs反映とreadback完了。Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7`。公開内容305ファイル、配布Jar/生成証拠の混入なし。
+- GitHub mainへの正式v3 source/docs反映とreadback完了。Frozen Source Commit `87a2151e23cafeb05a6bb33995a33440a6e8f79d`。公開内容305ファイル、配布Jar/生成証拠の混入なし。
 
 ### 仕様・実装・検証の現在一覧
 

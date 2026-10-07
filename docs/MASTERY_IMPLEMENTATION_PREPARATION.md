@@ -5220,7 +5220,7 @@ readonly query/FH evaluation前後の装備・inventory・Info・canonical一致
 
 **PRE-#8 LEGACY EXISTING-SKILL PARITY AUDIT COMPLETE / PRE-#8 LEGACY SKILL PARITY FIX REQUIRED**。#1–#7 COMPLETE・残2、Avaritia/FE/Mekの限定完了とFlight/P/T PURCHASE READYを維持。**監査→利用者判断→必要な修正→#8→#9**へ順序を更新し、今回は#8/#9 NOT STARTED。
 
-- [全17技能・4層matrix/call-site/判定](LEGACY_SKILL_PARITY_AUDIT.md)。旧commit `59aedf1ccc512c531c73506be38ff9844dbf799b`をmetadata2.2.5/foodhealing・Git blob35件で照合。25 Java、17 toggle群/31段階/効果参照19、[全検索証拠](../build/verification/legacy-parity-20260929-202500/audit/legacy-mechanical-inventory.json)。同梱仕様はv2.2.0表記の履歴で、actualと分けた。
+- [全17技能・4層matrix/call-site/判定](LEGACY_SKILL_PARITY_AUDIT.md)。旧commit `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1`をmetadata2.2.5/foodhealing・Git blob35件で照合。25 Java、17 toggle群/31段階/効果参照19、[全検索証拠](../build/verification/legacy-parity-20260929-202500/audit/legacy-mechanical-inventory.json)。同梱仕様はv2.2.0表記の履歴で、actualと分けた。
 - 採取×4/×6・不壊95%/29⁄30・追撃extra2～9は式が残っても正常購入で到達不可。**LIKELY_UNINTENTIONAL_REGRESSION／fresh構造判断待ち**。migrationのno-auto-acquire/全返還/LegacyV2Backup/exactly onceは別LOCKのまま。
 - **ArmorMastery ArmorItem限定はCONFIRMED V3 NARROWING REGRESSION**。標準damageable全般・0/1不変/>1→1を利用者LOCKとして[SPEC§19](SPEC.md#legacy-armor-mastery-parity-lock)へ記録。現在の不壊はtoolにも効く。hurtAndBreak外direct hurtのFH迂回も区別した。修正未実施。
 - 旧/現の接続済み経路は**ArmorMastery→FH不壊→vanilla Unbreaking**。[source/Jar14 class・native順序](../build/verification/legacy-parity-20260929-202500/audit/source-jar-static-comparison.json)一致。旧L2専用完全無効hookのcode証拠なし。旧lang説明を現P極意へ付け替えない。
@@ -5336,7 +5336,7 @@ Root/True Root/Heroics/P/T/Flight/Ammo/Break Realm/Nutrition/FoodProduction/Pam/
 
 #### 全production command分類
 
-`RegisterCommandsEvent → FoodHealingCommands.onRegisterCommands`だけが登録入口。構造node `/foodhealing`、`/foodhealing syokugi`は実行処理なし。以下はその下の**全9実行経路**で、prefixは `/foodhealing syokugi `。全経路は実行者本人だけ（target引数なし、consoleはplayer無しで拒否）。旧基準commit `59aedf1ccc512c531c73506be38ff9844dbf799b`のcached sourceをgit blob SHA1とSHA256の既存identityへ再照合。旧7経路→開始時9→最終6。
+`RegisterCommandsEvent → FoodHealingCommands.onRegisterCommands`だけが登録入口。構造node `/foodhealing`、`/foodhealing syokugi`は実行処理なし。以下はその下の**全9実行経路**で、prefixは `/foodhealing syokugi `。全経路は実行者本人だけ（target引数なし、consoleはplayer無しで拒否）。旧基準commit `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1`のcached sourceをgit blob SHA1とSHA256の既存identityへ再照合。旧7経路→開始時9→最終6。
 
 | path（引数） | permission | 分類/処置 | canonical変更・同期 | 現行release用途 / GUIとの関係 | 専用翻訳・旧由来 |
 |---|---:|---|---|---|---|
@@ -5537,7 +5537,7 @@ Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/
 
 本文更新: **2026-10-03 13:00 JST**。**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。
 
-GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `59aedf1ccc512c531c73506be38ff9844dbf799b` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
+GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `87a2151e23cafeb05a6bb33995a33440a6e8f79d` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
 公開tree305ファイル（元からcopy302＋既存履歴3）。削除139はobsolete source2、参照TaCZ Jar1、外部MOD展開物136の分類済み対象だけ。元workspaceと履歴は保持。stage428件=add263/modify26/delete139、全copy/index blob一致、意図しない差分0、ExampleMod0、release Jar/生成証拠/credential混入0。最初のstageでignored削除pathが拒否され、tracked削除専用 `add -u` に1回修正して解消。sandbox内の最初のremote読取は接続不可、承認済み権限付き実行で1回再実行し成功。
 #8 source274＋build3ファイル・Jar不変。build/test/game/repack0、既存PASSを再実行扱いにしない。tag/Release/binary upload/CurseForge0。今回の文書closureだけを後続commitにし、mainのreadback成功後に元workspaceへ同じ文書だけmirrorする。成果物とGitの識別は[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)を参照。
 

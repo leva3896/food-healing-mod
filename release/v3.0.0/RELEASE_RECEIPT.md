@@ -29,17 +29,17 @@
 | Repository | [leva3896/food-healing-mod](https://github.com/leva3896/food-healing-mod) |
 | Read-only original | `<LOCAL_PATH>/` (no Git initialization) |
 | Publication checkout | `.` |
-| Starting remote main | `59aedf1ccc512c531c73506be38ff9844dbf799b` |
+| Starting remote main | `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1` |
 | Release branch | `codex/release-v3.0.0` — normal push and readback successful |
-| Frozen v3.0.0 Source Commit | [`d40b37d19ed71139dcb749bdf8aef3669ef53ca7`](https://github.com/leva3896/food-healing-mod/commit/d40b37d19ed71139dcb749bdf8aef3669ef53ca7) |
-| Verified main publication SHA (source commit) | `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` — fast-forward from the starting main; fetched/read back |
+| Frozen v3.0.0 Source Commit | [`87a2151e23cafeb05a6bb33995a33440a6e8f79d`](https://github.com/leva3896/food-healing-mod/commit/87a2151e23cafeb05a6bb33995a33440a6e8f79d) |
+| Verified main publication SHA (source commit) | `87a2151e23cafeb05a6bb33995a33440a6e8f79d` — fast-forward from the starting main; fetched/read back |
 | Final main HEAD | [`refs/heads/main`](https://github.com/leva3896/food-healing-mod/commits/main) — documentation closure descendant of the frozen commit |
 | Closure commit identity | The commit containing this receipt's closure; exact final SHA is recorded in the external publication readback and final report, avoiding a self-referential commit hash |
 | Main publication | SUCCESS — native Git CLI, fast-forward only; no force/history rewrite |
 | Authentication | Existing Git authentication succeeded noninteractively; no new login or credential inspection |
 | RC | YES, within the approved bounded release scope |
 
-GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `59aedf1ccc512c531c73506be38ff9844dbf799b` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
+GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `87a2151e23cafeb05a6bb33995a33440a6e8f79d` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
 公開tree305ファイル（元からcopy302＋既存履歴3）。削除139はobsolete source2、参照TaCZ Jar1、外部MOD展開物136の分類済み対象だけ。元workspaceと履歴は保持。stage428件=add263/modify26/delete139、全copy/index blob一致、意図しない差分0、ExampleMod0、release Jar/生成証拠/credential混入0。最初のstageでignored削除pathが拒否され、tracked削除専用 `add -u` に1回修正して解消。sandbox内の最初のremote読取は接続不可、承認済み権限付き実行で1回再実行し成功。
 #8 source274＋build3ファイル・Jar不変。build/test/game/repack0、既存PASSを再実行扱いにしない。tag/Release/binary upload/CurseForge0。今回の文書closureだけを後続commitにし、mainのreadback成功後に元workspaceへ同じ文書だけmirrorする。成果物とGitの識別は本receiptの表を参照。
 
@@ -97,9 +97,9 @@ Current publication blocker: **LOCAL GIT PREFLIGHT BLOCKED**. The Git CLI resume
 
 Repository: [leva3896/food-healing-mod](https://github.com/leva3896/food-healing-mod), default branch main.
 Planned release branch: `codex/release-v3.0.0` — NOT CREATED (403).
-Starting main: `59aedf1ccc512c531c73506be38ff9844dbf799b` (v2.2.5).
+Starting main: `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1` (v2.2.5).
 Frozen v3.0.0 source commit: **`NOT CREATED — GitHub integration write denied (403)`**.
-No source/release commit exists yet. Last observed remote main at the previous phase (2026-10-03 11:20 JST) was `59aedf1ccc512c531c73506be38ff9844dbf799b`; current remote main was not checked in this Git CLI attempt. A future successful source commit must be recorded here.
+No source/release commit exists yet. Last observed remote main at the previous phase (2026-10-03 11:20 JST) was `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1`; current remote main was not checked in this Git CLI attempt. A future successful source commit must be recorded here.
 前回（11:22 JST）の履歴: GitHub連携のrelease branch作成が403 Resource not accessible by integrationで拒否。branch/commit/main更新0、再試行0。前回読取時のmainは開始commitと同一。今回のremote状態は未確認。
 
 RC=YES applies to the user-approved bounded v3.0.0 scope. All11 [release blocker classifications](../../docs/AUDIT_REPORT.md#queue8-release-blocker-matrix) retain their evidence labels; no new blocker/product change was found.

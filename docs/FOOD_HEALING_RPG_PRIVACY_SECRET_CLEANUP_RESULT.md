@@ -17,7 +17,7 @@ working tree docs/旧Result/Status履歴のprivacy redactionは今回の明示�
 
 ## Baseline
 
-repository `.`、branch `codex/release-v3.0.0`、HEAD `76e5fc4263b3986e6ba7a5c3a9ebc0ad3d40c17e`。intentional dirtyを保持。開始時434 publication candidates、stage0。reset/clean/discard/stash/unstageなし。
+repository `.`、branch `codex/release-v3.0.0`、HEAD `9a04cb30ef4ef741ec9786978e1033b19c395def`。intentional dirtyを保持。開始時434 publication candidates、stage0。reset/clean/discard/stash/unstageなし。
 
 
 ## Threat Classification
@@ -80,19 +80,19 @@ contextから得た2種類の個人identifierをメモリ内だけで追跡し�
 
 **READ ONLY: 32 commits、4 affected commits、16field findings**（author name/email・committer name/email各4）。nameは個人/ローカルidentityの候補として記録し、実名と断定しない。noreply等のprivacy-preserving metadataは除外。
 
-最古affected `3429a97bc74782b6c4ef1afccc606def7085e912`、最新affected `920c15a44828096cf1657961c560cc070e694250`。[hash/fieldのみの台帳](../build/reports/privacy-secret-cleanup/commit-metadata/findings.json)。名前/email値のコピー・Git author設定変更0。
+最古affected `6ae074a0d079e3e08a3a2d549e1f20ab12e027e2`、最新affected `8a395df70fd18abede97e79f70f9f47fe2f43110`。[hash/fieldのみの台帳](../build/reports/privacy-secret-cleanup/commit-metadata/findings.json)。名前/email値のコピー・Git author設定変更0。
 
 ## Git History Audit
 
 **32 commits /591 unique blobs READ ONLY**。初回304rule occurrencesのうち、画像XMP RDF document UUID84をnonpersonalと確認。残るprivacy-related220rule occurrencesは **2 commits**。内訳: absolute path76、home52、account52、UUID review40（重複あり）。
 
-最古affected `d40b37d19ed71139dcb749bdf8aef3669ef53ca7`、最新affected `76e5fc4263b3986e6ba7a5c3a9ebc0ad3d40c17e`。UTF-16 historical text8blobsを補足読込し追加hit0。元scanとcontext reviewを分けて保存。[reviewed history](../build/reports/privacy-secret-cleanup/history/reviewed-summary.json) / [UTF-16補足](../build/reports/privacy-secret-cleanup/history/supplemental-encoding-review.json)。raw blobの一時ファイルdump0、history mutation0。
+最古affected `87a2151e23cafeb05a6bb33995a33440a6e8f79d`、最新affected `9a04cb30ef4ef741ec9786978e1033b19c395def`。UTF-16 historical text8blobsを補足読込し追加hit0。元scanとcontext reviewを分けて保存。[reviewed history](../build/reports/privacy-secret-cleanup/history/reviewed-summary.json) / [UTF-16補足](../build/reports/privacy-secret-cleanup/history/supplemental-encoding-review.json)。raw blobの一時ファイルdump0、history mutation0。
 
 ## Public GitHub Audit
 
 [公開repository](https://github.com/leva3896/food-healing-mod) は無認証GitHub APIでvisibility=public/default=mainを確認。`git ls-remote --symref origin HEAD refs/heads/* refs/tags/*` で7heads/3tags＋HEADを確認した。全10refsのcommitは監査済みreachable集合内。
 
-public main/HEAD=`76e5fc4263b3986e6ba7a5c3a9ebc0ad3d40c17e`。同SHAのlocal immutable tree/blobから内容を照合し、default branchに113rule occurrences/6files、critical0。fetch/remote writeなし。[remote summary](../build/reports/privacy-secret-cleanup/remote/summary.json) / [public metadata](../build/reports/privacy-secret-cleanup/remote/public-metadata.json)。
+public main/HEAD=`9a04cb30ef4ef741ec9786978e1033b19c395def`。同SHAのlocal immutable tree/blobから内容を照合し、default branchに113rule occurrences/6files、critical0。fetch/remote writeなし。[remote summary](../build/reports/privacy-secret-cleanup/remote/summary.json) / [public metadata](../build/reports/privacy-secret-cleanup/remote/public-metadata.json)。
 
 issues、PR titles/bodies/comments、release title/body/assets、Actions metadata/logs、forks/cachesは **NOT AUDITED**。既存credential設定は読取・変更しない。
 

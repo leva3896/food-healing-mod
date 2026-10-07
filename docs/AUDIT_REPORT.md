@@ -328,7 +328,7 @@ Do not call v3.0.0 release-ready if any of these remain:
 
 ### F.2 Queue #9 current RC decision — 2026-10-03 13:00 JST
 
-**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。F.1の限定11分類を維持。Frozen source `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` をmainへFFしreadback一致。詳細は[Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)。
+**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。F.1の限定11分類を維持。Frozen source `87a2151e23cafeb05a6bb33995a33440a6e8f79d` をmainへFFしreadback一致。詳細は[Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)。
 
 <details><summary>公開前RC判定（11:22 JSTの履歴）</summary>
 

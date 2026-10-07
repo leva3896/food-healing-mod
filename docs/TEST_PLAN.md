@@ -2411,7 +2411,7 @@ Git CLI再開preflightで `<LOCAL_PATH>/` は `.git` を持たず、root/remote/
 
 本文更新: **2026-10-03 13:00 JST**。**#1–#9 COMPLETE / RC=YES / FOOD HEALING RPG v3.0.0 FORMAL RELEASE COMPLETE**。ゲーム試験ではなく公開整合の確認。
 
-GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `59aedf1ccc512c531c73506be38ff9844dbf799b` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `d40b37d19ed71139dcb749bdf8aef3669ef53ca7` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
+GitHub CLI publication: 正規fresh clone `.`、remote `https://github.com/leva3896/food-healing-mod.git`。開始main `7ccfaa087fadcb4d48e4b1e98f01616f5cc18df1` は不変。branch `codex/release-v3.0.0`、Frozen Source Commit `87a2151e23cafeb05a6bb33995a33440a6e8f79d` を通常pushし、mainへfast-forward反映、fetch/ls-remote/7ファイルの本文readback一致を確認。既存Git認証で成立、HUMAN INPUT=0、認証再試行0、force0、GitHub integration API0。
 公開tree305ファイル（元からcopy302＋既存履歴3）。削除139はobsolete source2、参照TaCZ Jar1、外部MOD展開物136の分類済み対象だけ。元workspaceと履歴は保持。stage428件=add263/modify26/delete139、全copy/index blob一致、意図しない差分0、ExampleMod0、release Jar/生成証拠/credential混入0。最初のstageでignored削除pathが拒否され、tracked削除専用 `add -u` に1回修正して解消。sandbox内の最初のremote読取は接続不可、承認済み権限付き実行で1回再実行し成功。
 #8 source274＋build3ファイル・Jar不変。build/test/game/repack0、既存PASSを再実行扱いにしない。tag/Release/binary upload/CurseForge0。今回の文書closureだけを後続commitにし、mainのreadback成功後に元workspaceへ同じ文書だけmirrorする。成果物とGitの識別は[Release Receipt](../release/v3.0.0/RELEASE_RECEIPT.md)を参照。
 
